@@ -19,7 +19,8 @@
 
 ## 🎯 Software a Ser Desenvolvido
 
-(Descreva brevemente a aplicação que será desenvolvida e seu objetivo.)
+Desenvolver um jogo educativo digital que ajude crianças a reconhecer e compreender virtudes por meio de situações visuais do cotidiano. 
+O jogo deve priorizar acessibilidade para crianças surdas ou com deficiência auditiva, uso predominante de imagens e sinais visuais, estímulo à reflexão moral e social e facilidade de uso tanto em computadores da escola quanto em casa.
 
 ---
 
