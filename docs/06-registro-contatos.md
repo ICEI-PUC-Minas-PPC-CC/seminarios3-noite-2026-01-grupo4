@@ -1,7 +1,7 @@
 # 06 — Registro de Contatos com a Comunidade
 
-> **Grupo:** Grupo 4 
-> **Comunidade:** Centro Municipal de Atendimento Educacional Especializado Dr. Tarso de Coimbra
+> **Grupo:** *Grupo 4* 
+> **Comunidade:** *Centro Municipal de Atendimento Educacional Especializado Dr. Tarso de Coimbra*
 
 ---
 
