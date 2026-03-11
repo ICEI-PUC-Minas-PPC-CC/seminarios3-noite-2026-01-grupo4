@@ -10,10 +10,10 @@
 
 | Campo | Informação |
 | ------- | ----------- |
-| **Nome do Grupo** | *(preencher)* |
-| **Integrantes** | *(listar todos)* |
-| **E-mail de contato** | *(preencher)* |
-| **Comunidade parceira** | *(preencher)* |
+| **Nome do Grupo** | Grupo 4 |
+| **Integrantes** | Laura Viana, Marcos Eduardo, Nícolas Costa, Giovana Martins |
+| **E-mail de contato** | mesuritavieira@gmail.com |
+| **Comunidade parceira** | Centro Municipal de Atendimento Educacional Especializado Dr. Tarso de Coimbra |
 
 ---
 
