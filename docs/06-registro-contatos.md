@@ -20,14 +20,11 @@
 | Data |06/03/2026 |
 | Forma de contato | Online - Reunião |
 | Participantes do grupo | Nicolas Costa |
-| Participantes da comunidade | |
+| Participantes da comunidade | Professora Fabiana e Professor Harison |
 | Objetivo do contato | Primeiro contato com a comunidade |
 
 **Resumo do que foi tratado:**
-(Descrever o que foi discutido, decisões tomadas, demandas identificadas.)
-
-**Encaminhamentos:**
-(O que ficou combinado para a próxima interação?)
+Foi realizada uma roda de conversa com a professora Fabiana, o professor Harison e os alunos do 3º período de Ciência da Computação para identificar demandas relacionadas ao desenvolvimento de jogos educativos acessíveis para pessoas com surdez e deficiência auditiva, resultando na proposta de uma aplicação interativa com foco em recursos visuais e no tema das virtudes.
 
 ---
 
