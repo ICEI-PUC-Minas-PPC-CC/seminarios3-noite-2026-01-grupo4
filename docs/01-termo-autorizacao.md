@@ -18,16 +18,17 @@
 | Nome do Grupo | Grupo 4 |
 | Integrantes | Laura Viana, Marcos Eduardo, Nícolas Costa, Giovana Martins
  |
-| E-mail de contato | mesuritavieira@gmail.com
- |
+| E-mail de contato | mesuritavieira@gmail.com |
 | Telefone de contato | 35 999766213 |
 
 ## 2. Dados da Comunidade / Instituição Parceira
 
 | Campo | Informação |
 | ------- | ----------- |
-| Nome da instituição | |
-| Endereço | |
+| Nome da instituição | Centro Municipal de Atendimento Educacional Especializado Dr. Tarso de Coimbra
+ |
+| Endereço | R. Mario Xandó de Oliveira, 2 – São Geraldo, Poços de Caldas – MG, 37701-335
+ |
 | Nome do responsável | |
 | Cargo/Função | |
 | Telefone ou e-mail da instituição | |
@@ -38,26 +39,30 @@
 
 | Campo | Informação |
 | ------- | ----------- |
-| Título/Tema da aplicação | |
-| Público-alvo | |
+| Título/Tema da aplicação | Jogo Educativo “Detetive das Virtudes” |
+| Público-alvo | O jogo é voltado principalmente para crianças do ensino fundamental, alunos com deficiência auditiva, alunos em processo inicial de alfabetização e estudantes que utilizam Libras como principal forma de comunicação |
 | Nº estimado de usuários | |
-| Faixa etária do público | |
-| Tecnologias previstas | |
+| Faixa etária do público | Crianças |
+| Tecnologias previstas | Phython |
 | Hospedagem prevista | |
 
 ### Breve descrição da aplicação e sua finalidade
 
-(Descreva aqui o software que será desenvolvido, seus objetivos e como atende às demandas da comunidade.)
+Desenvolver um jogo educativo digital que ajude crianças a reconhecer e compreender virtudes por meio de situações visuais do cotidiano. O jogo deve priorizar acessibilidade para crianças surdas ou com deficiência auditiva, uso predominante de imagens e sinais visuais, estímulo à reflexão moral e social e facilidade de uso tanto em computadores da escola quanto em casa. O jogo também deve poder ser disponibilizado no site da escola, permitindo acesso online.
 
 ## 4. Levantamento de Demandas da Comunidade
 
-(Descreva como as demandas foram levantadas — reuniões presenciais, reuniões online, conversa com responsável, questionário, etc. — e como a aplicação proposta atende a essas demandas.)
+Foi realizada, junto à professora Fabiana, da Escola Municipal Doutor Tarso de Coimbra, e ao professor Harison, uma roda de conversa com os alunos da da Ciência da Computação - 3° período, para levantar as demandas relacionadas ao desenvolvimento de jogos e softwares voltados ao apoio de pessoas com surdez e deficiência auditiva. Durante esse encontro on-line, foram discutidas as principais dificuldades enfrentadas por esse público no acesso a conteúdos educacionais e ferramentas digitais, além da importância de promover valores e virtudes no ambiente escolar.
+
+A partir desse diálogo, identificou-se a necessidade de recursos interativos que facilitem a compreensão de conteúdos, estimulem a participação ativa dos alunos e contribuam para o desenvolvimento de habilidades cognitivas e sociais. Também foi destacada a importância de ferramentas acessíveis, com elementos visuais claros, linguagem simples e mecânicas que favoreçam o aprendizado de forma lúdica.
+
+Com base nessas necessidades, a aplicação proposta busca atender às demandas levantadas por meio do desenvolvimento de um jogo educativo acessível, que utilize recursos visuais e interatividade para auxiliar no aprendizado e na inclusão de pessoas com surdez e deficiência auditiva, ao mesmo tempo em que trabalha conceitos relacionados às virtudes, incentivando a reflexão e o desenvolvimento pessoal dos alunos.
 
 ### Registro de contatos com a comunidade
 
 | Data | Forma de contato | Resumo do que foi tratado |
 | ------ | ----------------- | -------------------------- |
-| | | |
+|06/03/26 | Microsoft Teams | Foi realizada uma roda de conversa com a professora Fabiana, o professor Harison e os alunos do 3º período de Ciência da Computação para identificar demandas relacionadas ao desenvolvimento de jogos educativos acessíveis para pessoas com surdez e deficiência auditiva, resultando na proposta de uma aplicação interativa com foco em recursos visuais e no tema das virtudes. |
 | | | |
 | | | |
 
