@@ -7,7 +7,7 @@
 - [ ] Enviado ao professor
 - [ ] Aprovado  
 
-> **Versão do termo .docx:** [baixar na atividade do Canvas]
+> **Versão do termo .docx:https://www.canva.com/design/DAHDvPZrILk/FpEZ3OW3HeYOACTKnUMk7Q/view?utm_content=DAHDvPZrILk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha3420c34d4**
 
 ---
 
