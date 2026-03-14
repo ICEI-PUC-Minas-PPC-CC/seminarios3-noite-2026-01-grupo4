@@ -1,0 +1,12 @@
+{
+  "title": "O brinquedo perdido",
+  "description": "Você estava indo embora do parquinho após ouvir sua mãe te chamar e na saída acaba encontrando uma espada de plastíco encostada ao lado do portão de saída.",
+  "options": [
+    "1 -Levar o brinquedo para casa",
+    "2- Perguntar de quem é o brinquedo para as crianças que estão brincando no parquinho",
+    "3- Esconder o brinquedo para que ninguém mais o encontre"
+  ],
+  "correct": 2,
+  "virtue": "Honestidade",
+  "explanation": "A honestidade é a qualidade de ser verdadeiro, justo e íntegro, agindo com transparência e respeito, tanto consigo mesmo quanto com os outros. Ser honesto nesse caso, significa devolver algo que não é seu."
+}
