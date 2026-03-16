@@ -5,30 +5,33 @@ import sys
 pygame.init()
 
 # tamanho da janela
-largura = 800
-altura = 600
+largura = 1920
+altura = 1080
 
 # criar janela
 tela = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption("Detetive das Virtudes")
+fundo = pygame.image.load("seminarios3-noite-2026-01-grupo4/src/backgrounds/urso.png")
+fundo = pygame.transform.scale(fundo, (1920 , 1080))
+pygame.display.set_caption("Detetive das Virtudes - Tarso de Coimbra")
 
 # fonte para escrever textos
-fonte = pygame.font.SysFont("arial", 30)
+fonte = pygame.font.SysFont("arial", 14)
 
-# dados do caso (por enquanto direto no código)
+# dados do caso 1
 titulo = "Caso: O brinquedo perdido"
 
-descricao = "Uma criança encontra um brinquedo no parque."
+descricao = "Voce encontra um urso no parque, após sua mãe te chamar para ir para casa. Voce deve decidir o que fazer com ele."
 
 opcoes = [
-    "Levar o brinquedo para casa",
-    "Perguntar de quem é o brinquedo",
-    "Esconder o brinquedo"
+    "1-Levar o brinquedo para casa, ninguém está olhando",
+    "2-Perguntar para as crianças no parque de quem é o brinquedo",
+    "3-Esconder o brinquedo para que ninguém mais o encontre",
 ]
 
-resposta_correta = 1  # posição da resposta correta
+# índice da opção correta (0 = primeira opção)
+resposta_correta = 1  # corresponde à opção 2
 
-feedback = ""  # mensagem que aparece depois da escolha
+feedback = "virtude é como um tesouro que você carrega dentro do peito e que brilha toda vez que você faz o que é certo, mesmo quando ninguém está olhando. Não esconder o urso ou levar para casa te faz ser honesto em nao pegar ou esconder o que nao é seu. "  # mensagem que aparece depois da escolha
 
 
 # posições dos botões
@@ -50,8 +53,9 @@ rodando = True
 
 while rodando:
 
-    # cor de fundo
-    tela.fill((240, 240, 240))
+    # desenhar fundo
+    tela.blit(fundo, (0, 0))
+
 
     # desenhar título
     texto_titulo = fonte.render(titulo, True, (0, 0, 0))
