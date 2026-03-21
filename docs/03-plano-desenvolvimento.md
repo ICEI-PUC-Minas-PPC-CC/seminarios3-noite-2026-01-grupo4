@@ -10,18 +10,18 @@
 | Integrante | Responsabilidades principais |
 | ----------- | ------------------------------ |
 | Laura Viana| Criação dos casos: Honestidade, Bondade e Respeito, Interface Gráfica, roteiros dos casos atribuidos e imagens|
-| | |
-| | |
-| | |
+|Nicolas Costa| Criação dos casos:Responsabilidade e Generosidade|
+|Marcos Eduardo |Croação de casos: Empatia e Amizade |
+|Giovana Martins| Generosidade, Glossário de libras obrigatório no menu|
 
 ## 2. Cronograma de Desenvolvimento
 
 | Semana | Período (dd/MM à dd/MM) | Atividade planejada | Responsável | Status |
 | :------: | --------- | -------------------- | -----------: | :------: |
 | 1 | 18/02 à 25/02 | Formação do grupo | Todos | iniciado |
-| 2 | | Contato com comunidade e Levantamento de demandas | | não iniciado |
-| 3 | | Definição de requisitos | | não iniciado |
-| 4 | | Prototipação / wireframes | | não iniciado |
+| 2 | Data da reuniao a colocar (Nick)| Contato com comunidade e Levantamento de demandas | | não iniciado |
+| 3 | 06/03 à 11/02 | Definição de requisitos | | não iniciado |
+| 4 | 13/03 à 21/03| Prototipação / wireframes | | não iniciado |
 | 5 | | Desenvolvimento — Sprint 1 | | não iniciado |
 | 6 | | Desenvolvimento — Sprint 1 | | não iniciado |
 | 7 | | Validação com a comunidade | | não iniciado |
