@@ -1,7 +1,7 @@
 # 03 — Plano e Cronograma de Desenvolvimento
 
-> **Grupo:** *(preencher)*  
-> **Aplicação:** *(preencher)*
+> **Grupo:** *seminarios3-noite-2026-01-grupo4*  
+> **Aplicação:** *Tarso de Coimbra - projeto educacional voltada para crianças*
 
 ---
 
@@ -18,10 +18,10 @@
 
 | Semana | Período (dd/MM à dd/MM) | Atividade planejada | Responsável | Status |
 | :------: | --------- | -------------------- | -----------: | :------: |
-| 1 | 18/02 à 25/02 | Formação do grupo | Todos | iniciado |
-| 2 | Data da reuniao a colocar (Nick)| Contato com comunidade e Levantamento de demandas | | não iniciado |
-| 3 | 06/03 à 11/02 | Definição de requisitos | | não iniciado |
-| 4 | 13/03 à 21/03| Prototipação / wireframes | | não iniciado |
+| 1 | 18/02 à 25/02 | Formação do grupo | Todos | Finalizado |
+| 2 | Data da reuniao a colocar (Nick)| Contato com comunidade e Levantamento de demandas | | Finalizado |
+| 3 | 06/03 à 11/02 | Definição de requisitos | | Finalizado|
+| 4 | 13/03 à 21/03| Prototipação / wireframes | | iniciado |
 | 5 | | Desenvolvimento — Sprint 1 | | não iniciado |
 | 6 | | Desenvolvimento — Sprint 1 | | não iniciado |
 | 7 | | Validação com a comunidade | | não iniciado |
@@ -52,17 +52,23 @@
 ### Ambiente de desenvolvimento
 
 (Descreva o setup: editor de código, controle de versão, branches, etc.)
+Laura: Vs Code, Git, feat/cases-laura
+Nicolas: Vs Code, Git, feat/responsabilidade-generosidade
+Giovana Martins: nao iniciado - a definir
+Marcos Eduardo: nao iniciado - a definir 
 
 ### Estratégia de testes
 
 (Como o grupo vai testar a aplicação antes da entrega?)
+Criando um executavel e realizando testes conferindos os requisitos de escolhas, botao de avançar, escolhas incorretas para testar mensagem de erro etc.
 
 ### Estratégia de deploy
 
 (Onde e como a aplicação será hospedada?)
+Plataforma Github e disponibilizando uma cópia do executavel do jogo 
 
 ## 5. Riscos e Mitigações
-
+a definir com o grupo 
 | Risco | Probabilidade | Impacto | Mitigação |
 | ------- | :------------: | :-------: | ---------- |
 | Atraso no cronograma | | | |
@@ -71,7 +77,7 @@
 | Problemas de infraestrutura no dia da entrega | | | |
 
 ## 6. Comunicação do Grupo
-
+a definir com o grupo 
 | Canal | Finalidade |
 | ------- | ----------- |
 | *(WhatsApp / Discord / Teams)* | Comunicação diária |
