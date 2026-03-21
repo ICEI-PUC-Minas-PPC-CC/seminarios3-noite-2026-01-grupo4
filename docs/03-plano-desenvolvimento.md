@@ -10,9 +10,9 @@
 | Integrante | Responsabilidades principais |
 | ----------- | ------------------------------ |
 | Laura Viana| Criação dos casos: Honestidade, Bondade e Respeito, Interface Gráfica, roteiros dos casos atribuidos e imagens|
-|Nicolas Costa| Criação dos casos:Responsabilidade e Generosidade|
-|Marcos Eduardo |Croação de casos: Empatia e Amizade |
-|Giovana Martins| Generosidade, Glossário de libras obrigatório no menu|
+|Nicolas Costa| Criação dos casos:Responsabilidade e Generosidade, roteiros dos casos atribuidos e imagens|
+|Marcos Eduardo |Croação de casos: Empatia e Amizade - a definir como ira fazer|
+|Giovana Martins| Generosidade, Glossário de libras obrigatório no menu - a definir como ira fazer|
 
 ## 2. Cronograma de Desenvolvimento
 
