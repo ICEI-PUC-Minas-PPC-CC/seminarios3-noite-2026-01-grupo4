@@ -1,4 +1,4 @@
-# Refatoração completa do jogo
+# Refatoração completa do jogoo
 import pygame
 import sys
 import random
