@@ -9,7 +9,7 @@
 
 | Integrante | Responsabilidades principais |
 | ----------- | ------------------------------ |
-| Laura Viana| |Criação dos casos: Honestidade, Bondade e Respeito e Interface Gráfica ( Pygame ) |
+| Laura Viana| Criação dos casos: Honestidade, Bondade e Respeito, Interface Gráfica, roteiros dos casos atribuidos e imagens|
 | | |
 | | |
 | | |
