@@ -75,8 +75,8 @@ casos = [
     {
         "titulo": "Caso 2: A moeda do Bruxo",
         "descricao": "Você encontra uma moeda de ouro no chão de uma estrada de lama. Ninguém viu você pegá-la. O que você faz?",
-        "imagem_caso": "src/backgrounds/caso2thewitcher.png",  # Use lamen ou crie nova
-        "imagem_virtude": "src/backgrounds/honestidade.png",  # Use virtude ou crie nova
+        "imagem_caso": "src/backgrounds/caso2thewitcher.png",
+        "imagem_virtude": "src/backgrounds/honestidade.png",  
         "opcoes": [
             "1-Guardar a moeda para si mesmo, é uma sorte",
             "2-De o trocado para o bruxo que esta parado no vale abundante",
