@@ -55,13 +55,13 @@ def get_imagem_virtude(caso_index):
             imagens_cache[caminho] = fundo_virtude
     return imagens_cache[caminho]
 
-# Dados dos casos (COMPLETO - corrigido caso 2)
-casos = [
+# Dados dos casos
+casos =[
     {
         "titulo": "Caso 1: O lamen do ichiraku",
         "descricao": "Voc encontra um lamen na mesa ao lado. Ninguém está vendo. O que você faz?",
         "imagem_caso": "src/backgrounds/lamen.png",
-        "imagem_virtude": "src/backgrounds/naruto.png",
+        "imagem_virtude": "src/backgrounds/HE.png",
         "opcoes": [
             "1-Levar o lamen para casa, ninguém está olhando",
             "2-Procurar o dono ou avisar o ichiraku",
@@ -74,19 +74,36 @@ casos = [
     },
     {
         "titulo": "Caso 2: A moeda do Bruxo",
-        "descricao": "Você encontra uma moeda de ouro no chão de uma estrada de lama. Ninguém viu você pegá-la. O que você faz?",
+        "descricao": "Voce esta em uma estrada de lama fazendo um treinamento de duelos para entrar na cavalaria e consegue desarmar seu oponente. Voce pode mostrar a todos que é melhor que ele. O que você faz?",
         "imagem_caso": "src/backgrounds/caso2thewitcher.png",
-        "imagem_virtude": "src/backgrounds/honestidade.png",  
+        "imagem_virtude": "src/backgrounds/respeito.png",  
         "opcoes": [
-            "1-Guardar a moeda para si mesmo, é uma sorte",
-            "2-De o trocado para o bruxo que esta parado no vale abundante",
-            "3-ignore a moeda e cubra ela com lama para que ninguém a encontre",
+            "1-Rir do seu oponente",
+            "2-Guardar sua espada e oferecer sua ajuda para ele se levantar",
+            "3-Fazer piada do seu oponente para mostrar que é melhor",
         ],
         "resposta_correta": 1,
-        "virtude": "Honestidade",
-        "explicacao": "Devolver o que não é seu mostra honestidade. A pessoa que perdeu provavelmente está triste procurando. Sua honestidade a fará feliz!",
-        "licao_errada": "Guardar algo que achou não é honesto. Seria roubo, mesmo se achou no chão."
+        "virtude": "Respeito",
+        "explicacao": "Entender que todos merecem respeito, mesmo em competição, é fundamental. Oferecer ajuda mostra que você valoriza a dignidade do outro, enquanto rir  ou fazer piada demonstra falta de respeito e empatia.",
+        "licao_errada": "Rir ou fazer piada do oponente é desrespeitoso e prejudica a confiança e o espírito esportivo. Oferecer ajuda mostra que você valoriza a dignidade do outro, mesmo em competição."
+    },
+    {
+        "titulo": "Caso 3: O tesouro do pirata",
+        "descricao": "Você encontra um baú de tesouro em uma ilha deserta",
+        "imagem_caso": "src/backgrounds/CasoGirassois.png",
+        "imagem_virtude": "src/backgrounds/EG.png.png",
+        "opcoes": [
+            "1-Pegar o baú inteiro para si mesmo",
+            "2-Pegar apenas o que você acha que merece",
+            "3-Deixar o baú onde está, respeitando a placa",
+        ],
+        "resposta_correta": 2,
+        "virtude": "Coragem",
+        "explicacao": "A coragem é enfrentar desafios e fazer o que é certo,esmo quando é difícil. Pegar apenas o que merece mostra que você tem a coragem de ser justo e honesto, mesmo quando ninguém está olhando.",
+        "licao_errada": "Pegar tudo para si é ganância e falta deoragem para ser justo. Deixar o baú inteiro pode ser visto como covardia, pois você não tem a coragem de reivindicar o que é seu." 
+
     }
+    
 ]
 
 # Estado do jogo
