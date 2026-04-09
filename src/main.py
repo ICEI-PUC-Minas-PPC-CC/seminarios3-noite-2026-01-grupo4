@@ -30,6 +30,13 @@ fundo_caso = pygame.transform.scale(fundo_caso, (largura, altura))
 fundo_virtude = pygame.image.load("src/backgrounds/virtude.png")
 fundo_virtude = pygame.transform.scale(fundo_virtude, (largura, altura))
 
+menu_background_path = "src/backgrounds/menu.png"
+if os.path.exists(menu_background_path):
+    fundo_menu = pygame.image.load(menu_background_path)
+    fundo_menu = pygame.transform.scale(fundo_menu, (largura, altura))
+else:
+    fundo_menu = None
+
 # Cache das imagens específicas por caso
 imagens_cache = {}
 
@@ -108,7 +115,7 @@ casos =[
 
 # Estado do jogo
 caso_atual = 0
-estado = "caso"
+estado = "menu"
 feedback = ""
 botao_errado_index = -1
 
@@ -121,6 +128,10 @@ for i in range(len(casos[caso_atual]["opcoes"])):
     altura_botao = 60
     retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
     botoes.append({"rect": retangulo})
+
+# Botões do menu principal
+botao_jogar = pygame.Rect(largura // 2 - 150, altura // 2 - 80, 300, 70)
+botao_sair = pygame.Rect(largura // 2 - 150, altura // 2 + 20, 300, 70)
 
 # Seta para avançar
 seta_x = 1800
@@ -161,15 +172,33 @@ rodando = True
 clock = pygame.time.Clock()
 
 while rodando:
-    # Fundo específico por caso!
+    # Fundo específico por caso ou menu
     if estado == "caso" or estado == "resposta_incorreta":
         fundo_atual = get_imagem_caso(caso_atual)
+        tela.blit(fundo_atual, (0, 0))
     elif estado == "virtude":
         fundo_atual = get_imagem_virtude(caso_atual)
-    
-    tela.blit(fundo_atual, (0, 0))
-    
-    if estado == "caso":
+        tela.blit(fundo_atual, (0, 0))
+    elif estado == "menu":
+        if fundo_menu:
+            tela.blit(fundo_menu, (0, 0))
+        else:
+            tela.fill((20, 20, 40))
+
+    if estado == "menu":
+        titulo_menu = fonte_titulo.render("Detetive das Virtudes", True, BRANCO)
+        instrucao_menu = fonte_texto.render("Clique em Jogar para começar ou Sair para fechar o jogo.", True, BRANCO)
+        pygame.draw.rect(tela, AZUL, botao_jogar)
+        pygame.draw.rect(tela, VERMELHO, botao_sair)
+
+        texto_jogar = fonte_opcoes.render("Jogar", True, BRANCO)
+        texto_sair = fonte_opcoes.render("Sair", True, BRANCO)
+
+        tela.blit(titulo_menu, (largura // 2 - titulo_menu.get_width() // 2, 120))
+        tela.blit(instrucao_menu, (largura // 2 - instrucao_menu.get_width() // 2, 190))
+        tela.blit(texto_jogar, (botao_jogar.x + 120, botao_jogar.y + 20))
+        tela.blit(texto_sair, (botao_sair.x + 125, botao_sair.y + 20))
+    elif estado == "caso":
         texto_titulo = fonte_titulo.render(casos[caso_atual]["titulo"], True, BRANCO)
         tela.blit(texto_titulo, (20, 20))
         
@@ -251,7 +280,12 @@ while rodando:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             
-            if estado == "caso":
+            if estado == "menu":
+                if botao_jogar.collidepoint(mouse_x, mouse_y):
+                    estado = "caso"
+                elif botao_sair.collidepoint(mouse_x, mouse_y):
+                    rodando = False
+            elif estado == "caso":
                 for i, botao in enumerate(botoes):
                     if botao["rect"].collidepoint(mouse_x, mouse_y):
                         if i == casos[caso_atual]["resposta_correta"]:
