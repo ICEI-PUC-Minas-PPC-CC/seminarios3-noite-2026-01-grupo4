@@ -109,6 +109,36 @@ casos =[
         "explicacao": "A coragem é enfrentar desafios e fazer o que é certo,esmo quando é difícil. Pegar apenas o que merece mostra que você tem a coragem de ser justo e honesto, mesmo quando ninguém está olhando.",
         "licao_errada": "Pegar tudo para si é ganância e falta deoragem para ser justo. Deixar o baú inteiro pode ser visto como covardia, pois você não tem a coragem de reivindicar o que é seu." 
 
+    },
+    {
+        "titulo": "Caso 4: O Lanche na Praca",
+        "descricao": "O sorvete do Leo caiu no chao. O que o amigo dele pode fazer?",
+        "imagem_caso": "src/backgrounds/praca_pocos.jpg",
+        "imagem_virtude": "src/backgrounds/amizade.jpg",
+        "opcoes": [
+            "1-Rir do Leo apontando o dedo.",
+            "2-Dividir o seu proprio sorvete com ele.",
+            "3-Ir brincar sozinho no parquinho."
+        ],
+        "resposta_correta": 1,
+        "virtude": "Amizade",
+        "explicacao": "Amigos de verdade dividem as coisas e apoiam nos momentos dificeis! Ajudar um amigo triste mostra o verdadeiro valor da amizade.",
+        "licao_errada": "Rir do azar do amigo ou abandona-lo o deixa mais triste. Amigos de verdade nao fazem isso, eles ajudam."
+    },
+    {
+        "titulo": "Caso 5: O Colega Novo",
+        "descricao": "O Lucas e novo na escola e ainda nao conhece ninguem. Como podemos ajudar?",
+        "imagem_caso": "src/backgrounds/patio_escola.jpg",
+        "imagem_virtude": "src/backgrounds/empatia.jpg",
+        "opcoes": [
+            "1-Ignorar e continuar brincando so com os amigos de sempre.",
+            "2-Fazer um sinal de 'Oi' e chamar ele para o jogo.",
+            "3-Ficar olhando de longe sem falar nada."
+        ],
+        "resposta_correta": 1,
+        "virtude": "Empatia",
+        "explicacao": "Empatia e se colocar no lugar do outro e acolher. Chamar um colega novo para brincar faz ele se sentir bem-vindo e seguro!",
+        "licao_errada": "Ignorar ou apenas olhar faz o colega novo se sentir sozinho e excluido. Tente sempre se colocar no lugar do outro."
     }
     
 ]
