@@ -5,10 +5,12 @@ import os
 # Iniciar pygame
 pygame.init()
 
-# Configurações da tela
-largura = 1920
-altura = 1080
-tela = pygame.display.set_mode((largura, altura))
+# Inicializa em modo janela redimensionável
+windowed_width, windowed_height = 1280, 720
+fullscreen = False
+
+tela = pygame.display.set_mode((windowed_width, windowed_height), pygame.RESIZABLE)
+largura, altura = tela.get_size()
 pygame.display.set_caption("Detetive das Virtudes")
 
 # Cores
@@ -19,9 +21,10 @@ VERDE = (0, 255, 0)
 VERMELHO = (255, 0, 0)
 
 # Fontes
-fonte_titulo = pygame.font.SysFont("arial", 40, bold=True)
-fonte_texto = pygame.font.SysFont("arial", 24)
-fonte_opcoes = pygame.font.SysFont("arial", 18)
+fonte_titulo = pygame.font.SysFont("arial", 50, bold=True)
+fonte_texto = pygame.font.SysFont("arial", 32)
+fonte_opcoes = pygame.font.SysFont("arial", 28, bold=True)
+fonte_feedback = pygame.font.SysFont("arial", 28, bold=True)
 
 # Imagens fallback
 fundo_caso = pygame.image.load("src/backgrounds/lamen.png")
@@ -62,6 +65,80 @@ def get_imagem_virtude(caso_index):
             imagens_cache[caminho] = fundo_virtude
     return imagens_cache[caminho]
 
+
+def atualizar_imagens():
+    global fundo_caso, fundo_virtude, fundo_menu, imagens_cache
+
+    imagens_cache.clear()
+    fundo_caso = pygame.image.load("src/backgrounds/lamen.png")
+    fundo_caso = pygame.transform.scale(fundo_caso, (largura, altura))
+
+    fundo_virtude = pygame.image.load("src/backgrounds/virtude.png")
+    fundo_virtude = pygame.transform.scale(fundo_virtude, (largura, altura))
+
+    if os.path.exists(menu_background_path):
+        fundo_menu = pygame.image.load(menu_background_path)
+        fundo_menu = pygame.transform.scale(fundo_menu, (largura, altura))
+    else:
+        fundo_menu = None
+
+
+def atualizar_botoes_caso():
+    global botoes
+    botoes.clear()
+    largura_botao = min(880, largura - 80)
+    for i in range(len(casos[caso_atual]["opcoes"])):
+        x = 40
+        y = 280 + i * 120
+        altura_botao = 100
+        retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
+        botoes.append({"rect": retangulo})
+
+
+def atualizar_layout():
+    global botao_jogar, botao_sair, botao_fullscreen, botao_tentar, seta_x, seta_y, seta_rect
+
+    botao_jogar = pygame.Rect(largura // 2 - 150, altura // 2 - 120, 300, 70)
+    botao_sair = pygame.Rect(largura // 2 - 150, altura // 2 - 30, 300, 70)
+    botao_fullscreen = pygame.Rect(largura // 2 - 150, altura // 2 + 60, 300, 70)
+    botao_tentar = pygame.Rect(largura // 2 - 150, altura // 2 + 150, 300, 60)
+
+    seta_x = largura - 120
+    seta_y = altura - 80
+    seta_rect = pygame.Rect(seta_x - seta_tamanho, seta_y - seta_tamanho, seta_tamanho * 2, seta_tamanho * 2)
+
+    atualizar_botoes_caso()
+
+
+def atualizar_tela():
+    global tela, largura, altura
+    if fullscreen:
+        tela = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        largura, altura = tela.get_size()
+    else:
+        tela = pygame.display.set_mode((windowed_width, windowed_height), pygame.RESIZABLE)
+        largura, altura = tela.get_size()
+    atualizar_imagens()
+    atualizar_layout()
+
+
+def render_texto_quebrado(texto, fonte, cor, superficie, x, y, largura_max, espaco_linha=None):
+    if espaco_linha is None:
+        espaco_linha = fonte.get_height() + 8
+    palavras = texto.split(' ')
+    linha_atual = ""
+    for palavra in palavras:
+        teste = f"{linha_atual}{palavra} "
+        if fonte.size(teste)[0] > largura_max and linha_atual:
+            superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
+            y += espaco_linha
+            linha_atual = palavra + " "
+        else:
+            linha_atual = teste
+    if linha_atual.strip():
+        superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
+    return y
+
 # Dados dos casos
 casos =[
     {
@@ -97,8 +174,8 @@ casos =[
     {
         "titulo": "Caso 3: O tesouro do pirata",
         "descricao": "Você encontra um baú de tesouro em uma ilha deserta",
-        "imagem_caso": "src/backgrounds/CasoGirassois.png",
-        "imagem_virtude": "src/backgrounds/EG.png.png",
+        "imagem_caso": "src/backgrounds/pirata.png",
+        "imagem_virtude": "src/backgrounds/pirata_rum.png",
         "opcoes": [
             "1-Pegar o baú inteiro para si mesmo",
             "2-Pegar apenas o que você acha que merece",
@@ -149,28 +226,21 @@ estado = "menu"
 feedback = ""
 botao_errado_index = -1
 
-# Criar botões iniciais
+# Criar botões iniciais e layout responsivo
 botoes = []
-for i in range(len(casos[caso_atual]["opcoes"])):
-    x = 50
-    y = 150 + i * 80
-    largura_botao = 500
-    altura_botao = 60
-    retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
-    botoes.append({"rect": retangulo})
-
-# Botões do menu principal
-botao_jogar = pygame.Rect(largura // 2 - 150, altura // 2 - 80, 300, 70)
-botao_sair = pygame.Rect(largura // 2 - 150, altura // 2 + 20, 300, 70)
+botao_jogar = pygame.Rect(0, 0, 0, 0)
+botao_sair = pygame.Rect(0, 0, 0, 0)
+botao_fullscreen = pygame.Rect(0, 0, 0, 0)
+botao_tentar = pygame.Rect(0, 0, 0, 0)
 
 # Seta para avançar
-seta_x = 1800
-seta_y = 900
+seta_x = 0
+seta_y = 0
 seta_tamanho = 50
-seta_rect = pygame.Rect(seta_x - seta_tamanho, seta_y - seta_tamanho, seta_tamanho * 2, seta_tamanho * 2)
+seta_rect = pygame.Rect(0, 0, 0, 0)
 
-# Botão "Tentar Novamente"
-botao_tentar = pygame.Rect(largura // 2 - 150, altura // 2 + 150, 300, 60)
+atualizar_imagens()
+atualizar_layout()
 
 def desenhar_seta():
     pontos = [
@@ -186,10 +256,10 @@ def resetar_caso():
     
     botoes.clear()
     for i in range(len(casos[caso_atual]["opcoes"])):
-        x = 50
-        y = 150 + i * 80
-        largura_botao = 500
-        altura_botao = 60
+        x = 40
+        y = 280 + i * 120
+        largura_botao = 880
+        altura_botao = 100
         retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
         botoes.append({"rect": retangulo})
     
@@ -223,41 +293,53 @@ while rodando:
 
         texto_jogar = fonte_opcoes.render("Jogar", True, BRANCO)
         texto_sair = fonte_opcoes.render("Sair", True, BRANCO)
+        texto_fullscreen = fonte_opcoes.render("Tela Cheia", True, BRANCO)
+
+        pygame.draw.rect(tela, AZUL, botao_jogar)
+        pygame.draw.rect(tela, VERMELHO, botao_sair)
+        pygame.draw.rect(tela, VERDE if fullscreen else AZUL, botao_fullscreen)
 
         tela.blit(titulo_menu, (largura // 2 - titulo_menu.get_width() // 2, 120))
         tela.blit(instrucao_menu, (largura // 2 - instrucao_menu.get_width() // 2, 190))
         tela.blit(texto_jogar, (botao_jogar.x + 120, botao_jogar.y + 20))
         tela.blit(texto_sair, (botao_sair.x + 125, botao_sair.y + 20))
+        tela.blit(texto_fullscreen, (botao_fullscreen.x + 70, botao_fullscreen.y + 20))
     elif estado == "caso":
+        # Painel de contraste para a área de texto
+        painel_texto = pygame.Surface((940, 520), pygame.SRCALPHA)
+        painel_texto.fill((0, 0, 0, 170))
+        tela.blit(painel_texto, (20, 20))
+
         texto_titulo = fonte_titulo.render(casos[caso_atual]["titulo"], True, BRANCO)
-        tela.blit(texto_titulo, (20, 20))
+        tela.blit(texto_titulo, (40, 40))
         
-        texto_desc = fonte_texto.render(casos[caso_atual]["descricao"], True, BRANCO)
-        tela.blit(texto_desc, (20, 80))
+        render_texto_quebrado(casos[caso_atual]["descricao"], fonte_texto, BRANCO, tela, 40, 120, 900)
         
         for i, botao in enumerate(botoes):
             cor = VERMELHO if botao_errado_index == i else AZUL
-            pygame.draw.rect(tela, cor, botao["rect"])
-            texto_opcao = fonte_opcoes.render(casos[caso_atual]["opcoes"][i], True, BRANCO)
-            tela.blit(texto_opcao, (botao["rect"].x + 10, botao["rect"].y + 15))
+            pygame.draw.rect(tela, cor, botao["rect"], border_radius=12)
+            pygame.draw.rect(tela, BRANCO, botao["rect"], 3, border_radius=12)
+            render_texto_quebrado(casos[caso_atual]["opcoes"][i], fonte_opcoes, BRANCO, tela, botao["rect"].x + 20, botao["rect"].y + 15, botao["rect"].width - 40, fonte_opcoes.get_height() + 6)
         
         if feedback and "Correto" in feedback:
-            texto_feedback = fonte_texto.render(feedback, True, VERDE)
-            tela.blit(texto_feedback, (20, 480))
+            texto_feedback = fonte_feedback.render(feedback, True, VERDE)
+            fundo_feedback = pygame.Surface((texto_feedback.get_width() + 40, texto_feedback.get_height() + 20), pygame.SRCALPHA)
+            fundo_feedback.fill((0, 0, 0, 180))
+            tela.blit(fundo_feedback, (20, 460))
+            tela.blit(texto_feedback, (40, 470))
             desenhar_seta()
     
     elif estado == "virtude":
+        painel_virtude = pygame.Surface((1300, 520), pygame.SRCALPHA)
+        painel_virtude.fill((0, 0, 0, 180))
+        tela.blit(painel_virtude, (300, 80))
+
         titulo_virtude = f"Virtude: {casos[caso_atual]['virtude']}"
         texto_titulo = fonte_titulo.render(titulo_virtude, True, BRANCO)
-        tela.blit(texto_titulo, (largura // 2 - 300, 80))
+        tela.blit(texto_titulo, (340, 110))
         
-        linhas = casos[caso_atual]["explicacao"].split('\n')
-        y = 300
-        for linha in linhas:
-            if linha.strip():  # Ignora linhas vazias
-                texto = fonte_texto.render(linha, True, BRANCO)
-                tela.blit(texto, (100, y))
-                y += fonte_texto.get_height() + 20
+        y = 200
+        y = render_texto_quebrado(casos[caso_atual]["explicacao"], fonte_texto, BRANCO, tela, 340, y, 1200)
         
         desenhar_seta()
     
@@ -306,15 +388,24 @@ while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-        
-        if evento.type == pygame.MOUSEBUTTONDOWN:
+        elif evento.type == pygame.VIDEORESIZE and not fullscreen:
+            windowed_width, windowed_height = evento.w, evento.h
+            atualizar_tela()
+        elif evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_ESCAPE and fullscreen:
+                fullscreen = False
+                atualizar_tela()
+        elif evento.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            
+
             if estado == "menu":
                 if botao_jogar.collidepoint(mouse_x, mouse_y):
                     estado = "caso"
                 elif botao_sair.collidepoint(mouse_x, mouse_y):
                     rodando = False
+                elif botao_fullscreen.collidepoint(mouse_x, mouse_y):
+                    fullscreen = not fullscreen
+                    atualizar_tela()
             elif estado == "caso":
                 for i, botao in enumerate(botoes):
                     if botao["rect"].collidepoint(mouse_x, mouse_y):
@@ -325,10 +416,9 @@ while rodando:
                             estado = "resposta_incorreta"
                             feedback = ""
                         break
-                
+
                 if feedback and "Correto" in feedback and seta_rect.collidepoint(mouse_x, mouse_y):
                     estado = "virtude"
-            
             elif estado == "virtude":
                 if seta_rect.collidepoint(mouse_x, mouse_y):
                     caso_atual += 1
@@ -336,7 +426,6 @@ while rodando:
                         rodando = False
                     else:
                         resetar_caso()
-            
             elif estado == "resposta_incorreta":
                 if botao_tentar.collidepoint(mouse_x, mouse_y):
                     resetar_caso()
