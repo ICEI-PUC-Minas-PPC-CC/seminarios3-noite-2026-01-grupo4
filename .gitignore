@@ -1,3 +1,5 @@
+
+
 # Logs
 logs
 *.log
@@ -51,6 +53,7 @@ web_modules/
 
 # Python virtual environment
 .venv/
+venv/
 .npm
 
 # Optional eslint cache
