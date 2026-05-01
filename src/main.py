@@ -131,6 +131,74 @@ class DetetiveDasVirtudes:
                     "Ignorar o colega não ajuda. Generosidade é dividir e se importar com o outro.",
                     "Rir da situação pode magoar ainda mais. O melhor é ajudar."
                 ]
+            ),
+            Caso(
+                "Caso 6: O Dever de Casa",
+                "Pedro tem um trabalho importante para entregar amanha, mas seus amigos o chamaram para jogar videogame. O que ele deve fazer?",
+                [
+                    "1-Ir jogar e deixar o trabalho para depois",
+                    "2-Terminar o trabalho primeiro e depois jogar se sobrar tempo",
+                    "3-Pedir para um colega fazer o trabalho por ele",
+                ],
+                1,
+                "Responsabilidade",
+                "Responsabilidade e cumprir com seus compromissos mesmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
+                [
+                    "Deixar para depois ou pedir para alguem fazer por voce prejudica seu aprendizado. Quem e responsavel faz o que precisa ser feito no momento certo.",
+                    "",
+                    "Deixar para depois ou pedir para alguem fazer por voce prejudica seu aprendizado. Quem e responsavel faz o que precisa ser feito no momento certo."
+                ]
+            ),
+            Caso(
+                "Caso 7: O Vaso Quebrado",
+                "Ana estava brincando dentro de casa e sem querer quebrou um vaso da mae. Ninguem viu. O que ela deve fazer?",
+                [
+                    "1-Esconder os cacos e fingir que nao foi ela",
+                    "2-Contar para a mae o que aconteceu e pedir desculpas",
+                    "3-Colocar a culpa no irmao mais novo",
+                ],
+                1,
+                "Responsabilidade",
+                "Assumir os proprios erros e um sinal de maturidade e responsabilidade. Contar a verdade e pedir desculpas mostra que voce respeita os outros e a si mesmo.",
+                [
+                    "Esconder o erro ou culpar outra pessoa e desonesto e faz o problema crescer. Quem e responsavel enfrenta as consequencias dos seus atos com coragem.",
+                    "",
+                    "Esconder o erro ou culpar outra pessoa e desonesto e faz o problema crescer. Quem e responsavel enfrenta as consequencias dos seus atos com coragem."
+                ]
+            ),
+            Caso(
+                "Caso 8: O Lanche da Vovo",
+                "Clara tem dois biscoitos. Ela percebe que sua avo esta com fome mas nao tem nada para comer. O que Clara deve fazer?",
+                [
+                    "1-Comer os dois biscoitos rapidinho antes que alguem veja",
+                    "2-Dividir os biscoitos com a avo",
+                    "3-Guardar o segundo biscoito no bolso para comer depois",
+                ],
+                1,
+                "Generosidade",
+                "Generosidade e compartilhar o que temos com quem precisa. Dividir com a avo mostra amor e cuidado com as pessoas ao redor.",
+                [
+                    "Guardar tudo para si quando alguem ao lado esta com fome e egoismo. Pequenos gestos de generosidade fazem uma grande diferenca.",
+                    "",
+                    "Guardar tudo para si quando alguem ao lado esta com fome e egoismo. Pequenos gestos de generosidade fazem uma grande diferenca."
+                ]
+            ),
+            Caso(
+                "Caso 9: O Colega sem Material",
+                "Na aula de arte, Joao percebe que seu colega Miguel esqueceu o lapis de cor em casa. Joao tem dois estojos. O que ele faz?",
+                [
+                    "1-Fingir que nao percebeu e usar os dois estojos",
+                    "2-Emprestar um estojo para Miguel fazer a atividade",
+                    "3-Dizer para Miguel pedir para a professora",
+                ],
+                1,
+                "Generosidade",
+                "Perceber que alguem precisa de ajuda e agir e o coracao da generosidade. Emprestar o estojo garante que seu colega possa participar da aula.",
+                [
+                    "Ignorar quem precisa de ajuda quando voce pode ajudar e uma oportunidade perdida. A generosidade comeca nos pequenos gestos do dia a dia.",
+                    "",
+                    "Ignorar quem precisa de ajuda quando voce pode ajudar e uma oportunidade perdida. A generosidade comeca nos pequenos gestos do dia a dia."
+                ]
             )
         ]
 
