@@ -216,8 +216,22 @@ casos =[
         "virtude": "Empatia",
         "explicacao": "Empatia e se colocar no lugar do outro e acolher. Chamar um colega novo para brincar faz ele se sentir bem-vindo e seguro!",
         "licao_errada": "Ignorar ou apenas olhar faz o colega novo se sentir sozinho e excluido. Tente sempre se colocar no lugar do outro."
+    },
+    {
+        "titulo": "Caso 6: O Dever de Casa",
+        "descricao": "Pedro tem um trabalho importante para entregar amanha, mas seus amigos o chamaram para jogar videogame. O que ele deve fazer??",
+        "imagem_caso": "src/backgrounds/COLOCA_AQUI_IMAGEM.PNG",
+        "imagem_virtude": "src/backgrounds/empatia.jpg",
+        "opcoes": [
+            "1-Ir jogar e deixar o trabalho para depois",
+            "2-Terminar o trabalho primeiro e depois jogar se sobrar tempo",
+            "3-Pedir para um colega fazer o trabalho por ele",
+        ],
+        "resposta_correta": 1,
+        "virtude": "Responsabilidade",
+        "explicacao": "Responsabilidade e cumprir com seus compromissos mesmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
+        "licao_errada": "DAR LICAO DE MORAL AQUI NICK ."
     }
-    
 ]
 
 # Estado do jogo
