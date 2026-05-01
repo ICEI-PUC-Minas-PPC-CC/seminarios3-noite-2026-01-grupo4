@@ -1,489 +1,434 @@
-# Refatoração completa do jogoo
 import pygame
 import sys
-import random
+import os
 
-class Config:
-    LARGURA_INICIAL = 1280
-    ALTURA_INICIAL = 720
-    CORES = {
-        'PRETO': (0, 0, 0),
-        'BRANCO': (255, 255, 255),
-        'AZUL': (100, 150, 255),
-        'VERDE': (0, 255, 0),
-        'VERMELHO': (255, 0, 0),
-        'CONFETES': [(0,255,0), (255,255,0), (255,0,255), (0,255,255), (255,128,0)]
-    }
-    FONTES = {
-        'TITULO': ('arial', 40, True),
-        'TEXTO': ('arial', 24, False),
-        'OPCOES': ('arial', 18, False)
-    }
-    BACKGROUNDS = {
-        'caso': 'src/backgrounds/lamen.jpg',
-        'virtude': 'src/backgrounds/virtude.jpg',
-        'responsabilidade': 'src/backgrounds/responsabilidade.jpg',
-        'generosidade': 'src/backgrounds/generosidade.jpg'
-    }
+# Iniciar pygame
+pygame.init()
 
-class Caso:
-    def __init__(self, titulo, descricao, opcoes, resposta_correta, virtude, explicacao, licoes_erradas):
-        self.titulo = titulo
-        self.descricao = descricao
-        self.opcoes = opcoes
-        self.resposta_correta = resposta_correta
-        self.virtude = virtude
-        self.explicacao = explicacao
-        self.licoes_erradas = licoes_erradas
+# Inicializa em modo janela redimensionável
+windowed_width, windowed_height = 1280, 720
+fullscreen = False
 
-class DetetiveDasVirtudes:
-    def __init__(self):
-        pygame.init()
-        self.largura = Config.LARGURA_INICIAL
-        self.altura = Config.ALTURA_INICIAL
-        self.tela = pygame.display.set_mode((self.largura, self.altura), pygame.RESIZABLE)
-        pygame.display.set_caption("Detetive das Virtudes")
-        self.cores = Config.CORES
-        self.fontes = {
-            k: pygame.font.SysFont(*Config.FONTES[k]) for k in Config.FONTES
-        }
-        self.backgrounds = {k: pygame.image.load(v) for k, v in Config.BACKGROUNDS.items()}
-        self.casos = self.carregar_casos()
-        self.estado = 'caso'
-        self.caso_atual = 0
-        self.feedback = ''
-        self.botao_errado_index = -1
-        self.botao_correto_index = -1
-        self.mostrar_icone_correto = False
-        self.piscar_erro = False
-        self.piscar_timer = 0
-        self.piscar_index = -1
-        self.confetes = []
-        self.botoes = self.criar_botoes()
-        self.clock = pygame.time.Clock()
+tela = pygame.display.set_mode((windowed_width, windowed_height), pygame.RESIZABLE)
+largura, altura = tela.get_size()
+pygame.display.set_caption("Detetive das Virtudes")
 
-    def carregar_casos(self):
-        return [
-            Caso(
-                "Caso 1: O brinquedo perdido",
-                "Você encontra um urso de pelúcia no parque. Ninguém está vendo. O que você faz?",
-                [
-                    "Levar o brinquedo para casa, ninguém está olhando",
-                    "Procurar o dono ou avisar alguém",
-                    "Esconder o brinquedo para que ninguém o encontre"
-                ],
-                1,
-                "Honestidade",
-                "A honestidade é fazer o certo mesmo quando ninguém está olhando. Procurar o dono mostra que você valoriza a verdade. Cada ato honesto constrói um caráter forte!",
-                [
-                    "Levar algo que não é seu é roubo. Isso machuca quem perdeu o objeto e prejudica sua própria alma.",
-                    "",
-                    "Esconder o brinquedo é desonesto e impede que o dono encontre o que perdeu."
-                ]
-            ),
-            Caso(
-                "Caso 2: A moeda encontrada",
-                "Você encontra uma moeda de ouro no chão da escola. Ninguém viu você pegá-la. O que você faz?",
-                [
-                    "Guardar a moeda para si mesmo, é uma sorte",
-                    "Procurar o dono ou entregar à diretoria",
-                    "Dar a moeda para um colega que precisa"
-                ],
-                1,
-                "Honestidade",
-                "Devolver o que não é seu mostra honestidade. A pessoa que perdeu provavelmente está triste procurando. Sua honestidade a fará feliz!",
-                [
-                    "Guardar algo que achou não é honesto. Seria roubo, mesmo se achou no chão.",
-                    "",
-                    "Dar a moeda para outro colega não resolve o erro. O certo é procurar o dono."
-                ]
-            ),
-            Caso(
-                "Caso 3: Material escolar organizado",
-                "Você percebe que seu material escolar está bagunçado e misturado com o de um colega. O que você faz?",
-                [
-                    "Deixa tudo como está, não é problema seu",
-                    "Organiza seu material e devolve o que é do colega",
-                    "Guarda o material do colega junto com o seu para não perder"
-                ],
-                1,
-                "Responsabilidade",
-                "Ser responsável é cuidar do que é seu e respeitar o que é dos outros. Organizar e devolver o material mostra maturidade e respeito.",
-                [
-                    "Não se importar pode causar confusão e prejudicar o colega. Responsabilidade é agir certo mesmo em pequenas coisas.",
-                    "",
-                    "Guardar o material do colega junto com o seu pode causar mais confusão."
-                ]
-            ),
-            Caso(
-                "Caso 4: Ajudando um colega",
-                "Um colega esqueceu o lanche e está triste. O que você faz?",
-                [
-                    "Oferece parte do seu lanche para ele se sentir melhor",
-                    "Finge que não viu e come sozinho",
-                    "Ri da situação para animar o colega"
-                ],
-                0,
-                "Generosidade",
-                "A generosidade é compartilhar o que temos, mesmo que seja pouco. Um gesto generoso pode alegrar o dia de alguém!",
-                [
-                    "",
-                    "Ignorar o colega não ajuda. Generosidade é dividir e se importar com o outro.",
-                    "Rir da situação pode magoar ainda mais. O melhor é ajudar."
-                ]
-            ),
-            Caso(
-                "Caso 6: O Dever de Casa",
-                "Pedro tem um trabalho importante para entregar amanha, mas seus amigos o chamaram para jogar videogame. O que ele deve fazer?",
-                [
-                    "1-Ir jogar e deixar o trabalho para depois",
-                    "2-Terminar o trabalho primeiro e depois jogar se sobrar tempo",
-                    "3-Pedir para um colega fazer o trabalho por ele",
-                ],
-                1,
-                "Responsabilidade",
-                "Responsabilidade e cumprir com seus compromissos mesmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
-                [
-                    "Deixar para depois ou pedir para alguem fazer por voce prejudica seu aprendizado. Quem e responsavel faz o que precisa ser feito no momento certo.",
-                    "",
-                    "Deixar para depois ou pedir para alguem fazer por voce prejudica seu aprendizado. Quem e responsavel faz o que precisa ser feito no momento certo."
-                ]
-            ),
-            Caso(
-                "Caso 7: O Vaso Quebrado",
-                "Ana estava brincando dentro de casa e sem querer quebrou um vaso da mae. Ninguem viu. O que ela deve fazer?",
-                [
-                    "1-Esconder os cacos e fingir que nao foi ela",
-                    "2-Contar para a mae o que aconteceu e pedir desculpas",
-                    "3-Colocar a culpa no irmao mais novo",
-                ],
-                1,
-                "Responsabilidade",
-                "Assumir os proprios erros e um sinal de maturidade e responsabilidade. Contar a verdade e pedir desculpas mostra que voce respeita os outros e a si mesmo.",
-                [
-                    "Esconder o erro ou culpar outra pessoa e desonesto e faz o problema crescer. Quem e responsavel enfrenta as consequencias dos seus atos com coragem.",
-                    "",
-                    "Esconder o erro ou culpar outra pessoa e desonesto e faz o problema crescer. Quem e responsavel enfrenta as consequencias dos seus atos com coragem."
-                ]
-            ),
-            Caso(
-                "Caso 8: O Lanche da Vovo",
-                "Clara tem dois biscoitos. Ela percebe que sua avo esta com fome mas nao tem nada para comer. O que Clara deve fazer?",
-                [
-                    "1-Comer os dois biscoitos rapidinho antes que alguem veja",
-                    "2-Dividir os biscoitos com a avo",
-                    "3-Guardar o segundo biscoito no bolso para comer depois",
-                ],
-                1,
-                "Generosidade",
-                "Generosidade e compartilhar o que temos com quem precisa. Dividir com a avo mostra amor e cuidado com as pessoas ao redor.",
-                [
-                    "Guardar tudo para si quando alguem ao lado esta com fome e egoismo. Pequenos gestos de generosidade fazem uma grande diferenca.",
-                    "",
-                    "Guardar tudo para si quando alguem ao lado esta com fome e egoismo. Pequenos gestos de generosidade fazem uma grande diferenca."
-                ]
-            ),
-            Caso(
-                "Caso 9: O Colega sem Material",
-                "Na aula de arte, Joao percebe que seu colega Miguel esqueceu o lapis de cor em casa. Joao tem dois estojos. O que ele faz?",
-                [
-                    "1-Fingir que nao percebeu e usar os dois estojos",
-                    "2-Emprestar um estojo para Miguel fazer a atividade",
-                    "3-Dizer para Miguel pedir para a professora",
-                ],
-                1,
-                "Generosidade",
-                "Perceber que alguem precisa de ajuda e agir e o coracao da generosidade. Emprestar o estojo garante que seu colega possa participar da aula.",
-                [
-                    "Ignorar quem precisa de ajuda quando voce pode ajudar e uma oportunidade perdida. A generosidade comeca nos pequenos gestos do dia a dia.",
-                    "",
-                    "Ignorar quem precisa de ajuda quando voce pode ajudar e uma oportunidade perdida. A generosidade comeca nos pequenos gestos do dia a dia."
-                ]
-            )
-        ]
+# Cores
+PRETO = (0, 0, 0)
+BRANCO = (255, 255, 255)
+AZUL = (100, 150, 255)
+VERDE = (0, 255, 0)
+VERMELHO = (255, 0, 0)
 
-    def run(self):
-        while True:
-            self.clock.tick(60)
-            self.handle_events()
-            self.render()
-            pygame.display.update()
+# Fontes
+fonte_titulo = pygame.font.SysFont("arial", 50, bold=True)
+fonte_texto = pygame.font.SysFont("arial", 32)
+fonte_opcoes = pygame.font.SysFont("arial", 28, bold=True)
+fonte_feedback = pygame.font.SysFont("arial", 28, bold=True)
 
-    def handle_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.VIDEORESIZE:
-                self.largura, self.altura = event.w, event.h
-                self.tela = pygame.display.set_mode((self.largura, self.altura), pygame.RESIZABLE)
-                self.botoes = self.criar_botoes()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                self.handle_mouse(event.pos)
+# Imagens fallback
+fundo_caso = pygame.image.load("src/backgrounds/lamen.png")
+fundo_caso = pygame.transform.scale(fundo_caso, (largura, altura))
 
-    def handle_mouse(self, pos):
-        mouse_x, mouse_y = pos
-        if self.estado == 'caso':
-            for i, botao in enumerate(self.botoes):
-                if botao.collidepoint(mouse_x, mouse_y):
-                    if i == self.casos[self.caso_atual].resposta_correta:
-                        self.feedback = f"Correto! Virtude: {self.casos[self.caso_atual].virtude}"
-                        self.botao_correto_index = i
-                        self.mostrar_icone_correto = True
-                        self.confetes = self.gerar_confetes()
-                    else:
-                        self.piscar_erro = True
-                        self.piscar_timer = pygame.time.get_ticks()
-                        self.piscar_index = i
-                        self.botao_errado_index = i
-                        self.feedback = ''
-                    break
-            _, _, _, seta_rect = self.get_seta_rect()
-            if self.feedback and "Correto" in self.feedback and seta_rect.collidepoint(mouse_x, mouse_y):
-                self.estado = 'virtude'
-                self.botao_correto_index = -1
-                self.mostrar_icone_correto = False
-                self.confetes = []
-        elif self.estado == 'virtude':
-            _, _, _, seta_rect = self.get_seta_rect()
-            if seta_rect.collidepoint(mouse_x, mouse_y):
-                self.caso_atual += 1
-                if self.caso_atual >= len(self.casos):
-                    pygame.quit()
-                    sys.exit()
-                else:
-                    self.resetar_caso()
-        elif self.estado == 'resposta_incorreta':
-            botao_tentar = self.get_botao_tentar()
-            if botao_tentar.collidepoint(mouse_x, mouse_y):
-                self.resetar_caso()
+fundo_virtude = pygame.image.load("src/backgrounds/virtude.png")
+fundo_virtude = pygame.transform.scale(fundo_virtude, (largura, altura))
 
-    def criar_botoes(self):
-        botoes = []
-        margem_x = int(self.largura * 0.04)
-        margem_y = int(self.altura * 0.14)
-        largura_botao = int(self.largura * 0.38)
-        altura_botao = int(self.altura * 0.07)
-        espacamento = int(self.altura * 0.09)
-        for i in range(len(self.casos[self.caso_atual].opcoes)):
-            x = margem_x
-            y = margem_y + i * espacamento
-            botoes.append(pygame.Rect(x, y, largura_botao, altura_botao))
-        return botoes
+menu_background_path = "src/backgrounds/menu.png"
+if os.path.exists(menu_background_path):
+    fundo_menu = pygame.image.load(menu_background_path)
+    fundo_menu = pygame.transform.scale(fundo_menu, (largura, altura))
+else:
+    fundo_menu = None
 
-    def get_seta_rect(self):
-        seta_tamanho = int(min(self.largura, self.altura) * 0.045)
-        seta_x = self.largura - seta_tamanho * 2
-        seta_y = self.altura - seta_tamanho * 2
-        return seta_x, seta_y, seta_tamanho, pygame.Rect(seta_x - seta_tamanho, seta_y - seta_tamanho, seta_tamanho * 2, seta_tamanho * 2)
+# Cache das imagens específicas por caso
+imagens_cache = {}
 
-    def get_botao_tentar(self):
-        largura_botao = int(self.largura * 0.23)
-        altura_botao = int(self.altura * 0.08)
-        x = self.largura // 2 - largura_botao // 2
-        y = self.altura // 2 + int(self.altura * 0.18)
-        return pygame.Rect(x, y, largura_botao, altura_botao)
-
-    def desenhar_seta(self):
-        seta_x, seta_y, seta_tamanho, _ = self.get_seta_rect()
-        pontos = [
-            (seta_x + seta_tamanho, seta_y),
-            (seta_x - seta_tamanho, seta_y - seta_tamanho),
-            (seta_x - seta_tamanho, seta_y + seta_tamanho),
-        ]
-        pygame.draw.polygon(self.tela, self.cores['VERDE'], pontos)
-        pygame.draw.polygon(self.tela, self.cores['BRANCO'], pontos, 3)
-
-    def resetar_caso(self):
-        self.estado = 'caso'
-        self.feedback = ''
-        self.botao_errado_index = -1
-        self.botao_correto_index = -1
-        self.mostrar_icone_correto = False
-        self.piscar_erro = False
-        self.piscar_index = -1
-        self.confetes = []
-        self.botoes = self.criar_botoes()
-
-    def gerar_confetes(self):
-        caixa_largura = int(self.largura*0.45)
-        caixa_altura = int(self.altura*0.25)
-        caixa_x = self.largura // 2 - caixa_largura // 2
-        caixa_y = int(self.altura*0.18)
-        return [
-            {
-                'x': random.randint(caixa_x, caixa_x+caixa_largura),
-                'y': caixa_y + random.randint(0, 10),
-                'cor': random.choice(self.cores['CONFETES']),
-                'vel': random.uniform(2, 6),
-                'raio': random.randint(6, 12)
-            }
-            for _ in range(30)
-        ]
-
-    def render(self):
-        self.tela.blit(self.get_fundo_atual(), (0, 0))
-        if self.estado == 'caso':
-            self.render_caso()
-        elif self.estado == 'virtude':
-            self.render_virtude()
-        elif self.estado == 'resposta_incorreta':
-            self.render_erro()
-
-    def get_fundo_atual(self):
-        if self.estado in ("caso", "resposta_incorreta"):
-            if self.caso_atual == 2:
-                img = self.backgrounds['responsabilidade']
-            elif self.caso_atual == 3:
-                img = self.backgrounds['generosidade']
-            else:
-                img = self.backgrounds['caso']
+def get_imagem_caso(caso_index):
+    """Carrega imagem específica do caso (com fallback)"""
+    caminho = casos[caso_index].get("imagem_caso", "src/backgrounds/lamen.png")
+    if caminho not in imagens_cache:
+        if os.path.exists(caminho):
+            img = pygame.image.load(caminho)
+            imagens_cache[caminho] = pygame.transform.scale(img, (largura, altura))
         else:
-            img = self.backgrounds['virtude']
-        iw, ih = img.get_width(), img.get_height()
-        tw, th = self.largura, self.altura
-        scale = min(tw/iw, th/ih)
-        new_w, new_h = int(iw*scale), int(ih*scale)
-        surf = pygame.transform.smoothscale(img, (new_w, new_h))
-        fundo = pygame.Surface((tw, th))
-        fundo.fill(self.cores['PRETO'])
-        fundo.blit(surf, ((tw-new_w)//2, (th-new_h)//2))
-        # Salva área útil da imagem para uso nos elementos
-        self.area_util_img = pygame.Rect((tw-new_w)//2, (th-new_h)//2, new_w, new_h)
-        return fundo
+            imagens_cache[caminho] = fundo_caso
+    return imagens_cache[caminho]
 
-    def render_caso(self):
-        caso = self.casos[self.caso_atual]
-        area = self.area_util_img
-        self.render_texto_multilinha(caso.titulo, self.fontes['TITULO'], self.cores['BRANCO'], area.x + int(area.width * 0.02), area.y + int(area.height * 0.03), int(area.width*0.96))
-        self.render_texto_multilinha(caso.descricao, self.fontes['TEXTO'], self.cores['BRANCO'], area.x + int(area.width * 0.02), area.y + int(area.height * 0.08), int(area.width*0.96))
-        for i, botao in enumerate(self.botoes):
-            cor = self.cores['AZUL']
-            if self.botao_correto_index == i:
-                cor = self.cores['VERDE']
-            elif self.botao_errado_index == i:
-                if self.piscar_erro and self.piscar_index == i:
-                    cor = self.cores['VERMELHO'] if (pygame.time.get_ticks()//100)%2 == 0 else self.cores['AZUL']
-                else:
-                    cor = self.cores['VERMELHO']
-            # Reposiciona botões para área útil
-            botao_x = area.x + int(area.width * 0.04)
-            botao_y = area.y + int(area.height * 0.14) + i * int(area.height * 0.09)
-            botao_w = int(area.width * 0.38)
-            botao_h = int(area.height * 0.07)
-            botao_rect = pygame.Rect(botao_x, botao_y, botao_w, botao_h)
-            pygame.draw.rect(self.tela, cor, botao_rect, border_radius=10)
-            self.render_texto_multilinha(caso.opcoes[i], self.fontes['OPCOES'], self.cores['BRANCO'], botao_rect.x + int(botao_rect.width*0.03), botao_rect.y + int(botao_rect.height*0.25), botao_rect.width - int(botao_rect.width*0.1))
-            if self.mostrar_icone_correto and self.botao_correto_index == i:
-                self.desenhar_icone_visto(botao_rect.right - int(botao_rect.height*1.1), botao_rect.y + int(botao_rect.height*0.1), int(botao_rect.height*0.8))
-        if self.feedback and "Correto" in self.feedback:
-            self.render_feedback_correto()
-        if self.piscar_erro and pygame.time.get_ticks() - self.piscar_timer > 500:
-            self.piscar_erro = False
-            self.botao_errado_index = self.piscar_index
-            self.estado = 'resposta_incorreta'
+def get_imagem_virtude(caso_index):
+    """Carrega imagem específica da virtude (com fallback)"""
+    caminho = casos[caso_index].get("imagem_virtude", "src/backgrounds/virtude.png")
+    if caminho not in imagens_cache:
+        if os.path.exists(caminho):
+            img = pygame.image.load(caminho)
+            imagens_cache[caminho] = pygame.transform.scale(img, (largura, altura))
+        else:
+            imagens_cache[caminho] = fundo_virtude
+    return imagens_cache[caminho]
 
-    def render_virtude(self):
-        caso = self.casos[self.caso_atual]
-        area = self.area_util_img
-        self.render_texto_multilinha(f"Virtude: {caso.virtude}", self.fontes['TITULO'], self.cores['BRANCO'], area.x + int(area.width * 0.02), area.y + int(area.height * 0.03), int(area.width*0.96))
-        self.render_texto_multilinha(caso.explicacao, self.fontes['TEXTO'], self.cores['BRANCO'], area.x + int(area.width * 0.02), area.y + int(area.height * 0.08), int(area.width*0.96))
-        self.desenhar_seta()
 
-    def render_erro(self):
-        overlay = pygame.Surface((self.largura, self.altura))
+def atualizar_imagens():
+    global fundo_caso, fundo_virtude, fundo_menu, imagens_cache
+
+    imagens_cache.clear()
+    fundo_caso = pygame.image.load("src/backgrounds/lamen.png")
+    fundo_caso = pygame.transform.scale(fundo_caso, (largura, altura))
+
+    fundo_virtude = pygame.image.load("src/backgrounds/virtude.png")
+    fundo_virtude = pygame.transform.scale(fundo_virtude, (largura, altura))
+
+    if os.path.exists(menu_background_path):
+        fundo_menu = pygame.image.load(menu_background_path)
+        fundo_menu = pygame.transform.scale(fundo_menu, (largura, altura))
+    else:
+        fundo_menu = None
+
+
+def atualizar_botoes_caso():
+    global botoes
+    botoes.clear()
+    largura_botao = min(880, largura - 80)
+    for i in range(len(casos[caso_atual]["opcoes"])):
+        x = 40
+        y = 280 + i * 120
+        altura_botao = 100
+        retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
+        botoes.append({"rect": retangulo})
+
+
+def atualizar_layout():
+    global botao_jogar, botao_sair, botao_fullscreen, botao_tentar, seta_x, seta_y, seta_rect
+
+    botao_jogar = pygame.Rect(largura // 2 - 150, altura // 2 - 120, 300, 70)
+    botao_sair = pygame.Rect(largura // 2 - 150, altura // 2 - 30, 300, 70)
+    botao_fullscreen = pygame.Rect(largura // 2 - 150, altura // 2 + 60, 300, 70)
+    botao_tentar = pygame.Rect(largura // 2 - 150, altura // 2 + 150, 300, 60)
+
+    seta_x = largura - 120
+    seta_y = altura - 80
+    seta_rect = pygame.Rect(seta_x - seta_tamanho, seta_y - seta_tamanho, seta_tamanho * 2, seta_tamanho * 2)
+
+    atualizar_botoes_caso()
+
+
+def atualizar_tela():
+    global tela, largura, altura
+    if fullscreen:
+        tela = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        largura, altura = tela.get_size()
+    else:
+        tela = pygame.display.set_mode((windowed_width, windowed_height), pygame.RESIZABLE)
+        largura, altura = tela.get_size()
+    atualizar_imagens()
+    atualizar_layout()
+
+
+def render_texto_quebrado(texto, fonte, cor, superficie, x, y, largura_max, espaco_linha=None):
+    if espaco_linha is None:
+        espaco_linha = fonte.get_height() + 8
+    palavras = texto.split(' ')
+    linha_atual = ""
+    for palavra in palavras:
+        teste = f"{linha_atual}{palavra} "
+        if fonte.size(teste)[0] > largura_max and linha_atual:
+            superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
+            y += espaco_linha
+            linha_atual = palavra + " "
+        else:
+            linha_atual = teste
+    if linha_atual.strip():
+        superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
+    return y
+
+# Dados dos casos
+casos =[
+    {
+        "titulo": "Caso 1: O lamen do ichiraku",
+        "descricao": "Voc encontra um lamen na mesa ao lado. Ninguém está vendo. O que você faz?",
+        "imagem_caso": "src/backgrounds/lamen.png",
+        "imagem_virtude": "src/backgrounds/HE.png",
+        "opcoes": [
+            "1-Levar o lamen para casa, ninguém está olhando",
+            "2-Procurar o dono ou avisar o ichiraku",
+            "3-Esconder o lamenpara que ninguém o encontre",
+        ],
+        "resposta_correta": 1,
+        "virtude": "Honestidade",
+        "explicacao": "A honestidade é fazer o certo mesmo quando ninguém está olhando. Procurar o dono mostra que você valoriza a verdade. Cada ato honesto constrói um caráter forte!",
+        "licao_errada": "Levar algo que não é seu ou esconder é roubo. Isso machuca quem perdeu o objeto e prejudica sua própria alma."
+    },
+    {
+        "titulo": "Caso 2: A moeda do Bruxo",
+        "descricao": "Voce esta em uma estrada de lama fazendo um treinamento de duelos para entrar na cavalaria e consegue desarmar seu oponente. Voce pode mostrar a todos que é melhor que ele. O que você faz?",
+        "imagem_caso": "src/backgrounds/caso2thewitcher.png",
+        "imagem_virtude": "src/backgrounds/respeito.png",  
+        "opcoes": [
+            "1-Rir do seu oponente",
+            "2-Guardar sua espada e oferecer sua ajuda para ele se levantar",
+            "3-Fazer piada do seu oponente para mostrar que é melhor",
+        ],
+        "resposta_correta": 1,
+        "virtude": "Respeito",
+        "explicacao": "Entender que todos merecem respeito, mesmo em competição, é fundamental. Oferecer ajuda mostra que você valoriza a dignidade do outro, enquanto rir  ou fazer piada demonstra falta de respeito e empatia.",
+        "licao_errada": "Rir ou fazer piada do oponente é desrespeitoso e prejudica a confiança e o espírito esportivo. Oferecer ajuda mostra que você valoriza a dignidade do outro, mesmo em competição."
+    },
+    {
+        "titulo": "Caso 3: O tesouro do pirata",
+        "descricao": "Você encontra um baú de tesouro em uma ilha deserta",
+        "imagem_caso": "src/backgrounds/pirata.png",
+        "imagem_virtude": "src/backgrounds/pirata_rum.png",
+        "opcoes": [
+            "1-Pegar o baú inteiro para si mesmo",
+            "2-Pegar apenas o que você acha que merece",
+            "3-Deixar o baú onde está, respeitando a placa",
+        ],
+        "resposta_correta": 2,
+        "virtude": "Coragem",
+        "explicacao": "A coragem é enfrentar desafios e fazer o que é certo,esmo quando é difícil. Pegar apenas o que merece mostra que você tem a coragem de ser justo e honesto, mesmo quando ninguém está olhando.",
+        "licao_errada": "Pegar tudo para si é ganância e falta deoragem para ser justo. Deixar o baú inteiro pode ser visto como covardia, pois você não tem a coragem de reivindicar o que é seu." 
+
+    },
+    {
+        "titulo": "Caso 4: O Lanche na Praca",
+        "descricao": "O sorvete do Leo caiu no chao. O que o amigo dele pode fazer?",
+        "imagem_caso": "src/backgrounds/praca_pocos.jpg",
+        "imagem_virtude": "src/backgrounds/amizade.jpg",
+        "opcoes": [
+            "1-Rir do Leo apontando o dedo.",
+            "2-Dividir o seu proprio sorvete com ele.",
+            "3-Ir brincar sozinho no parquinho."
+        ],
+        "resposta_correta": 1,
+        "virtude": "Amizade",
+        "explicacao": "Amigos de verdade dividem as coisas e apoiam nos momentos dificeis! Ajudar um amigo triste mostra o verdadeiro valor da amizade.",
+        "licao_errada": "Rir do azar do amigo ou abandona-lo o deixa mais triste. Amigos de verdade nao fazem isso, eles ajudam."
+    },
+    {
+        "titulo": "Caso 5: O Colega Novo",
+        "descricao": "O Lucas e novo na escola e ainda nao conhece ninguem. Como podemos ajudar?",
+        "imagem_caso": "src/backgrounds/patio_escola.jpg",
+        "imagem_virtude": "src/backgrounds/empatia.jpg",
+        "opcoes": [
+            "1-Ignorar e continuar brincando so com os amigos de sempre.",
+            "2-Fazer um sinal de 'Oi' e chamar ele para o jogo.",
+            "3-Ficar olhando de longe sem falar nada."
+        ],
+        "resposta_correta": 1,
+        "virtude": "Empatia",
+        "explicacao": "Empatia e se colocar no lugar do outro e acolher. Chamar um colega novo para brincar faz ele se sentir bem-vindo e seguro!",
+        "licao_errada": "Ignorar ou apenas olhar faz o colega novo se sentir sozinho e excluido. Tente sempre se colocar no lugar do outro."
+    }
+    
+]
+
+# Estado do jogo
+caso_atual = 0
+estado = "menu"
+feedback = ""
+botao_errado_index = -1
+
+# Criar botões iniciais e layout responsivo
+botoes = []
+botao_jogar = pygame.Rect(0, 0, 0, 0)
+botao_sair = pygame.Rect(0, 0, 0, 0)
+botao_fullscreen = pygame.Rect(0, 0, 0, 0)
+botao_tentar = pygame.Rect(0, 0, 0, 0)
+
+# Seta para avançar
+seta_x = 0
+seta_y = 0
+seta_tamanho = 50
+seta_rect = pygame.Rect(0, 0, 0, 0)
+
+atualizar_imagens()
+atualizar_layout()
+
+def desenhar_seta():
+    pontos = [
+        (seta_x + seta_tamanho, seta_y),
+        (seta_x - seta_tamanho, seta_y - seta_tamanho),
+        (seta_x - seta_tamanho, seta_y + seta_tamanho),
+    ]
+    pygame.draw.polygon(tela, VERDE, pontos)
+    pygame.draw.polygon(tela, BRANCO, pontos, 3)
+
+def resetar_caso():
+    global estado, feedback, botao_errado_index, botoes
+    
+    botoes.clear()
+    for i in range(len(casos[caso_atual]["opcoes"])):
+        x = 40
+        y = 280 + i * 120
+        largura_botao = 880
+        altura_botao = 100
+        retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
+        botoes.append({"rect": retangulo})
+    
+    estado = "caso"
+    feedback = ""
+    botao_errado_index = -1
+
+# Loop principal
+rodando = True
+clock = pygame.time.Clock()
+
+while rodando:
+    # Fundo específico por caso ou menu
+    if estado == "caso" or estado == "resposta_incorreta":
+        fundo_atual = get_imagem_caso(caso_atual)
+        tela.blit(fundo_atual, (0, 0))
+    elif estado == "virtude":
+        fundo_atual = get_imagem_virtude(caso_atual)
+        tela.blit(fundo_atual, (0, 0))
+    elif estado == "menu":
+        if fundo_menu:
+            tela.blit(fundo_menu, (0, 0))
+        else:
+            tela.fill((20, 20, 40))
+
+    if estado == "menu":
+        titulo_menu = fonte_titulo.render("Detetive das Virtudes", True, BRANCO)
+        instrucao_menu = fonte_texto.render("Clique em Jogar para começar ou Sair para fechar o jogo.", True, BRANCO)
+        pygame.draw.rect(tela, AZUL, botao_jogar)
+        pygame.draw.rect(tela, VERMELHO, botao_sair)
+
+        texto_jogar = fonte_opcoes.render("Jogar", True, BRANCO)
+        texto_sair = fonte_opcoes.render("Sair", True, BRANCO)
+        texto_fullscreen = fonte_opcoes.render("Tela Cheia", True, BRANCO)
+
+        pygame.draw.rect(tela, AZUL, botao_jogar)
+        pygame.draw.rect(tela, VERMELHO, botao_sair)
+        pygame.draw.rect(tela, VERDE if fullscreen else AZUL, botao_fullscreen)
+
+        tela.blit(titulo_menu, (largura // 2 - titulo_menu.get_width() // 2, 120))
+        tela.blit(instrucao_menu, (largura // 2 - instrucao_menu.get_width() // 2, 190))
+        tela.blit(texto_jogar, (botao_jogar.x + 120, botao_jogar.y + 20))
+        tela.blit(texto_sair, (botao_sair.x + 125, botao_sair.y + 20))
+        tela.blit(texto_fullscreen, (botao_fullscreen.x + 70, botao_fullscreen.y + 20))
+    elif estado == "caso":
+        # Painel de contraste para a área de texto
+        painel_texto = pygame.Surface((940, 520), pygame.SRCALPHA)
+        painel_texto.fill((0, 0, 0, 170))
+        tela.blit(painel_texto, (20, 20))
+
+        texto_titulo = fonte_titulo.render(casos[caso_atual]["titulo"], True, BRANCO)
+        tela.blit(texto_titulo, (40, 40))
+        
+        render_texto_quebrado(casos[caso_atual]["descricao"], fonte_texto, BRANCO, tela, 40, 120, 900)
+        
+        for i, botao in enumerate(botoes):
+            cor = VERMELHO if botao_errado_index == i else AZUL
+            pygame.draw.rect(tela, cor, botao["rect"], border_radius=12)
+            pygame.draw.rect(tela, BRANCO, botao["rect"], 3, border_radius=12)
+            render_texto_quebrado(casos[caso_atual]["opcoes"][i], fonte_opcoes, BRANCO, tela, botao["rect"].x + 20, botao["rect"].y + 15, botao["rect"].width - 40, fonte_opcoes.get_height() + 6)
+        
+        if feedback and "Correto" in feedback:
+            texto_feedback = fonte_feedback.render(feedback, True, VERDE)
+            fundo_feedback = pygame.Surface((texto_feedback.get_width() + 40, texto_feedback.get_height() + 20), pygame.SRCALPHA)
+            fundo_feedback.fill((0, 0, 0, 180))
+            tela.blit(fundo_feedback, (20, 460))
+            tela.blit(texto_feedback, (40, 470))
+            desenhar_seta()
+    
+    elif estado == "virtude":
+        painel_virtude = pygame.Surface((1300, 520), pygame.SRCALPHA)
+        painel_virtude.fill((0, 0, 0, 180))
+        tela.blit(painel_virtude, (300, 80))
+
+        titulo_virtude = f"Virtude: {casos[caso_atual]['virtude']}"
+        texto_titulo = fonte_titulo.render(titulo_virtude, True, BRANCO)
+        tela.blit(texto_titulo, (340, 110))
+        
+        y = 200
+        y = render_texto_quebrado(casos[caso_atual]["explicacao"], fonte_texto, BRANCO, tela, 340, y, 1200)
+        
+        desenhar_seta()
+    
+    elif estado == "resposta_incorreta":
+        overlay = pygame.Surface((largura, altura))
         overlay.set_alpha(200)
-        overlay.fill(self.cores['PRETO'])
-        self.tela.blit(overlay, (0, 0))
-        caixa_largura = int(self.largura*0.45)
-        caixa_altura = int(self.altura*0.38)
-        caixa_x = self.largura // 2 - caixa_largura // 2
-        caixa_y = self.altura // 2 - caixa_altura // 2
-        pygame.draw.rect(self.tela, self.cores['PRETO'], (caixa_x, caixa_y, caixa_largura, caixa_altura), border_radius=12)
-        pygame.draw.rect(self.tela, self.cores['VERMELHO'], (caixa_x, caixa_y, caixa_largura, caixa_altura), 5, border_radius=12)
-        # Título centralizado
-        self.render_texto_multilinha(
-            "Resposta Incorreta!", self.fontes['TITULO'], self.cores['VERMELHO'],
-            caixa_x, caixa_y + int(caixa_altura*0.07), caixa_largura, altura_caixa=int(caixa_altura*0.18), centralizar_h=True, centralizar_v=True
-        )
-        caso = self.casos[self.caso_atual]
-        licao = caso.licoes_erradas[self.botao_errado_index] if self.botao_errado_index >= 0 and self.botao_errado_index < len(caso.licoes_erradas) else "Escolha uma opção válida."
-        # Lição centralizada
-        self.render_texto_multilinha(
-            licao, self.fontes['TEXTO'], self.cores['BRANCO'],
-            caixa_x + int(caixa_largura*0.05), caixa_y + int(caixa_altura*0.3),
-            int(caixa_largura*0.9), altura_caixa=int(caixa_altura*0.5), centralizar_h=True, centralizar_v=True
-        )
-        botao_tentar = self.get_botao_tentar()
-        pygame.draw.rect(self.tela, (0, 150, 0), botao_tentar, border_radius=10)
-        self.render_texto_multilinha(
-            "Tentar Novamente", self.fontes['OPCOES'], self.cores['BRANCO'],
-            botao_tentar.x, botao_tentar.y + int(botao_tentar.height*0.25),
-            botao_tentar.width, altura_caixa=int(botao_tentar.height*0.5), centralizar_h=True, centralizar_v=True
-        )
-
-    def render_feedback_correto(self):
-        caixa_largura = int(self.largura*0.45)
-        caixa_altura = int(self.altura*0.25)
-        caixa_x = self.largura // 2 - caixa_largura // 2
-        caixa_y = int(self.altura*0.18)
-        pygame.draw.rect(self.tela, self.cores['PRETO'], (caixa_x, caixa_y, caixa_largura, caixa_altura), border_radius=12)
-        pygame.draw.rect(self.tela, self.cores['VERDE'], (caixa_x, caixa_y, caixa_largura, caixa_altura), 5, border_radius=12)
-        # Título centralizado
-        self.render_texto_multilinha(
-            "Parabéns! Você acertou!",
-            self.fontes['TITULO'], self.cores['VERDE'],
-            caixa_x, caixa_y + int(caixa_altura*0.08),
-            caixa_largura, altura_caixa=int(caixa_altura*0.22), centralizar_h=True, centralizar_v=True
-        )
-        caso = self.casos[self.caso_atual]
-        # Explicação centralizada
-        self.render_texto_multilinha(
-            caso.explicacao, self.fontes['TEXTO'], self.cores['BRANCO'],
-            caixa_x + int(caixa_largura*0.05), caixa_y + int(caixa_altura*0.45),
-            int(caixa_largura*0.9), altura_caixa=int(caixa_altura*0.5), centralizar_h=True, centralizar_v=True
-        )
-        for c in self.confetes:
-            pygame.draw.circle(self.tela, c['cor'], (int(c['x']), int(c['y'])), c['raio'])
-            c['y'] += c['vel']
-            if c['y'] > caixa_y + caixa_altura:
-                c['y'] = caixa_y + random.randint(0, 10)
-                c['x'] = random.randint(caixa_x, caixa_x+caixa_largura)
-        self.desenhar_seta()
-
-    def render_texto_multilinha(self, texto, fonte, cor, x, y, largura_max, altura_caixa=None, centralizar_h=False, centralizar_v=False, espacamento=6):
-        palavras = texto.split(' ')
-        linhas = []
-        linha_atual = ''
+        overlay.fill(PRETO)
+        tela.blit(overlay, (0, 0))
+        
+        caixa_x = largura // 2 - 300
+        caixa_y = altura // 2 - 200
+        caixa_largura = 600
+        caixa_altura = 400
+        
+        pygame.draw.rect(tela, PRETO, (caixa_x, caixa_y, caixa_largura, caixa_altura))
+        pygame.draw.rect(tela, VERMELHO, (caixa_x, caixa_y, caixa_largura, caixa_altura), 5)
+        
+        titulo_erro = fonte_titulo.render("Resposta Incorreta!", True, VERMELHO)
+        tela.blit(titulo_erro, (caixa_x + 100, caixa_y + 30))
+        
+        licao = casos[caso_atual]["licao_errada"]
+        palavras = licao.split()
+        y = caixa_y + 120
+        linha_atual = ""
+        
         for palavra in palavras:
-            nova = palavra if linha_atual == '' else linha_atual + ' ' + palavra
-            if fonte.size(nova)[0] > largura_max:
-                if linha_atual:
-                    linhas.append(linha_atual)
-                linha_atual = palavra
+            if len(linha_atual) + len(palavra) > 40:
+                texto_linha = fonte_texto.render(linha_atual.strip(), True, BRANCO)
+                tela.blit(texto_linha, (caixa_x + 30, y))
+                y += fonte_texto.get_height() + 10
+                linha_atual = palavra + " "
             else:
-                linha_atual = nova
-        if linha_atual:
-            linhas.append(linha_atual)
-        altura_total = sum(fonte.size(linha)[1] for linha in linhas) + espacamento * (len(linhas)-1)
-        if altura_caixa and centralizar_v:
-            y = y + (altura_caixa - altura_total)//2
-        for linha in linhas:
-            rendered = fonte.render(linha, True, cor)
-            x_linha = x
-            if centralizar_h:
-                x_linha = x + (largura_max - rendered.get_width())//2
-            self.tela.blit(rendered, (x_linha, y))
-            y += rendered.get_height() + espacamento
+                linha_atual += palavra + " "
+        
+        if linha_atual.strip():
+            texto_linha = fonte_texto.render(linha_atual.strip(), True, BRANCO)
+            tela.blit(texto_linha, (caixa_x + 30, y))
+        
+        pygame.draw.rect(tela, (0, 150, 0), botao_tentar)
+        texto_botao = fonte_opcoes.render("Tentar Novamente", True, BRANCO)
+        tela.blit(texto_botao, (botao_tentar.x + 30, botao_tentar.y + 15))
+    
+    pygame.display.update()
+    clock.tick(60)
+    
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            rodando = False
+        elif evento.type == pygame.VIDEORESIZE and not fullscreen:
+            windowed_width, windowed_height = evento.w, evento.h
+            atualizar_tela()
+        elif evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_ESCAPE and fullscreen:
+                fullscreen = False
+                atualizar_tela()
+        elif evento.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
 
-    def desenhar_icone_visto(self, x, y, tamanho):
-        espessura = max(3, tamanho // 10)
-        pygame.draw.lines(self.tela, self.cores['VERDE'], False, [
-            (x, y + tamanho//2),
-            (x + tamanho//3, y + tamanho),
-            (x + tamanho, y)
-        ], espessura)
+            if estado == "menu":
+                if botao_jogar.collidepoint(mouse_x, mouse_y):
+                    estado = "caso"
+                elif botao_sair.collidepoint(mouse_x, mouse_y):
+                    rodando = False
+                elif botao_fullscreen.collidepoint(mouse_x, mouse_y):
+                    fullscreen = not fullscreen
+                    atualizar_tela()
+            elif estado == "caso":
+                for i, botao in enumerate(botoes):
+                    if botao["rect"].collidepoint(mouse_x, mouse_y):
+                        if i == casos[caso_atual]["resposta_correta"]:
+                            feedback = f"Correto! Virtude: {casos[caso_atual]['virtude']}"
+                        else:
+                            botao_errado_index = i
+                            estado = "resposta_incorreta"
+                            feedback = ""
+                        break
 
-if __name__ == "__main__":
-    DetetiveDasVirtudes().run()
+                if feedback and "Correto" in feedback and seta_rect.collidepoint(mouse_x, mouse_y):
+                    estado = "virtude"
+            elif estado == "virtude":
+                if seta_rect.collidepoint(mouse_x, mouse_y):
+                    caso_atual += 1
+                    if caso_atual >= len(casos):
+                        rodando = False
+                    else:
+                        resetar_caso()
+            elif estado == "resposta_incorreta":
+                if botao_tentar.collidepoint(mouse_x, mouse_y):
+                    resetar_caso()
 
+pygame.quit()
+sys.exit()
