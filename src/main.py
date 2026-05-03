@@ -229,9 +229,9 @@ casos =[
         ],
         "resposta_correta": 1,
         "virtude": "Responsabilidade",
-        "explicacao": "Responsabilidade e cumprir com seus compromissos mesmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
+        "explicacao": "Responsabilidade e cumprir com seus compromissos mesnmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
         "licao_errada": "DAR LICAO DE MORAL AQUI NICK ."
-    }
+    }# so puxar as imagens do backgrounds tipo src/backgrounds/nome_da_imagem.png 
 ]
 
 # Estado do jogo
