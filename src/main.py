@@ -6,7 +6,9 @@ import urllib.request
 import urllib.error
 import webbrowser
 import pathlib
+import re
 import shutil
+import unicodedata
 from dataclasses import dataclass
 
 # Iniciar pygame
@@ -52,14 +54,11 @@ else:
 imagens_cache = {}
 
 LIBRAS_CACHE_DIR = os.path.join("src", "libras_cache")
-LIBRAS_CACHE_IMAGES_DIR = os.path.join(LIBRAS_CACHE_DIR, "images")
 LIBRAS_CACHE_MAOS_JSON = os.path.join(LIBRAS_CACHE_DIR, "mao.json")
 LIBRAS_CACHE_MAOS_DIR = os.path.join(LIBRAS_CACHE_DIR, "mao")
 LIBRAS_CACHE_VIDEOS_DIR = os.path.join(LIBRAS_CACHE_DIR, "videos")
-LIBRAS_CACHE_PALAVRAS_JSON = os.path.join(LIBRAS_CACHE_DIR, "palavras.json")
-LIBRAS_URL_PALAVRAS_JS = "https://dicionario.ines.gov.br/public/site/js/palavras.js"
+GLOSSARIO_CURADO_JSON = os.path.join("src", "data", "glossario_libras.json")
 LIBRAS_URL_MAOS_JS = "https://dicionario.ines.gov.br/public/site/js/mao.js"
-LIBRAS_URL_IMAGENS_BASE = "https://dicionario.ines.gov.br/public/media/palavras/images/"
 LIBRAS_URL_MAOS_BASE = "https://dicionario.ines.gov.br/public/media/mao/"
 LIBRAS_URL_VIDEOS_BASE = "https://dicionario.ines.gov.br/public/media/palavras/videos/"
 
@@ -73,6 +72,7 @@ class LibrasVerbete:
     descricao: str | None
     mao_id: int | None
     video: str | None
+    imagem_projeto: str | None = None
 
 
 def _http_get_text(url: str, timeout: float = 20.0) -> str:
@@ -94,6 +94,16 @@ def _http_download_file(url: str, dest_path: str, timeout: float = 30.0) -> None
         f.write(resp.read())
 
 
+def _surface_para_desenho(img: pygame.Surface) -> pygame.Surface:
+    """Converte paletas/8-bit para 24/32-bit (exigido pelo smoothscale do pygame)."""
+    if img.get_bitsize() in (24, 32):
+        return img
+    try:
+        return img.convert_alpha() if img.get_flags() & pygame.SRCALPHA else img.convert()
+    except pygame.error:
+        return img.convert()
+
+
 def _scale_to_fit(img: pygame.Surface, max_w: int, max_h: int) -> pygame.Surface:
     """
     Mantém proporção e garante que a imagem caiba em (max_w, max_h).
@@ -105,61 +115,143 @@ def _scale_to_fit(img: pygame.Surface, max_w: int, max_h: int) -> pygame.Surface
         return img
     escala = min(max_w / w, max_h / h, 1.0)
     if escala == 1.0:
-        return img
-    return pygame.transform.smoothscale(img, (max(1, int(w * escala)), max(1, int(h * escala))))
+        return _surface_para_desenho(img)
+    novo = (max(1, int(w * escala)), max(1, int(h * escala)))
+    img = _surface_para_desenho(img)
+    try:
+        return pygame.transform.smoothscale(img, novo)
+    except ValueError:
+        return pygame.transform.scale(img, novo)
 
 
-def carregar_verbetes_libras() -> list[LibrasVerbete]:
+# Glossário fixo: 5 palavras por letra em `src/data/glossario_libras.json`; imagens na pasta do projeto.
+GLOSSARIO_MAX_POR_LETRA = 5
+
+MSG_INFANTIL_SEM_DESCRICAO = (
+    "Olhe a ilustração ao lado: ela mostra um jeito de sinalizar essa palavra em Libras, como no dicionário do INES."
+)
+
+# Chaves sempre com _chave_palavra (sem acento, minúsculas).
+DESCRICOES_INFANTIS: dict[str, str] = {
+    "honestidade": "Ser honesto é falar a verdade e devolver o que não é seu, mesmo sem ninguém olhando.",
+    "respeito": "Respeito é tratar o outro com gentileza e cuidado, sem zombar nem humilhar.",
+    "coragem": "Coragem é fazer o certinho mesmo com medo ou vergonha, sem pegar o que não é seu.",
+    "amizade": "Amizade é dividir, ajudar e ficar ao lado do amigo quando ele precisa.",
+    "empatia": "Empatia é imaginar como o outro se sente e acolher com carinho.",
+    "responsabilidade": "Responsabilidade é cumprir deveres e promessas antes de só se divertir.",
+    "lamen": "Macarrão gostoso em caldo quente; no jogo, devolver ou avisar se achou um que não é seu.",
+    "macarrao": "Massa cozida que muita gente adora com molho ou caldo; no caso do jogo, parecido com o lamen.",
+    "sorvete": "Doce geladinho; no jogo, o amigo divide o dele quando o do Leo cai no chão.",
+    "pirata": "Personagem de aventura no mar; no jogo, aparece no tesouro e na coragem de fazer certo.",
+    "moeda": "Dinheiro em formato redondinho; no caso do bruxo, aparece na estrada e no duelo.",
+    "leo": "Nome do menino do caso do sorvete na praça.",
+    "lucas": "Nome do colega novo da escola que precisa de um convite para brincar.",
+    "pedro": "Nome do menino que precisa terminar o dever de casa antes do videogame.",
+    "escola": "Lugar onde a gente estuda e conhece colegas; o Lucas chegou novo na escola.",
+    "videogame": "Jogo eletrônico; no caso do Pedro, os amigos chamam, mas o trabalho vem primeiro.",
+    "duelo": "Luta de treino entre dois duelistas; no caso, vale mais ajudar o oponente do que zombar.",
+    "espada": "Arma de lâmina do guerreiro; no caso certo, guardamos a espada e ajudamos o outro.",
+    "estrada": "Caminho de terra ou asfalto; no caso do bruxo, a estrada é de lama.",
+    "lama": "Terra molhada e escorregadia; no treinamento do caso do bruxo tem bastante lama.",
+    "treinamento": "Treino para aprender algo; no caso, treino de duelos para a cavalaria.",
+    "oponente": "A pessoa que disputa com você; no caso, merece respeito depois do duelo.",
+    "jogo": "Brincadeira com regras; pode ser tabuleiro, bola ou videogame.",
+    "colega": "Pessoa da mesma sala ou escola; chamar o colega novo é um gesto de empatia.",
+    "dever1": "Tarefa da escola ou de casa; no caso do Pedro, é o trabalho para entregar.",
+    "dever2": "Tarefa da escola ou de casa; no caso do Pedro, é o trabalho para entregar.",
+    "dever3": "Tarefa da escola ou de casa; cumprir o dever mostra responsabilidade.",
+    "ilha": "Pedaço de terra no meio do mar; no caso do pirata, o baú fica numa ilha.",
+    "bau": "Caixa de madeira ou metal para guardar coisas; no caso do pirata guarda tesouro.",
+    "praca2": "Lugar aberto com bancos e brinquedos; no jogo, o lanche acontece na praça.",
+    "praca3": "Lugar aberto com bancos e brinquedos; no jogo, o lanche acontece na praça.",
+    "cavalaria": "Grupo de soldados a cavalo; no caso, o treinamento é para entrar na cavalaria.",
+    "roubo": "Pegar o que é dos outros sem permissão; o jogo diz que não é legal.",
+    "ajuda": "Fazer algo bom por quem precisa; ajudar o oponente a levantar é respeito.",
+    "mentira": "Falar o que não é verdade; honestidade é o contrário de mentira.",
+    "verdade": "O que é real e certo; honestidade valoriza a verdade.",
+    "carater": "Jeito de ser da pessoa; atos honestos fortalecem o caráter.",
+    "alma": "Parte profunda da gente; mentir ou roubar machuca a alma, diz a lição.",
+    "dignidade": "Sentir-se respeitado e valorizado; respeito preserva a dignidade.",
+    "confianca": "Acreditar no outro; zombar quebra a confiança.",
+    "ganancia": "Querer tudo para si; pegar o baú inteiro pode ser ganância.",
+    "covardia": "Ter medo demais de fazer o certo; o jogo fala de covardia no caso do baú.",
+    "justica": "O que é certo e honesto para todos; coragem ajuda a ser justo.",
+    "parquinho": "Área de brincar com escorregadores e gangorras.",
+    "dedo": "Apontar o dedo para rir machuca o amigo.",
+    "proprio": "Que é seu; dividir o próprio sorvete é generoso.",
+    "sozinho": "Sem companhia; ir brincar sozinho deixa o Leo triste.",
+    "honesto": "Quem fala a verdade e não engana.",
+    "honrada": "Qualidade de pessoa honesta e correta.",
+    "brincar": "Se divertir com jogos; depois do dever, dá para brincar.",
+    "trabalho": "Tarefa ou emprego; no caso, o trabalho escolar do Pedro.",
+}
+
+
+def _chave_palavra(s: str) -> str:
+    """Normaliza para comparação (minúsculas, sem acento)."""
+    return "".join(
+        c
+        for c in unicodedata.normalize("NFD", (s or "").strip().lower())
+        if unicodedata.category(c) != "Mn"
+    )
+
+
+
+def _encurtar_descricao_infantil(texto: str, max_chars: int = 180) -> str:
+    t = (texto or "").strip()
+    if len(t) <= max_chars:
+        return t
+    corte = t[:max_chars].rsplit(" ", 1)[0]
+    return (corte if corte else t[:max_chars]).rstrip() + "…"
+
+
+def texto_explicativo_infantil(v: LibrasVerbete) -> str:
+    ch = _chave_palavra(v.palavra)
+    if ch in DESCRICOES_INFANTIS:
+        return DESCRICOES_INFANTIS[ch]
+    if v.descricao and str(v.descricao).strip():
+        return _encurtar_descricao_infantil(str(v.descricao))
+    return MSG_INFANTIL_SEM_DESCRICAO
+
+
+def carregar_glossario_curado() -> tuple[list[LibrasVerbete], dict[str, list[LibrasVerbete]]]:
     """
-    Carrega o índice de verbetes do dicionário do INES.
-    Faz cache local em `src/libras_cache/palavras.json` para não depender de rede toda vez.
+    Lê `src/data/glossario_libras.json`: 5 palavras por letra, texto infantil,
+    mão e vídeo do INES; caminhos de imagem na pasta do projeto.
     """
-    os.makedirs(LIBRAS_CACHE_DIR, exist_ok=True)
-    if os.path.exists(LIBRAS_CACHE_PALAVRAS_JSON):
-        try:
-            with open(LIBRAS_CACHE_PALAVRAS_JSON, "r", encoding="utf-8") as f:
-                raw = json.load(f)
-            return [
-                LibrasVerbete(
-                    id=int(v.get("id", 0)),
-                    letra=str(v.get("letra", "")).upper()[:1],
-                    palavra=str(v.get("palavra", "")).strip(),
-                    image=v.get("image"),
-                    descricao=v.get("descricao"),
-                    mao_id=int(v["mao"]) if v.get("mao") is not None else None,
-                    video=v.get("video"),
-                )
-                for v in raw
-                if v.get("palavra")
-            ]
-        except Exception:
-            pass
-
-    js = _http_get_text(LIBRAS_URL_PALAVRAS_JS)
-    prefix = "var palavras = "
-    if not js.startswith(prefix):
-        raise RuntimeError("Formato inesperado ao baixar lista de palavras (INES).")
-    payload = js[len(prefix) :].strip()
-    if payload.endswith(";"):
-        payload = payload[:-1]
-    raw = json.loads(payload)
-
-    with open(LIBRAS_CACHE_PALAVRAS_JSON, "w", encoding="utf-8") as f:
-        json.dump(raw, f, ensure_ascii=False)
-
-    return [
-        LibrasVerbete(
-            id=int(v.get("id", 0)),
-            letra=str(v.get("letra", "")).upper()[:1],
-            palavra=str(v.get("palavra", "")).strip(),
-            image=v.get("image"),
-            descricao=v.get("descricao"),
-            mao_id=int(v["mao"]) if v.get("mao") is not None else None,
-            video=v.get("video"),
+    if not os.path.isfile(GLOSSARIO_CURADO_JSON):
+        raise FileNotFoundError(
+            f"Falta o arquivo do glossário: {GLOSSARIO_CURADO_JSON}. "
+            "Gere com: python scripts/gerar_glossario_libras_json.py"
         )
-        for v in raw
-        if v.get("palavra")
-    ]
+    with open(GLOSSARIO_CURADO_JSON, encoding="utf-8") as f:
+        data = json.load(f)
+    raw = data.get("verbetes") or []
+    verbetes: list[LibrasVerbete] = []
+    por_letra: dict[str, list[LibrasVerbete]] = {}
+    for item in raw:
+        L = str(item.get("letra", "")).strip().upper()[:1]
+        if not L or not ("A" <= L <= "Z"):
+            continue
+        pal = str(item.get("palavra", "")).strip()
+        if not pal:
+            continue
+        img = (item.get("imagem_projeto") or "").strip() or None
+        v = LibrasVerbete(
+            id=int(item.get("id", 0)),
+            letra=L,
+            palavra=pal,
+            image=None,
+            descricao=item.get("descricao_infantil") or item.get("descricao"),
+            mao_id=int(item["mao"]) if item.get("mao") is not None else None,
+            video=str(item["video"]).strip() if item.get("video") else None,
+            imagem_projeto=img,
+        )
+        verbetes.append(v)
+        por_letra.setdefault(L, []).append(v)
+    for L in por_letra:
+        por_letra[L].sort(key=lambda x: (x.palavra.lower(), x.id))
+    return verbetes, por_letra
 
 
 def carregar_maos_libras() -> dict[int, str]:
@@ -219,19 +311,6 @@ def limpar_cache_libras():
         # Se falhar (arquivo em uso/permissão), não deve impedir o fechamento do jogo
         pass
 
-def garantir_imagem_libras(nome_arquivo: str) -> str:
-    """
-    Garante que a imagem do verbete existe no cache e retorna o caminho local.
-    """
-    os.makedirs(LIBRAS_CACHE_IMAGES_DIR, exist_ok=True)
-    dest = os.path.join(LIBRAS_CACHE_IMAGES_DIR, nome_arquivo)
-    if os.path.exists(dest):
-        return dest
-    url = LIBRAS_URL_IMAGENS_BASE + nome_arquivo
-    _http_download_file(url, dest)
-    return dest
-
-
 def desenhar_botao(rect: pygame.Rect, texto: str, cor_fundo: tuple[int, int, int], cor_borda=BRANCO):
     pygame.draw.rect(tela, cor_fundo, rect, border_radius=12)
     pygame.draw.rect(tela, cor_borda, rect, 3, border_radius=12)
@@ -288,7 +367,17 @@ def desenhar_mensagem_erro(texto: str):
     overlay = pygame.Surface((largura, altura), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 200))
     tela.blit(overlay, (0, 0))
-    desenhar_texto_centralizado("Glossário de Libras (INES)", 60, fonte_titulo, BRANCO)
+    desenhar_texto_centralizado("Glossário de Libras", 60, fonte_titulo, BRANCO)
+    render_texto_quebrado(
+        "Lista fixa em src/data/glossario_libras.json (5 palavras por letra). "
+        "Ilustrações vêm da pasta src/libras_glossario_imagens; mão e vídeo do INES.",
+        fonte_pequena,
+        BRANCO,
+        tela,
+        80,
+        115,
+        largura - 160,
+    )
     render_texto_quebrado(texto, fonte_texto, BRANCO, tela, 80, 180, largura - 160)
 
 def get_imagem_caso(caso_index):
@@ -371,21 +460,31 @@ def atualizar_tela():
     atualizar_layout()
 
 
-def render_texto_quebrado(texto, fonte, cor, superficie, x, y, largura_max, espaco_linha=None):
+def render_texto_quebrado(
+    texto, fonte, cor, superficie, x, y, largura_max, espaco_linha=None, *, centralizar=False
+):
     if espaco_linha is None:
         espaco_linha = fonte.get_height() + 8
-    palavras = texto.split(' ')
+    palavras = texto.split(" ")
     linha_atual = ""
+
+    def _blit_linha(texto_linha: str) -> None:
+        nonlocal y
+        surf = fonte.render(texto_linha, True, cor)
+        bx = (largura - surf.get_width()) // 2 if centralizar else x
+        superficie.blit(surf, (bx, y))
+        y += espaco_linha
+
     for palavra in palavras:
         teste = f"{linha_atual}{palavra} "
         if fonte.size(teste)[0] > largura_max and linha_atual:
-            superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
-            y += espaco_linha
+            _blit_linha(linha_atual.strip())
             linha_atual = palavra + " "
         else:
             linha_atual = teste
     if linha_atual.strip():
-        superficie.blit(fonte.render(linha_atual.strip(), True, cor), (x, y))
+        _blit_linha(linha_atual.strip())
+        y -= espaco_linha
     return y
 
 # Dados dos casos
@@ -409,7 +508,7 @@ casos =[
         "titulo": "Caso 2: A moeda do Bruxo",
         "descricao": "Voce esta em uma estrada de lama fazendo um treinamento de duelos para entrar na cavalaria e consegue desarmar seu oponente. Voce pode mostrar a todos que é melhor que ele. O que você faz?",
         "imagem_caso": "src/backgrounds/caso2thewitcher.png",
-        "imagem_virtude": "src/backgrounds/respeito.png",  
+        "imagem_virtude": "src/backgrounds/respeito.png",
         "opcoes": [
             "1-Rir do seu oponente",
             "2-Guardar sua espada e oferecer sua ajuda para ele se levantar",
@@ -433,7 +532,7 @@ casos =[
         "resposta_correta": 2,
         "virtude": "Coragem",
         "explicacao": "A coragem é enfrentar desafios e fazer o que é certo,esmo quando é difícil. Pegar apenas o que merece mostra que você tem a coragem de ser justo e honesto, mesmo quando ninguém está olhando.",
-        "licao_errada": "Pegar tudo para si é ganância e falta deoragem para ser justo. Deixar o baú inteiro pode ser visto como covardia, pois você não tem a coragem de reivindicar o que é seu." 
+        "licao_errada": "Pegar tudo para si é ganância e falta deoragem para ser justo. Deixar o baú inteiro pode ser visto como covardia, pois você não tem a coragem de reivindicar o que é seu."
 
     },
     {
@@ -480,7 +579,11 @@ casos =[
         "virtude": "Responsabilidade",
         "explicacao": "Responsabilidade e cumprir com seus compromissos mesmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
         "licao_errada": "DAR LICAO DE MORAL AQUI NICK ."
+<<<<<<< Updated upstream
     }
+=======
+    }# so puxar as imagens do backgrounds tipo src/backgrounds/nome_da_imagem.png
+>>>>>>> Stashed changes
 ]
 
 # Estado do jogo
@@ -532,16 +635,14 @@ def abrir_glossario_libras():
     glossario_erro = None
 
     try:
-        verbetes_libras = carregar_verbetes_libras()
+        verbetes_libras, verbetes_por_letra = carregar_glossario_curado()
         mao_por_id = carregar_maos_libras()
-        verbetes_por_letra = {}
-        for v in verbetes_libras:
-            if v.letra and "A" <= v.letra <= "Z":
-                verbetes_por_letra.setdefault(v.letra, []).append(v)
-        for k in verbetes_por_letra:
-            verbetes_por_letra[k].sort(key=lambda x: x.palavra.lower())
+    except FileNotFoundError as e:
+        glossario_erro = str(e)
     except (urllib.error.URLError, TimeoutError):
-        glossario_erro = "Não consegui acessar o dicionário do INES. Verifique sua internet e tente novamente."
+        glossario_erro = (
+            "Não consegui baixar o mapa de mãos do INES. Verifique sua internet e tente novamente."
+        )
     except Exception:
         glossario_erro = "O glossário falhou ao carregar. Tente novamente."
 
@@ -557,21 +658,21 @@ def carregar_detalhes_do_verbete(v: LibrasVerbete):
     if v.video:
         video_disponivel = v.video
 
-    # Imagem do verbete (se não existir no servidor, apenas fica None)
-    if v.image:
-        try:
-            caminho = garantir_imagem_libras(v.image)
-            img = pygame.image.load(caminho)
-            imagem_verbete_surface = img
-        except urllib.error.HTTPError as e:
-            if getattr(e, "code", None) == 404:
-                imagem_verbete_surface = None
-            else:
-                glossario_erro = "Falha ao baixar a imagem do INES."
-        except (urllib.error.URLError, TimeoutError):
-            glossario_erro = "Não consegui acessar o INES para baixar a imagem. Verifique sua internet."
-        except Exception:
-            imagem_verbete_surface = None
+    # Ilustração do glossário: arquivo na pasta do projeto (ver glossario_libras.json).
+    caminho_img = (v.imagem_projeto or "").strip()
+    if caminho_img:
+        p = os.path.normpath(caminho_img)
+        if not os.path.isfile(p):
+            glossario_erro = f"Imagem do glossário não encontrada: {caminho_img}"
+        else:
+            try:
+                surf = pygame.image.load(p)
+                if surf.get_width() > 0 and surf.get_height() > 0:
+                    imagem_verbete_surface = _surface_para_desenho(surf)
+            except Exception:
+                glossario_erro = "Não foi possível abrir a imagem do glossário."
+    else:
+        glossario_erro = "Este verbete não define imagem_projeto no JSON do glossário."
 
     # Mão (também não deve bloquear caso falhe)
     if v.mao_id is not None and v.mao_id in mao_por_id:
@@ -579,7 +680,7 @@ def carregar_detalhes_do_verbete(v: LibrasVerbete):
             arquivo = mao_por_id[v.mao_id]
             caminho_mao = garantir_imagem_mao_libras(arquivo)
             img_mao = pygame.image.load(caminho_mao)
-            mao_surface = img_mao
+            mao_surface = _surface_para_desenho(img_mao)
         except urllib.error.HTTPError as e:
             if getattr(e, "code", None) == 404:
                 mao_surface = None
@@ -602,7 +703,7 @@ def desenhar_seta():
 
 def resetar_caso():
     global estado, feedback, botao_errado_index, botoes
-    
+
     botoes.clear()
     for i in range(len(casos[caso_atual]["opcoes"])):
         x = 40
@@ -611,7 +712,7 @@ def resetar_caso():
         altura_botao = 100
         retangulo = pygame.Rect(x, y, largura_botao, altura_botao)
         botoes.append({"rect": retangulo})
-    
+
     estado = "caso"
     feedback = ""
     botao_errado_index = -1
@@ -639,10 +740,19 @@ try:
 
         if estado == "menu":
             titulo_menu = fonte_titulo.render("Detetive das Virtudes", True, BRANCO)
-            instrucao_menu = fonte_texto.render("Jogar, Glossário de Libras (INES), Tela Cheia ou Sair.", True, BRANCO)
-
             tela.blit(titulo_menu, (largura // 2 - titulo_menu.get_width() // 2, 120))
-            tela.blit(instrucao_menu, (largura // 2 - instrucao_menu.get_width() // 2, 190))
+            render_texto_quebrado(
+                "Jogar os casos, abrir o Glossário de Libras, "
+                "alternar tela cheia ou sair.",
+                fonte_pequena,
+                BRANCO,
+                tela,
+                0,
+                185,
+                max(120, largura - 120),
+                fonte_pequena.get_height() + 4,
+                centralizar=True,
+            )
             desenhar_botao(botao_jogar, "Jogar", AZUL)
             desenhar_botao(botao_glossario, "Glossário Libras", AZUL)
             desenhar_botao(botao_fullscreen, "Tela Cheia", VERDE if fullscreen else AZUL)
@@ -735,8 +845,13 @@ try:
             tela.blit(texto_botao, (botao_tentar.x + 30, botao_tentar.y + 15))
 
         elif estado == "glossario_letra":
-            desenhar_texto_centralizado("Glossário de Libras (INES)", 40, fonte_titulo, BRANCO)
-            desenhar_texto_centralizado("Escolha uma letra (A-Z). Esc para voltar ao menu.", 110, fonte_pequena, BRANCO)
+            desenhar_texto_centralizado("Glossário de Libras", 40, fonte_titulo, BRANCO)
+            desenhar_texto_centralizado(
+                "Escolha A–Z. Esc volta ao menu.",
+                100,
+                fonte_pequena,
+                BRANCO,
+            )
 
             if glossario_erro:
                 desenhar_mensagem_erro(glossario_erro)
@@ -747,8 +862,13 @@ try:
                     desenhar_botao(r, letra, cor)
 
         elif estado == "glossario_palavra":
-            desenhar_texto_centralizado("Glossário de Libras (INES)", 30, fonte_titulo, BRANCO)
-            desenhar_texto_centralizado(f"Letra: {letra_selecionada}  |  Clique em uma palavra. Rodinha do mouse para rolar. Esc para voltar.", 95, fonte_pequena, BRANCO)
+            desenhar_texto_centralizado("Glossário de Libras", 30, fonte_titulo, BRANCO)
+            desenhar_texto_centralizado(
+                f"Letra {letra_selecionada}: {GLOSSARIO_MAX_POR_LETRA} Clique na lista. Esc volta.",
+                88,
+                fonte_pequena,
+                BRANCO,
+            )
 
             if glossario_erro:
                 desenhar_mensagem_erro(glossario_erro)
@@ -788,22 +908,24 @@ try:
                     if verbete_selecionado:
                         title = fonte_texto.render(verbete_selecionado.palavra, True, BRANCO)
                         tela.blit(title, (painel_x + 20, painel_y + 15))
-                        # Acepção / descrição
-                        if verbete_selecionado.descricao:
-                            render_texto_quebrado(
-                                verbete_selecionado.descricao,
-                                fonte_pequena,
-                                BRANCO,
-                                tela,
-                                painel_x + 20,
-                                painel_y + 65,
-                                painel_w - 40,
-                                fonte_pequena.get_height() + 6,
-                            )
+                        esp_linha_txt = fonte_pequena.get_height() + 6
+                        y_apos_texto = render_texto_quebrado(
+                            texto_explicativo_infantil(verbete_selecionado),
+                            fonte_pequena,
+                            BRANCO,
+                            tela,
+                            painel_x + 20,
+                            painel_y + 55,
+                            painel_w - 40,
+                            esp_linha_txt,
+                        )
+                        caixa_y = min(
+                            max(y_apos_texto + esp_linha_txt, painel_y + 165),
+                            painel_y + painel_h - 260,
+                        )
 
                         # caixas de imagem (verbete + mão)
-                        caixa_y = painel_y + 170
-                        caixa_h = max(220, painel_h - 300)
+                        caixa_h = max(180, painel_y + painel_h - caixa_y - 90)
                         caixa_w = (painel_w - 60) // 2
                         caixa1 = pygame.Rect(painel_x + 20, caixa_y, caixa_w, caixa_h)
                         caixa2 = pygame.Rect(painel_x + 40 + caixa_w, caixa_y, caixa_w, caixa_h)
@@ -821,8 +943,17 @@ try:
                             inner = caixa1.inflate(-20, -60)
                             inner.y += 35
                             inner.height -= 35
-                            img = _scale_to_fit(imagem_verbete_surface, inner.width, inner.height)
-                            tela.blit(img, (inner.x + (inner.width - img.get_width()) // 2, inner.y + (inner.height - img.get_height()) // 2))
+                            try:
+                                img = _scale_to_fit(imagem_verbete_surface, inner.width, inner.height)
+                                tela.blit(
+                                    img,
+                                    (
+                                        inner.x + (inner.width - img.get_width()) // 2,
+                                        inner.y + (inner.height - img.get_height()) // 2,
+                                    ),
+                                )
+                            except Exception:
+                                glossario_erro = glossario_erro or "Não foi possível exibir a imagem."
                         else:
                             render_texto_quebrado(
                                 "Sem imagem para este verbete.",
@@ -838,8 +969,17 @@ try:
                             inner = caixa2.inflate(-20, -60)
                             inner.y += 35
                             inner.height -= 35
-                            imgm = _scale_to_fit(mao_surface, inner.width, inner.height)
-                            tela.blit(imgm, (inner.x + (inner.width - imgm.get_width()) // 2, inner.y + (inner.height - imgm.get_height()) // 2))
+                            try:
+                                imgm = _scale_to_fit(mao_surface, inner.width, inner.height)
+                                tela.blit(
+                                    imgm,
+                                    (
+                                        inner.x + (inner.width - imgm.get_width()) // 2,
+                                        inner.y + (inner.height - imgm.get_height()) // 2,
+                                    ),
+                                )
+                            except Exception:
+                                pass
                         else:
                             render_texto_quebrado(
                                 "Sem imagem de mão para este verbete.",
