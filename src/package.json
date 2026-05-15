@@ -1,0 +1,9 @@
+{
+  "name": "src",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {},
+  "scripts": {
+    "start": "py src/main.py"
+  }
+}
