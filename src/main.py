@@ -568,8 +568,8 @@ casos =[
     {
         "titulo": "Caso 6: O Dever de Casa",
         "descricao": "Pedro tem um trabalho importante para entregar amanha, mas seus amigos o chamaram para jogar videogame. O que ele deve fazer??",
-        "imagem_caso": "src/backgrounds/COLOCA_AQUI_IMAGEM.PNG",
-        "imagem_virtude": "src/backgrounds/empatia.jpg",
+        "imagem_caso": "src/backgrounds/sala_aula.jpg",
+        "imagem_virtude": "src/backgrounds/responsabilidade.jpg",
         "opcoes": [
             "1-Ir jogar e deixar o trabalho para depois",
             "2-Terminar o trabalho primeiro e depois jogar se sobrar tempo",
@@ -577,10 +577,24 @@ casos =[
         ],
         "resposta_correta": 1,
         "virtude": "Responsabilidade",
-        "explicacao": "Responsabilidade e cumprir com seus compromissos mesnmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
-        "licao_errada": "DAR LICAO DE MORAL AQUI NICK ."
+        "explicacao": "Responsabilidade é fazer o que precisa antes de brincar. Cumprir o dever primeiro mostra maturidade.",
+        "licao_errada": "Deixar para depois ou pedir para outro fazer por você prejudica seu aprendizado e mostra falta de responsabilidade. Quem é responsável cumpre seus deveres antes de se divertir, mesmo quando é difícil ou tentador adiar."
+    },
+    {
+        "titulo": "Caso 7: O Lanche da Vovó",
+        "descricao": "Clara tem dois biscoitos. Ela percebe que sua avó está com fome mas não tem nada para comer. O que Clara deve fazer?",
+        "imagem_caso": "src/backgrounds/lanche_vovo.png",
+        "imagem_virtude": "src/backgrounds/generosidade.jpg",
+        "opcoes": [
+            "1-Comer os dois biscoitos rapidinho antes que alguém veja",
+            "2-Dividir os biscoitos com a avó",
+            "3-Guardar o segundo biscoito no bolso para comer depois"
+        ],
+        "resposta_correta": 1,
+        "virtude": "Generosidade",
+        "explicacao": "Generosidade é dividir o que temos com quem precisa. Pequenos gestos fazem diferença!",
+        "licao_errada": "Guardar tudo para si quando alguém ao lado está com fome é egoísmo. Pequenos gestos de generosidade fazem uma grande diferença."
     }
-# so puxar as imagens do backgrounds tipo src/backgrounds/nome_da_imagem.png 
 ]
 
 # Estado do jogo
