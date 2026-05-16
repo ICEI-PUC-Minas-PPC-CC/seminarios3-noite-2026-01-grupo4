@@ -596,7 +596,7 @@ casos =[
         "licao_errada": "Guardar tudo para si quando alguém ao lado está com fome é egoísmo. Pequenos gestos de generosidade fazem uma grande diferença."
     }
 ]
-
+    
 # Estado do jogo
 caso_atual = 0
 estado = "menu"
