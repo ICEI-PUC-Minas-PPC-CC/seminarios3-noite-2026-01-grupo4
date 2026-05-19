@@ -60,7 +60,7 @@
       "id": 7,
       "letra": "B",
       "palavra": "BOLA1",
-      "descricao_infantil": "«BOLA1»: Artefato esférico de borracha ou qualquer outro material, em diversos tamanhos e cores. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«BOLA1»: Esfera de borracha ou qualquer outro material, em diversos tamanhos e cores.",
       "mao": 115,
       "video": "bola1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/bola.png"
@@ -69,7 +69,7 @@
       "id": 8,
       "letra": "B",
       "palavra": "BONECA",
-      "descricao_infantil": "«BONECA»: Brinquedo que tem a forma da figura humana. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«BONECA»: Brinquedo que tem a forma da figura humana.",
       "mao": 108,
       "video": "bonecaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/boneca.png"
@@ -78,7 +78,7 @@
       "id": 9,
       "letra": "B",
       "palavra": "BORBOLETA",
-      "descricao_infantil": "«BORBOLETA»: Inseto diurno provido de quatro asas membranosas recobertas de escamas, geralmente de grande beleza. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«BORBOLETA»: Inseto diurno provido de quatro asas, geralmente de grande beleza.",
       "mao": 131,
       "video": "borboletaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/borboleta.png"
@@ -87,7 +87,7 @@
       "id": 10,
       "letra": "B",
       "palavra": "BARCO",
-      "descricao_infantil": "«BARCO»: Embarcação pequena e sem cobertura, conduzida com a ajuda de remos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«BARCO»: Embarcação pequena e sem cobertura, conduzida com a ajuda de remos.",
       "mao": 131,
       "video": "barcoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/barco.png"
@@ -96,7 +96,7 @@
       "id": 11,
       "letra": "C",
       "palavra": "CASA",
-      "descricao_infantil": "«CASA»: Construção de um ou de poucos andares, geralmente destinada à moradia, que também costuma abrigar empresas, escolas e clínicas. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«CASA»: Construção de um ou de poucos andares, geralmente destinada à moradia.",
       "mao": 130,
       "video": "casaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/casa.png"
@@ -105,7 +105,7 @@
       "id": 12,
       "letra": "C",
       "palavra": "CACHORRO",
-      "descricao_infantil": "«CACHORRO»: Mamífero da ordem dos carnívoros, da família dos canídeos, domesticado desde a pré-história, que apresenta grande número de… Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«CACHORRO»: Mamífero da ordem dos carnívoros, domesticado desde a pré-história.",
       "mao": 144,
       "video": "cachorroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/cachorro.png"
@@ -114,7 +114,7 @@
       "id": 13,
       "letra": "C",
       "palavra": "CARRO",
-      "descricao_infantil": "«CARRO»: Veículo automóvel destinado ao transporte de pessoas ou de carga. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«CARRO»: Veículo automóvel destinado ao transporte de pessoas ou de carga.",
       "mao": 6,
       "video": "carroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/carro.png"
@@ -123,7 +123,7 @@
       "id": 14,
       "letra": "C",
       "palavra": "CADERNO",
-      "descricao_infantil": "«CADERNO»: Conjunto de folhas de papel de formato geralmente quadrangular, coladas, grampeadas ou costuradas. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«CADERNO»: Conjunto de folhas de papel de formato geralmente quadrangular, coladas, grampeadas ou costuradas.",
       "mao": 131,
       "video": "cadernoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/caderno.png"
@@ -132,7 +132,7 @@
       "id": 15,
       "letra": "C",
       "palavra": "CHUVA",
-      "descricao_infantil": "«CHUVA»: Gotas d´água que caem sobre o solo, em maior ou menor quantidade, devido à condensação do vapor desse líquido na atmosfera. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«CHUVA»: Gotas d´água que caem sobre o solo, devido à condensação do vapor na atmosfera.",
       "mao": 115,
       "video": "chuvaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/chuva.png"
@@ -141,7 +141,7 @@
       "id": 16,
       "letra": "D",
       "palavra": "DENTE",
-      "descricao_infantil": "«DENTE»: Cada uma das peças duras implantadas nos alvéolos dos maxilares superior e inferior do homem e dos animais. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«DENTE»: Órgão duro e mineralizado localizado na boca. Essenciais para a digestão e a comunicação.",
       "mao": 83,
       "video": "denteSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/dente.png"
@@ -150,7 +150,7 @@
       "id": 17,
       "letra": "D",
       "palavra": "DEDO",
-      "descricao_infantil": "«DEDO»: Cada uma das extensões móveis e articuladas dos pés e das mãos humanos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«DEDO»: Cada uma das extensões móveis e articuladas dos pés e das mãos.",
       "mao": 82,
       "video": "dedoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/dedo.png"
