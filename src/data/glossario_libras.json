@@ -159,7 +159,7 @@
       "id": 18,
       "letra": "D",
       "palavra": "DOCE",
-      "descricao_infantil": "«DOCE»: O que tem sabor açucarado; preparação temperada com açúcar ou outra substância adoçante. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«DOCE»: O que tem sabor açucarado; preparação temperada com açúcar ou outro adoçante.",
       "mao": 131,
       "video": "doceSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/doce.png"
@@ -168,7 +168,7 @@
       "id": 19,
       "letra": "D",
       "palavra": "DADO",
-      "descricao_infantil": "«DADO»: Cubo de seis faces, cujo valor equivale de um a seis pontos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«DADO»: Cubo de seis faces, cujo valor equivale de um a seis pontos.",
       "mao": 10,
       "video": "dadoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/dado.png"
@@ -177,7 +177,7 @@
       "id": 20,
       "letra": "D",
       "palavra": "DANÇA",
-      "descricao_infantil": "«DANÇA»: Movimentos corporais e passos realizados de forma seqüenciada e ritmada, em geral ao som de música; a arte de dançar. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«DANÇA»: Movimentos corporais e passos realizados de forma seqüenciada e ritmada, em geral ao som de música; a arte de dançar.",
       "mao": 132,
       "video": "dancaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/danca.png"
@@ -186,7 +186,7 @@
       "id": 21,
       "letra": "E",
       "palavra": "ELEFANTE",
-      "descricao_infantil": "«ELEFANTE»: Grande mamífero, herbívoro, dotado de tromba. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ELEFANTE»: Grande mamífero, herbívoro, dotado de tromba.",
       "mao": 129,
       "video": "elefanteSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/elefante.png"
@@ -195,7 +195,7 @@
       "id": 22,
       "letra": "E",
       "palavra": "ESTRELA",
-      "descricao_infantil": "«ESTRELA»: Figura convencional com cinco pontas, que lembra o corpo celeste. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ESTRELA»: Figura convencional com cinco pontas, que lembra o corpo celeste.",
       "mao": 142,
       "video": "estrelaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/estrela.png"
@@ -204,7 +204,7 @@
       "id": 23,
       "letra": "E",
       "palavra": "ESCADA",
-      "descricao_infantil": "«ESCADA»: Utensílio para uso doméstico ou profissional, de madeira ou alumínio, composto por duas barras verticais paralelas que ao… Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ESCADA»: Utensílio para uso doméstico ou profissional, de madeira ou alumínio.",
       "mao": 97,
       "video": "escada1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/escada.png"
@@ -213,7 +213,7 @@
       "id": 24,
       "letra": "E",
       "palavra": "ESPADA",
-      "descricao_infantil": "«ESPADA»: Arma branca, cortante e perfurante, dotada de punho, guardas ou copos e uma lâmpada comprida de ferro ou aço. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ESPADA»: Arma branca, cortante e perfurante, guardas ou copos e uma lâmpada comprida de ferro ou aço.",
       "mao": 9,
       "video": "espadaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/espada.png"
@@ -222,7 +222,7 @@
       "id": 25,
       "letra": "E",
       "palavra": "ESCOLA",
-      "descricao_infantil": "«ESCOLA»: Instituição de ensino, onde os professores ministram aulas para os alunos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ESCOLA»: Instituição de ensino, onde os professores ministram aulas para os alunos.",
       "mao": 131,
       "video": "escolaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/escola.png"
@@ -231,7 +231,7 @@
       "id": 26,
       "letra": "F",
       "palavra": "FLOR",
-      "descricao_infantil": "«FLOR»: Planta que dá flores. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«FLOR»: Planta que dá flores.",
       "mao": 122,
       "video": "florSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/flor.png"
@@ -240,7 +240,7 @@
       "id": 27,
       "letra": "F",
       "palavra": "FACA",
-      "descricao_infantil": "«FACA»: Instrumento cortante, constituído por lâmina e cabo. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«FACA»: Instrumento cortante, constituído por lâmina e cabo.",
       "mao": 92,
       "video": "facaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/faca.png"
@@ -249,7 +249,7 @@
       "id": 28,
       "letra": "F",
       "palavra": "FOGO",
-      "descricao_infantil": "«FOGO»: Desprendimento de luz e calor, resultante da combustão de carvão, gás, madeira ou outras matérias inflamáveis. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«FOGO»: Resultante da combustão de carvão, gás, madeira ou outras matérias inflamáveis.",
       "mao": 115,
       "video": "fogoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/fogo.png"
@@ -258,7 +258,7 @@
       "id": 29,
       "letra": "F",
       "palavra": "FRUTA",
-      "descricao_infantil": "«FRUTA»: Órgão produzido pelos vegetais floríferos, comestível, geralmente adocicado e suculento. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«FRUTA»: Órgão produzido pelos vegetais floríferos, comestível, geralmente adocicado e suculento.",
       "mao": 135,
       "video": "frutaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/fruta.png"
@@ -267,7 +267,7 @@
       "id": 30,
       "letra": "F",
       "palavra": "FADA",
-      "descricao_infantil": "«FADA»: Personagem das histórias infantis, representado por uma bonita mulher, dotada de poderes mágicos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«FADA»: Personagem das histórias infantis, representado por uma bonita mulher, dotada de poderes mágicos.",
       "mao": 9,
       "video": "fadaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/fada.png"
@@ -276,7 +276,7 @@
       "id": 31,
       "letra": "G",
       "palavra": "GATO",
-      "descricao_infantil": "«GATO»: Mamífero doméstico, carnívoro, da família dos Felídeos, de grande utilidade para a destruição de ratos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«GATO»: Mamífero doméstico, carnívoro, de grande utilidade para a destruição de pragas.",
       "mao": 87,
       "video": "gatoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/gato.png"
@@ -285,7 +285,7 @@
       "id": 32,
       "letra": "G",
       "palavra": "GALINHA",
-      "descricao_infantil": "«GALINHA»: Fêmea das aves galináceas; animal doméstico, a fêmea do galo. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«GALINHA»: Animal doméstico, a fêmea do galo.",
       "mao": 132,
       "video": "galinhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/galinha.png"
@@ -294,7 +294,7 @@
       "id": 33,
       "letra": "G",
       "palavra": "GELO",
-      "descricao_infantil": "«GELO»: Resultado da solidificação de água ou qualquer outro líquido) pela ação do frio. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«GELO»: Resultado da solidificação de água ou qualquer outro líquido) pela ação do frio.",
       "mao": 84,
       "video": "geloSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/gelo.png"
@@ -303,7 +303,7 @@
       "id": 34,
       "letra": "G",
       "palavra": "GUITARRA",
-      "descricao_infantil": "«GUITARRA»: Instrumento de corda semelhante à viola, com as cordas afinadas em mi, lá, ré, sol, si , mi. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«GUITARRA»: Instrumento de corda semelhante à viola, com as cordas afinadas em mi, lá, ré, sol, si , mi.",
       "mao": 145,
       "video": "guitarraSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/guitarra.png"
@@ -312,7 +312,7 @@
       "id": 35,
       "letra": "G",
       "palavra": "GIRAFA",
-      "descricao_infantil": "«GIRAFA»: Mamífero de pescoço e pernas muito longos, chifres curtos e pelagem curta castanho-clara, com manchas marrons ou avermelhadas. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«GIRAFA»: Mamífero de pescoço e pernas muito longos, chifres curtos e pelagem curta castanho-clara, com manchas marrons ou avermelhadas.",
       "mao": 135,
       "video": "girafaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/girafa.png"
@@ -321,7 +321,7 @@
       "id": 36,
       "letra": "H",
       "palavra": "HELICÓPTERO",
-      "descricao_infantil": "«HELICÓPTERO»: Aeronave com uma hélice de eixo vertical, que lhe possibilita fazer verticalmente a decolagem e a aterrissagem. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«HELICÓPTERO»: Aeronave com uma hélice de eixo vertical, que lhe possibilita fazer verticalmente a decolagem e a aterrissagem.",
       "mao": 132,
       "video": "helicopteroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/helicoptero.png"
@@ -330,7 +330,7 @@
       "id": 37,
       "letra": "H",
       "palavra": "HIPOPÓTAMO",
-      "descricao_infantil": "«HIPOPÓTAMO»: Animal de grande porte, herbívoro e anfíbio, natural da África. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«HIPOPÓTAMO»: Animal de grande porte, herbívoro e anfíbio, natural da África.",
       "mao": 105,
       "video": "hipopotamoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/hipopotamo.png"
@@ -339,7 +339,7 @@
       "id": 38,
       "letra": "H",
       "palavra": "HOMEM",
-      "descricao_infantil": "«HOMEM»: Ser humano do sexo masculino; mamífero bípede, dotado de inteligência e linguagem articulada. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«HOMEM»: Ser humano do sexo masculino; mamífero bípede, dotado de inteligência e linguagem articulada.",
       "mao": 135,
       "video": "homemSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/homem.png"
@@ -348,7 +348,7 @@
       "id": 39,
       "letra": "H",
       "palavra": "HOTEL",
-      "descricao_infantil": "«HOTEL»: Estabelecimento que dispõe de dependências para hospedar os interessados, com ou sem refeições, mediante pagamento de diárias… Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«HOTEL»: Estabelecimento que dispõe de dependências para hospedar, mediante pagamento de diárias.",
       "mao": 131,
       "video": "hotelSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/hotel.png"
@@ -357,7 +357,7 @@
       "id": 40,
       "letra": "H",
       "palavra": "HOSPITAL",
-      "descricao_infantil": "«HOSPITAL»: Instituição que hospeda e proporciona tratamento a pessoas com problemas de saúde física e orgânica. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«HOSPITAL»: Instituição que hospeda e proporciona tratamento a pessoas com problemas de saúde física e orgânica.",
       "mao": 83,
       "video": "hospitalSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/hospital.png"
@@ -366,7 +366,7 @@
       "id": 41,
       "letra": "I",
       "palavra": "ILHA",
-      "descricao_infantil": "«ILHA»: Porção de terra cercada de água por todos os lados. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ILHA»: Porção de terra cercada de água por todos os lados.",
       "mao": 107,
       "video": "ilhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/ilha.png"
@@ -375,7 +375,7 @@
       "id": 42,
       "letra": "I",
       "palavra": "ÍMÃ",
-      "descricao_infantil": "«ÍMÃ»: Peça de aço magnetizado que tem a propriedade de atrair o ferro e outros metais. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ÍMÃ»: Peça de aço magnetizado que tem a propriedade de atrair o ferro e outros metais.",
       "mao": 131,
       "video": "imaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/ima.png"
@@ -384,7 +384,7 @@
       "id": 43,
       "letra": "I",
       "palavra": "INSETO",
-      "descricao_infantil": "«INSETO»: Animal invertebrado, com o corpo dividido em três regiões: cabeça (onde ficam as antenas), tórax (no qual ficam três pares de… Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«INSETO»: Animal invertebrado, com o corpo dividido em três.",
       "mao": 100,
       "video": "insetoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/inseto.png"
@@ -393,7 +393,7 @@
       "id": 44,
       "letra": "I",
       "palavra": "IGREJA",
-      "descricao_infantil": "«IGREJA»: Templo cristão; local de culto, cerimônias religiosas e orações. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«IGREJA»: Templo cristão; local de culto, cerimônias religiosas e orações.",
       "mao": 130,
       "video": "igrejaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/igreja.png"
@@ -402,7 +402,7 @@
       "id": 45,
       "letra": "I",
       "palavra": "INTERNET",
-      "descricao_infantil": "«INTERNET»: Rede de computadores multicêntrica, pública e de âmbito internacional, que possibilita a transmissão de dados e tem funções de… Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«INTERNET»: Rede de computadores multicêntrica, pública e de âmbito internacional, que possibilita a transmissão de dados.",
       "mao": 106,
       "video": "internetSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/internet.png"
@@ -411,7 +411,7 @@
       "id": 46,
       "letra": "J",
       "palavra": "JANELA",
-      "descricao_infantil": "«JANELA»: Abertura planejada na parede de um prédio, que geralmente permite a passagem de luz e ar, e a visão do que se passa no exterior. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«JANELA»: Abertura planejada na parede de um prédio, que geralmente permite a passagem de luz e ar, e a visão do que se passa no exterior.",
       "mao": 6,
       "video": "janelaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/janela.png"
@@ -420,7 +420,7 @@
       "id": 47,
       "letra": "J",
       "palavra": "JACARÉ",
-      "descricao_infantil": "«JACARÉ»: Réptil crocodiliano, de cabeça com focinho alongado, boca provida de dentes fortes nos dois maxilares. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«JACARÉ»: Réptil crocodiliano, de cabeça com focinho alongado, boca provida de dentes fortes nos dois maxilares.",
       "mao": 115,
       "video": "jacare1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/jacare.png"
@@ -429,7 +429,7 @@
       "id": 48,
       "letra": "J",
       "palavra": "JOGO",
-      "descricao_infantil": "«JOGO»: Atividade usada para entreter; brinquedo; passatempo; divertimento. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«JOGO»: Atividade usada para entreter; brinquedo; passatempo; divertimento.",
       "mao": 108,
       "video": "jogoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/jogo.png"
@@ -438,7 +438,7 @@
       "id": 49,
       "letra": "J",
       "palavra": "JOELHO",
-      "descricao_infantil": "«JOELHO»: Ponto do corpo em que a perna se articula com a coxa; região de articulação do fêmur com a tíbia e o perôneo. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«JOELHO»: Ponto do corpo em que a perna se articula com a coxa; região de articulação do fêmur com a tíbia e o perôneo.",
       "mao": 82,
       "video": "joelhoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/joelho.png"
@@ -447,7 +447,7 @@
       "id": 50,
       "letra": "J",
       "palavra": "JARDIM",
-      "descricao_infantil": "«JARDIM»: Área onde são plantadas e cultivadas flores e outras plantas ornamentais. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«JARDIM»: Área onde são plantadas e cultivadas flores e outras plantas ornamentais.",
       "mao": 122,
       "video": "jardim1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/jardim.png"
@@ -456,7 +456,7 @@
       "id": 53,
       "letra": "K",
       "palavra": "K",
-      "descricao_infantil": "«K»: Sinal gráfico elementar com que se representam os vocábulos na língua escrita. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«K»: Sinal gráfico elementar com que se representam os vocábulos na língua escrita.",
       "mao": 79,
       "video": "kSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/k.png"
@@ -465,7 +465,7 @@
       "id": 55,
       "letra": "L",
       "palavra": "LUA",
-      "descricao_infantil": "«LUA»: Satélite da Terra; corpo celeste que marca a chegada da noite. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«LUA»: Satélite da Terra; corpo celeste que marca a chegada da noite.",
       "mao": 10,
       "video": "lua1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/lua.png"
@@ -474,7 +474,7 @@
       "id": 56,
       "letra": "L",
       "palavra": "LEITE",
-      "descricao_infantil": "«LEITE»: Líquido branco e opaco, produzido pelas glândulas mamárias das fêmeas. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«LEITE»: Líquido branco e opaco, produzido pelas glândulas mamárias das fêmeas.",
       "mao": 6,
       "video": "leiteSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/leite.png"
@@ -483,7 +483,7 @@
       "id": 57,
       "letra": "L",
       "palavra": "LEÃO",
-      "descricao_infantil": "«LEÃO»: Mamífero carnívoro, conhecido como o rei dos animais; de grande porte, tem juba abundante e longa cauda, de extremidade felpuda. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«LEÃO»: Mamífero carnívoro, conhecido como o rei dos animais; tem juba abundante e longa cauda felpuda.",
       "mao": 115,
       "video": "leaoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/leao.png"
@@ -492,7 +492,7 @@
       "id": 58,
       "letra": "L",
       "palavra": "LIVRO",
-      "descricao_infantil": "«LIVRO»: Obra de caráter literário, científico ou artístico, composta de folhas ou páginas presas e montadas em capa flexível ou rígida. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«LIVRO»: Obra de caráter literário, científico ou artístico, composta de folhas ou páginas presas e montadas em capa flexível ou rígida.",
       "mao": 131,
       "video": "livroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/livro.png"
@@ -501,7 +501,7 @@
       "id": 59,
       "letra": "L",
       "palavra": "LIMÃO",
-      "descricao_infantil": "«LIMÃO»: Fruto do limoeiro, bastante usado em sucos, doces, geléias, temperos, molhos e chás. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«LIMÃO»: Fruto do limoeiro, bastante usado na alimentação.",
       "mao": 82,
       "video": "limaoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/limao.png"
@@ -510,7 +510,7 @@
       "id": 60,
       "letra": "M",
       "palavra": "MACACO",
-      "descricao_infantil": "«MACACO»: Nome comum a todos os símios ou primatas antropóides, exceto o homem. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«MACACO»: Nome comum a todos os símios ou primatas antropóides, exceto o homem.",
       "mao": 115,
       "video": "macacoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/macaco.png"
