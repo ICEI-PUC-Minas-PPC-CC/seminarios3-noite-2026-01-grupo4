@@ -6,7 +6,7 @@
       "id": 1,
       "letra": "A",
       "palavra": "ABACATE",
-      "descricao_infantil": "«ABACATE»: O fruto do abacateiro. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ABACATE»: O fruto do abacateiro.",
       "mao": 121,
       "video": "abacateSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/abacate.png"
@@ -15,7 +15,7 @@
       "id": 2,
       "letra": "A",
       "palavra": "ABACAXI",
-      "descricao_infantil": "«ABACAXI»: Fruta de casca grossa e áspera. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ABACAXI»: Fruta de casca grossa e áspera.",
       "mao": 115,
       "video": "abacaxiSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/abacaxi.png"
@@ -24,7 +24,7 @@
       "id": 3,
       "letra": "A",
       "palavra": "ÁGUA",
-      "descricao_infantil": "«ÁGUA»: Líquido incolor, sem sabor e cheiro, presente na natureza, que representa a parte líquida do globo terrestre. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ÁGUA»: Líquido sem cor, sem sabor e sem cheiro.",
       "mao": 133,
       "video": "aguaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/agua.png"
@@ -33,7 +33,7 @@
       "id": 4,
       "letra": "A",
       "palavra": "ANEL",
-      "descricao_infantil": "«ANEL»: Pequeno aro confeccionado em ouro, prata, osso ou outros materiais, para usar nos dedos. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ANEL»: Pequeno aro para usar nos dedos.",
       "mao": 89,
       "video": "anelSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/anel.png"
@@ -42,7 +42,7 @@
       "id": 5,
       "letra": "A",
       "palavra": "ARANHA",
-      "descricao_infantil": "«ARANHA»: Inseto com quatro pares de patas, que geralmente faz teias para capturar suas presas. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«ARANHA»: Inseto com quatro pares de patas, que geralmente faz teias para capturar insetos.",
       "mao": 115,
       "video": "aranhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/aranha.png"
@@ -51,7 +51,7 @@
       "id": 6,
       "letra": "B",
       "palavra": "BANANA",
-      "descricao_infantil": "«BANANA»: O fruto da bananeira, comestível, saboroso e muito nutritivo. Escolha uma imagem simples que qualquer criança reconheça.",
+      "descricao_infantil": "«BANANA»: O fruto da bananeira, comestível, gostoso e muito nutritivo.",
       "mao": 82,
       "video": "bananaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/banana.png"
