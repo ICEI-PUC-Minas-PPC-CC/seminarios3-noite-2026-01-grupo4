@@ -324,13 +324,22 @@ def desenhar_texto_centralizado(texto: str, y: int, fonte, cor=BRANCO):
 
 
 def obter_grade_casos() -> list[tuple[int, pygame.Rect]]:
-    cols = 2
-    gap = 30
-    card_w = min(520, (largura - (cols + 1) * gap) // cols)
-    card_h = 240
+    gap = 20
+    min_card_w = 300
+    max_card_w = 360
+    card_h = 180
+    if largura >= 1300:
+        cols = 3
+    elif largura >= 900:
+        cols = 2
+    else:
+        cols = 1
+
+    card_w = (largura - (cols + 1) * gap) // cols
+    card_w = max(min_card_w, min(max_card_w, card_w))
     total_width = cols * card_w + (cols - 1) * gap
     start_x = max(gap, (largura - total_width) // 2)
-    start_y = 160
+    start_y = 140
 
     grade: list[tuple[int, pygame.Rect]] = []
     for idx in range(len(casos)):
@@ -645,6 +654,21 @@ casos =[
         "virtude": "Generosidade",
         "explicacao": "Generosidade é dividir o que temos com quem precisa. Pequenos gestos fazem diferença!",
         "licao_errada": "Guardar tudo para si quando alguém ao lado está com fome é egoísmo. Pequenos gestos de generosidade fazem uma grande diferença."
+    },
+    {
+        "titulo": "Caso 8: Castelo de areia",
+        "descricao": "Um menino está construindo um castelo de areia na praia e voce percebe que ele está com dificuldades. O que você faz?",
+        "imagem_caso": "src/backgrounds/praia.png",
+        "imagem_virtude": "src/backgrounds/praia2.png",
+        "opcoes": [
+            "1- Apenas olhar e não fazer nada",
+            "2- Voce ajuda ele a construir o castelo de areia",
+            "3- Falar para ele desistir porque castelos de areia são bobagem"
+        ],
+        "resposta_correta": 1,
+        "virtude": "Cooperacao",
+        "explicacao": "Cooperação é trabalhar juntos para alcançar um objetivo em comum. Pequenos gestos fazem diferença!",
+        "licao_errada": "Trabalhar sozinho sem ajudar os outros é egoísmo. Pequenos gestos de cooperação fazem uma grande diferença."
     }
 ]
     
