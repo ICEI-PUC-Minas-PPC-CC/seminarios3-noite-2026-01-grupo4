@@ -24,7 +24,7 @@
       "id": 3,
       "letra": "A",
       "palavra": "ÁGUA",
-      "descricao_infantil": "«ÁGUA»: Líquido sem cor, sem sabor e sem cheiro.",
+      "descricao_infantil": "«ÁGUA»: Líquido sem cor, sem sabor e cheiro, presente na natureza, que representa a parte líquida do globo terrestre.",
       "mao": 133,
       "video": "aguaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/agua.png"
@@ -33,7 +33,7 @@
       "id": 4,
       "letra": "A",
       "palavra": "ANEL",
-      "descricao_infantil": "«ANEL»: Pequeno aro para usar nos dedos.",
+      "descricao_infantil": "«ANEL»: Pequeno aro confeccionado em ouro, prata, osso ou outros materiais, para usar nos dedos.",
       "mao": 89,
       "video": "anelSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/anel.png"
@@ -42,7 +42,7 @@
       "id": 5,
       "letra": "A",
       "palavra": "ARANHA",
-      "descricao_infantil": "«ARANHA»: Inseto com quatro pares de patas, que geralmente faz teias para capturar insetos.",
+      "descricao_infantil": "«ARANHA»: Inseto com quatro pares de patas, que geralmente faz teias para capturar suas presas.",
       "mao": 115,
       "video": "aranhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/aranha.png"
@@ -51,7 +51,7 @@
       "id": 6,
       "letra": "B",
       "palavra": "BANANA",
-      "descricao_infantil": "«BANANA»: O fruto da bananeira, comestível, gostoso e muito nutritivo.",
+      "descricao_infantil": "«BANANA»: O fruto da bananeira, comestível, saboroso e muito nutritivo.",
       "mao": 82,
       "video": "bananaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/banana.png"
@@ -60,7 +60,7 @@
       "id": 7,
       "letra": "B",
       "palavra": "BOLA1",
-      "descricao_infantil": "«BOLA1»: Esfera de borracha ou qualquer outro material, em diversos tamanhos e cores.",
+      "descricao_infantil": "«BOLA1»: Objeto esférico de borracha ou qualquer outro material, em diversos tamanhos e cores.",
       "mao": 115,
       "video": "bola1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/bola.png"
@@ -78,7 +78,7 @@
       "id": 9,
       "letra": "B",
       "palavra": "BORBOLETA",
-      "descricao_infantil": "«BORBOLETA»: Inseto diurno provido de quatro asas, geralmente de grande beleza.",
+      "descricao_infantil": "«BORBOLETA»: Inseto diurno provido de quatro asas membranosas recobertas de escamas, geralmente de grande beleza.",
       "mao": 131,
       "video": "borboletaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/borboleta.png"
@@ -96,7 +96,7 @@
       "id": 11,
       "letra": "C",
       "palavra": "CASA",
-      "descricao_infantil": "«CASA»: Construção de um ou de poucos andares, geralmente destinada à moradia.",
+      "descricao_infantil": "«CASA»: Construção de um ou de poucos andares, geralmente destinada à moradia, que também costuma abrigar empresas, escolas e clínicas.",
       "mao": 130,
       "video": "casaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/casa.png"
@@ -105,7 +105,7 @@
       "id": 12,
       "letra": "C",
       "palavra": "CACHORRO",
-      "descricao_infantil": "«CACHORRO»: Mamífero da ordem dos carnívoros, domesticado desde a pré-história.",
+      "descricao_infantil": "«CACHORRO»: Mamífero da ordem dos carnívoros, da família dos canídeos, domesticado desde a pré-história.",
       "mao": 144,
       "video": "cachorroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/cachorro.png"
@@ -132,7 +132,7 @@
       "id": 15,
       "letra": "C",
       "palavra": "CHUVA",
-      "descricao_infantil": "«CHUVA»: Gotas d´água que caem sobre o solo, devido à condensação do vapor na atmosfera.",
+      "descricao_infantil": "«CHUVA»: Gotas d´água que caem sobre o solo, em maior ou menor quantidade, devido à condensação do vapor desse líquido na atmosfera.",
       "mao": 115,
       "video": "chuvaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/chuva.png"
@@ -141,7 +141,7 @@
       "id": 16,
       "letra": "D",
       "palavra": "DENTE",
-      "descricao_infantil": "«DENTE»: Órgão duro e mineralizado localizado na boca. Essenciais para a digestão e a comunicação.",
+      "descricao_infantil": "«DENTE»: Cada uma das peças duras implantadas nos alvéolos dos maxilares superior e inferior do homem e dos animais.",
       "mao": 83,
       "video": "denteSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/dente.png"
@@ -150,7 +150,7 @@
       "id": 17,
       "letra": "D",
       "palavra": "DEDO",
-      "descricao_infantil": "«DEDO»: Cada uma das extensões móveis e articuladas dos pés e das mãos.",
+      "descricao_infantil": "«DEDO»: Cada uma das extensões móveis e articuladas dos pés e das mãos humanos.",
       "mao": 82,
       "video": "dedoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/dedo.png"
@@ -159,7 +159,7 @@
       "id": 18,
       "letra": "D",
       "palavra": "DOCE",
-      "descricao_infantil": "«DOCE»: O que tem sabor açucarado; preparação temperada com açúcar ou outro adoçante.",
+      "descricao_infantil": "«DOCE»: O que tem sabor açucarado; preparação temperada com açúcar ou outra substância adoçante.",
       "mao": 131,
       "video": "doceSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/doce.png"
@@ -213,7 +213,7 @@
       "id": 24,
       "letra": "E",
       "palavra": "ESPADA",
-      "descricao_infantil": "«ESPADA»: Arma branca, cortante e perfurante, guardas ou copos e uma lâmpada comprida de ferro ou aço.",
+      "descricao_infantil": "«ESPADA»: Arma branca, cortante e perfurante, dotada de punho, guardas ou copos e uma lâmpada comprida de ferro ou aço.",
       "mao": 9,
       "video": "espadaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/espada.png"
@@ -249,7 +249,7 @@
       "id": 28,
       "letra": "F",
       "palavra": "FOGO",
-      "descricao_infantil": "«FOGO»: Resultante da combustão de carvão, gás, madeira ou outras matérias inflamáveis.",
+      "descricao_infantil": "«FOGO»: Desprendimento de luz e calor, resultante da combustão de carvão, gás, madeira ou outras matérias inflamáveis.",
       "mao": 115,
       "video": "fogoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/fogo.png"
@@ -276,7 +276,7 @@
       "id": 31,
       "letra": "G",
       "palavra": "GATO",
-      "descricao_infantil": "«GATO»: Mamífero doméstico, carnívoro, de grande utilidade para a destruição de pragas.",
+      "descricao_infantil": "«GATO»: Mamífero doméstico, carnívoro, da família dos Felídeos, de grande utilidade para a destruição de ratos.",
       "mao": 87,
       "video": "gatoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/gato.png"
@@ -285,7 +285,7 @@
       "id": 32,
       "letra": "G",
       "palavra": "GALINHA",
-      "descricao_infantil": "«GALINHA»: Animal doméstico, a fêmea do galo.",
+      "descricao_infantil": "«GALINHA»: Fêmea das aves galináceas; animal doméstico, a fêmea do galo.",
       "mao": 132,
       "video": "galinhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/galinha.png"
@@ -294,7 +294,7 @@
       "id": 33,
       "letra": "G",
       "palavra": "GELO",
-      "descricao_infantil": "«GELO»: Resultado da solidificação de água ou qualquer outro líquido) pela ação do frio.",
+      "descricao_infantil": "«GELO»: Resultado da solidificação de água pela ação do frio.",
       "mao": 84,
       "video": "geloSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/gelo.png"
@@ -303,7 +303,7 @@
       "id": 34,
       "letra": "G",
       "palavra": "GUITARRA",
-      "descricao_infantil": "«GUITARRA»: Instrumento de corda semelhante à viola, com as cordas afinadas em mi, lá, ré, sol, si , mi.",
+      "descricao_infantil": "«GUITARRA»: Instrumento de corda semelhante à viola, com as cordas afinadas.",
       "mao": 145,
       "video": "guitarraSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/guitarra.png"
@@ -348,7 +348,7 @@
       "id": 39,
       "letra": "H",
       "palavra": "HOTEL",
-      "descricao_infantil": "«HOTEL»: Estabelecimento que dispõe de dependências para hospedar, mediante pagamento de diárias.",
+      "descricao_infantil": "«HOTEL»: Estabelecimento que dispõe de dependências para hospedar os interessados, com ou sem refeições, mediante pagamento de diárias.",
       "mao": 131,
       "video": "hotelSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/hotel.png"
@@ -384,7 +384,7 @@
       "id": 43,
       "letra": "I",
       "palavra": "INSETO",
-      "descricao_infantil": "«INSETO»: Animal invertebrado, com o corpo dividido em três.",
+      "descricao_infantil": "«INSETO»: Animal invertebrado, com o corpo dividido em três regiões.",
       "mao": 100,
       "video": "insetoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/inseto.png"
@@ -402,7 +402,7 @@
       "id": 45,
       "letra": "I",
       "palavra": "INTERNET",
-      "descricao_infantil": "«INTERNET»: Rede de computadores multicêntrica, pública e de âmbito internacional, que possibilita a transmissão de dados.",
+      "descricao_infantil": "«INTERNET»: Rede de computadores multicêntrica, pública e de âmbito internacional.",
       "mao": 106,
       "video": "internetSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/internet.png"
@@ -483,7 +483,7 @@
       "id": 57,
       "letra": "L",
       "palavra": "LEÃO",
-      "descricao_infantil": "«LEÃO»: Mamífero carnívoro, conhecido como o rei dos animais; tem juba abundante e longa cauda felpuda.",
+      "descricao_infantil": "«LEÃO»: Mamífero carnívoro, conhecido como o rei dos animais; de grande porte, tem juba abundante e longa cauda.",
       "mao": 115,
       "video": "leaoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/leao.png"
@@ -501,7 +501,7 @@
       "id": 59,
       "letra": "L",
       "palavra": "LIMÃO",
-      "descricao_infantil": "«LIMÃO»: Fruto do limoeiro, bastante usado na alimentação.",
+      "descricao_infantil": "«LIMÃO»: Fruto do limoeiro, bastante usado em sucos, doces, geléias, temperos, molhos e chás.",
       "mao": 82,
       "video": "limaoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/limao.png"
@@ -528,7 +528,7 @@
       "id": 62,
       "letra": "M",
       "palavra": "MAPA",
-      "descricao_infantil": "«MAPA»: Representação de um terreno, país, território, em superfície plana e escala menor; carta geográfica",
+      "descricao_infantil": "«MAPA»: Representação de um terreno, país, território, em superfície plana e escala menor; carta geográfica.",
       "mao": 10,
       "video": "mapaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/mapa.png"
@@ -537,7 +537,7 @@
       "id": 63,
       "letra": "M",
       "palavra": "MAR",
-      "descricao_infantil": "«MAR»: Cada uma das partes em que se dividem os oceanos; massa das águas salgadas do planeta Terra.",
+      "descricao_infantil": "«MAR»: Cada uma das partes em que se dividem os oceanos; massa das águas salgadas do globo terrestre.",
       "mao": 133,
       "video": "marSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/mar.png"
@@ -564,7 +564,7 @@
       "id": 66,
       "letra": "N",
       "palavra": "NUVEM",
-      "descricao_infantil": "«NUVEM»: Massa de vapores de água em suspensão na atmosfera.",
+      "descricao_infantil": "«NUVEM»: Massa de vapores de água (ou gelo) em suspensão na atmosfera.",
       "mao": 115,
       "video": "nuvemSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/nuvem.png"
@@ -582,7 +582,7 @@
       "id": 68,
       "letra": "N",
       "palavra": "NOTA",
-      "descricao_infantil": "«NOTA»: Pontuação; resultado da avaliação ou julgamento do desempenho de alguém.",
+      "descricao_infantil": "«NOTA»: Pontuação; resultado da avaliação do desempenho de alguém.",
       "mao": 6,
       "video": "notaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/nota.png"
@@ -591,7 +591,7 @@
       "id": 69,
       "letra": "N",
       "palavra": "NEVE",
-      "descricao_infantil": "«NEVE»: Precipitação de cristais de gelo formados diretamente pelo congelamento do vapor de água.",
+      "descricao_infantil": "«NEVE»: Precipitação de cristais de gelo formados diretamente pelo congelamento do vapor de água em suspensão no ar atmosférico.",
       "mao": 132,
       "video": "neveSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/neve.png"
@@ -600,7 +600,7 @@
       "id": 70,
       "letra": "O",
       "palavra": "OLHO1",
-      "descricao_infantil": "«OLHO1»: Órgão da visão, par, formado pelos globos oculares e seus anexos.",
+      "descricao_infantil": "«OLHO1»: Órgão da visão, par e simétrico, formado pelos globos oculares e seus anexos.",
       "mao": 82,
       "video": "olhoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/olho.png"
@@ -609,7 +609,7 @@
       "id": 71,
       "letra": "O",
       "palavra": "OVO1",
-      "descricao_infantil": "«OVO1»: Célula reprodutora de vários animais, especialmente das aves, muito usada como alimento.",
+      "descricao_infantil": "«OVO1»: Célula reprodutora feminina de vários animais, especialmente das aves, muito usada como alimento.",
       "mao": 113,
       "video": "ovo1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/ovo.png"
@@ -618,7 +618,7 @@
       "id": 72,
       "letra": "O",
       "palavra": "ONÇA",
-      "descricao_infantil": "«ONÇA»: Animal selvagem.",
+      "descricao_infantil": "«ONÇA»: Animal selvagem; nome comum de três felídeos americanos: a onça-parda, a onça-pintada e a onça-preta.",
       "mao": 115,
       "video": "oncaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/onca.png"
@@ -627,7 +627,7 @@
       "id": 73,
       "letra": "O",
       "palavra": "ONDA",
-      "descricao_infantil": "«ONDA»: Elevação e deslocamento de uma porção da água do mar, lago ou rio; movimento ondulatório da água.",
+      "descricao_infantil": "«ONDA»: Elevação e deslocamento de uma porção da água; movimento ondulatório da água.",
       "mao": 132,
       "video": "ondaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/onda.png"
@@ -672,7 +672,7 @@
       "id": 78,
       "letra": "P",
       "palavra": "PÊRA",
-      "descricao_infantil": "«PÊRA»: Fruto da pereira.",
+      "descricao_infantil": "«PÊRA»: Fruto da pereira,comestível e muito apreciado ao natural, em doces e compotas.",
       "mao": 10,
       "video": "peraSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/pera.png"
@@ -681,7 +681,7 @@
       "id": 79,
       "letra": "P",
       "palavra": "PRATO",
-      "descricao_infantil": "«PRATO»: Peça de louça ou vidro de uso individual, onde é colocado o alimento.",
+      "descricao_infantil": "«PRATO»: Peça de louça ou vidro de uso individual, onde é colocado o alimento a ser consumido.",
       "mao": 79,
       "video": "pratoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/prato.png"
@@ -690,7 +690,7 @@
       "id": 80,
       "letra": "Q",
       "palavra": "QUEIJO",
-      "descricao_infantil": "«QUEIJO»: Preparação sólida obtida a partir do leite.",
+      "descricao_infantil": "«QUEIJO»: Preparação sólida obtida a partir da coalhada do leite.",
       "mao": 133,
       "video": "queijoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/queijo.png"
@@ -708,7 +708,7 @@
       "id": 82,
       "letra": "Q",
       "palavra": "QUILO",
-      "descricao_infantil": "«QUILO»: Unidade de medida com que se expressa o quilo de alimentos, em geral, quilograma.",
+      "descricao_infantil": "«QUILO»: Unidade de medida com que se expressa o quilo de alimentos.",
       "mao": 131,
       "video": "quilo1Sm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/quilo.png"
@@ -717,7 +717,7 @@
       "id": 83,
       "letra": "Q",
       "palavra": "QUADRO",
-      "descricao_infantil": "«QUADRO»: Disposição de uma pintura, foto ou outros tipo de imagem sobre uma superfície com moldura.",
+      "descricao_infantil": "«QUADRO»: Disposição de um tipo de imagem sobre uma superfície emoldurada.",
       "mao": 133,
       "video": "quadroSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/quadro.png"
@@ -726,7 +726,7 @@
       "id": 84,
       "letra": "Q",
       "palavra": "QUEBRA-CABEÇA",
-      "descricao_infantil": "«QUEBRA-CABEÇA»: Jogo em que diversas peças devem ser reunidas para a formação de uma única imagem.",
+      "descricao_infantil": "«QUEBRA-CABEÇA»: Jogo em que diversas peças devem ser reunidas para a formação de uma única figura.",
       "mao": 112,
       "video": "quebra-cabecaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/quebracabeca.png"
@@ -744,7 +744,7 @@
       "id": 86,
       "letra": "R",
       "palavra": "ROSA",
-      "descricao_infantil": "«ROSA»: Da cor da rosa comum.",
+      "descricao_infantil": "«ROSA»: Da cor da rosa comum; resultado da mistura do vermelho com o branco.",
       "mao": 127,
       "video": "rosaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/rosa.png"
@@ -771,7 +771,7 @@
       "id": 89,
       "letra": "R",
       "palavra": "RAINHA",
-      "descricao_infantil": "«RAINHA»: Soberana de um reino; a esposa do rei.",
+      "descricao_infantil": "«RAINHA»: Soberana de uma nação; a esposa do rei.",
       "mao": 86,
       "video": "rainhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/rainha.png"
@@ -789,7 +789,7 @@
       "id": 91,
       "letra": "S",
       "palavra": "SAPO",
-      "descricao_infantil": "«SAPO»: Animal que mora na lagoa e não lava o pé.",
+      "descricao_infantil": "«SAPO»: Espécie de batráquio que não possui dentes e tem glândulas de veneno muito grandes, atrás dos olhos.",
       "mao": 121,
       "video": "sapoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/sapo.png"
@@ -807,7 +807,7 @@
       "id": 93,
       "letra": "S",
       "palavra": "SORVETE",
-      "descricao_infantil": "«SORVETE»: Iguaria congelada, preparada à base de sucos de frutas, leite e outros ingredientes.",
+      "descricao_infantil": "«SORVETE»: Iguaria congelada, de consistência semelhante à da neve, preparada à base de sucos de frutas, leite ou outros ingredientes.",
       "mao": 6,
       "video": "sorveteSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/sorvete.png"
@@ -816,7 +816,7 @@
       "id": 94,
       "letra": "S",
       "palavra": "SINO",
-      "descricao_infantil": "«SINO»: Peça de metal, que vibra e produz som quando agitada.",
+      "descricao_infantil": "«SINO»: Peça em geral de metal, que vibra e produz som quando é percutida.",
       "mao": 125,
       "video": "sinoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/sino.png"
@@ -834,7 +834,7 @@
       "id": 96,
       "letra": "T",
       "palavra": "TOMATE",
-      "descricao_infantil": "«TOMATE»: Fruto do tomateiro, de cor vermelha, muito usado em saladas e outras preparações culinárias.",
+      "descricao_infantil": "«TOMATE»: Fruto do tomateiro, de cor vermelha, muito usado em saladas e outras preparações culinária.",
       "mao": 79,
       "video": "tomateSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/tomate.png"
@@ -861,7 +861,7 @@
       "id": 99,
       "letra": "T",
       "palavra": "TARTARUGA",
-      "descricao_infantil": "«TARTARUGA»: Réptil que possui o corpo recoberto por uma carapaça.",
+      "descricao_infantil": "«TARTARUGA»: Réptil terrestre ou aquático que possui o corpo recoberto por uma carapaça.",
       "mao": 12,
       "video": "tartarugaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/tartaruga.png"
@@ -879,7 +879,7 @@
       "id": 101,
       "letra": "U",
       "palavra": "UNHA",
-      "descricao_infantil": "«UNHA»: Lâmina óssea, flexível, levemente transparente e arredondada, que cobre a extremidade do dedo.",
+      "descricao_infantil": "«UNHA»: Lâmina óssea, flexível, levemente transparente e arredondada, que recobre a extremidade superior do dedo.",
       "mao": 83,
       "video": "unhaSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/unha.png"
@@ -888,7 +888,7 @@
       "id": 102,
       "letra": "U",
       "palavra": "UNIFORME",
-      "descricao_infantil": "«UNIFORME»: Vestimenta idêntica usada por pessoas que pertencem a uma mesma instituição.",
+      "descricao_infantil": "«UNIFORME»: Vestimenta idêntica usada por pessoas que pertencem a uma mesma instituição; farda.",
       "mao": 119,
       "video": "uniformeSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/uniforme.png"
@@ -897,7 +897,7 @@
       "id": 103,
       "letra": "U",
       "palavra": "URSO1",
-      "descricao_infantil": "«URSO1»: Mamífero carnívoro, comum em regiões de clima temperado.",
+      "descricao_infantil": "«URSO1»: Mamífero carnívoro da família dos ursídeos, comum em regiões de clima temperado.",
       "mao": 92,
       "video": "ursoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/urso.png"
@@ -906,7 +906,7 @@
       "id": 104,
       "letra": "U",
       "palavra": "UMBIGO",
-      "descricao_infantil": "«UMBIGO»: Cicatriz na região central do ventre, vinda do corte do cordão umbilical.",
+      "descricao_infantil": "«UMBIGO»: Depressão arredondada, espécie de cicatriz na região central do ventre, resultante do corte do cordão umbilical.",
       "mao": 82,
       "video": "umbigoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/umbigo.png"
@@ -942,7 +942,7 @@
       "id": 108,
       "letra": "V",
       "palavra": "VIOLÃO",
-      "descricao_infantil": "«VIOLÃO»: Instrumento musical em forma de oito. .",
+      "descricao_infantil": "«VIOLÃO»: Instrumento musical com caixa de ressonância em forma de oito.",
       "mao": 145,
       "video": "violaoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/violao.png"
@@ -951,7 +951,7 @@
       "id": 109,
       "letra": "V",
       "palavra": "VASO",
-      "descricao_infantil": "«VASO»: Peça de barro, metal, cristal ou outro material, geralmente usada na decoração de ambientes.",
+      "descricao_infantil": "«VASO»: Peça de barro, metal, cristal ou outro material, própria para flores e folhagens, geralmente usada na decoração.",
       "mao": 115,
       "video": "vasoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/vaso.png"
@@ -987,7 +987,7 @@
       "id": 115,
       "letra": "X",
       "palavra": "XÍCARA",
-      "descricao_infantil": "«XÍCARA»: Pequeno recipiente de louça, com uma asa lateral, em que se toma leite, café, chá e outros.",
+      "descricao_infantil": "«XÍCARA»: Pequeno recipiente, com uma asa lateral.",
       "mao": 123,
       "video": "xicaraSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/xicara.png"
@@ -996,7 +996,7 @@
       "id": 116,
       "letra": "X",
       "palavra": "XAROPE",
-      "descricao_infantil": "«XAROPE»: Solução aquosa e concentrada, que contém componentes medicamentosos, para a aliviar dores.",
+      "descricao_infantil": "«XAROPE»: Solução aquosa e concentrada, que contém açúcar, mel e componentes medicamentosos.",
       "mao": 9,
       "video": "xaropeSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/xarope.png"
@@ -1014,7 +1014,7 @@
       "id": 118,
       "letra": "X",
       "palavra": "XALE",
-      "descricao_infantil": "«XALE»: Espécie de manta em vários tipos de tecido, usada pelas mulheres para agasalhar.",
+      "descricao_infantil": "«XALE»: Espécie de manta em vários tipos de tecido, usada pelas mulheres.",
       "mao": 9,
       "video": "xaleSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/xale.png"
@@ -1032,7 +1032,7 @@
       "id": 122,
       "letra": "Y",
       "palavra": "Y",
-      "descricao_infantil": "«Y»: Letra do nosso alfabeto.",
+      "descricao_infantil": "«Y»: Antiga letra do nosso alfabeto, substituída ora por u, ora por v, na ortografia oficial.",
       "mao": 108,
       "video": "ySm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/y.png"
@@ -1041,7 +1041,7 @@
       "id": 124,
       "letra": "Z",
       "palavra": "ZEBRA",
-      "descricao_infantil": "«ZEBRA»: Mamífero associado ao cavalo, listrado de preto sobre fundo branco.",
+      "descricao_infantil": "«ZEBRA»: Mamífero eqüíneo da África, associado ao cavalo e ao asno, inteiramente listrado de preto ou castanho sobre fundo branco.",
       "mao": 95,
       "video": "zebraSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/zebra.png"
@@ -1050,7 +1050,7 @@
       "id": 125,
       "letra": "Z",
       "palavra": "ZOOLÓGICO",
-      "descricao_infantil": "«ZOOLÓGICO»: Local onde diversas espécies animais são criadas e ficam em exposição.",
+      "descricao_infantil": "«ZOOLÓGICO»: Local onde diversas espécies animais são criadas e ficam em exposição permanente; jardim zoológico; zôo.",
       "mao": 82,
       "video": "zoologicoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/zoologico.png"
@@ -1068,7 +1068,7 @@
       "id": 127,
       "letra": "Z",
       "palavra": "ZEPELIM",
-      "descricao_infantil": "«ZEPELIM»: Grande aeronave dirigível, com a forma semelhante à de um charuto.",
+      "descricao_infantil": "«ZEPELIM»: Grande aeronave dirigível, com a forma semelhante à de um charuto e uma armação interna de duralumínio.",
       "mao": 135,
       "video": "zepelimSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/zepelim.png"
@@ -1077,7 +1077,7 @@
       "id": 128,
       "letra": "Z",
       "palavra": "ZANGADO",
-      "descricao_infantil": "«ZANGADO»: Pessoa que se zangou; aborrecido; irritado.",
+      "descricao_infantil": "«ZANGADO»: Aquele que se zangou; aborrecido; irritado.",
       "mao": 145,
       "video": "zangadoSm_Prog001.mp4",
       "imagem_projeto": "src/libras_glossario_imagens/zangado.png"
