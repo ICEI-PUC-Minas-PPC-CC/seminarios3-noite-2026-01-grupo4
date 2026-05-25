@@ -323,6 +323,60 @@ def desenhar_texto_centralizado(texto: str, y: int, fonte, cor=BRANCO):
     tela.blit(surf, (largura // 2 - surf.get_width() // 2, y))
 
 
+def obter_grade_casos() -> list[tuple[int, pygame.Rect]]:
+    gap = 20
+    min_card_w = 300
+    max_card_w = 360
+    card_h = 180
+    if largura >= 1300:
+        cols = 3
+    elif largura >= 900:
+        cols = 2
+    else:
+        cols = 1
+
+    card_w = (largura - (cols + 1) * gap) // cols
+    card_w = max(min_card_w, min(max_card_w, card_w))
+    total_width = cols * card_w + (cols - 1) * gap
+    start_x = max(gap, (largura - total_width) // 2)
+    start_y = 140
+
+    grade: list[tuple[int, pygame.Rect]] = []
+    for idx in range(len(casos)):
+        linha = idx // cols
+        coluna = idx % cols
+        x = start_x + coluna * (card_w + gap)
+        y = start_y + linha * (card_h + gap)
+        grade.append((idx, pygame.Rect(x, y, card_w, card_h)))
+    return grade
+
+
+def get_imagem_caso_thumb(caso_index: int, max_w: int, max_h: int) -> pygame.Surface:
+    caminho = casos[caso_index].get("imagem_caso", "src/backgrounds/lamen.png")
+    key = (caminho, max_w, max_h)
+    if key not in imagens_cache:
+        if os.path.exists(caminho):
+            try:
+                img = pygame.image.load(caminho)
+                imagens_cache[key] = _scale_to_fit(img, max_w, max_h)
+            except Exception:
+                imagens_cache[key] = _scale_to_fit(fundo_caso, max_w, max_h)
+        else:
+            imagens_cache[key] = _scale_to_fit(fundo_caso, max_w, max_h)
+    return imagens_cache[key]
+
+
+def desenhar_menu_pausa():
+    overlay = pygame.Surface((largura, altura), pygame.SRCALPHA)
+    overlay.fill((0, 0, 0, 180))
+    tela.blit(overlay, (0, 0))
+    desenhar_texto_centralizado("Jogo em Pausa", altura // 2 - 220, fonte_titulo)
+    desenhar_botao(botao_voltar_jogo, "Continuar", AZUL)
+    desenhar_botao(botao_voltar_menu, "Voltar ao Menu", VERDE)
+    desenhar_botao(botao_escolher_caso, "Escolher Caso", AZUL)
+    desenhar_botao(botao_sair_pausa, "Sair do Jogo", VERMELHO)
+
+
 def desenhar_botao_pequeno(rect: pygame.Rect, texto: str, cor_fundo: tuple[int, int, int], cor_borda=BRANCO):
     pygame.draw.rect(tela, cor_fundo, rect, border_radius=10)
     pygame.draw.rect(tela, cor_borda, rect, 2, border_radius=10)
@@ -434,12 +488,18 @@ def atualizar_botoes_caso():
 
 def atualizar_layout():
     global botao_jogar, botao_sair, botao_fullscreen, botao_glossario, botao_tentar, seta_x, seta_y, seta_rect
+    global botao_voltar_jogo, botao_voltar_menu, botao_escolher_caso, botao_sair_pausa
 
     botao_jogar = pygame.Rect(largura // 2 - 150, altura // 2 - 120, 300, 70)
     botao_glossario = pygame.Rect(largura // 2 - 150, altura // 2 - 30, 300, 70)
     botao_fullscreen = pygame.Rect(largura // 2 - 150, altura // 2 + 60, 300, 70)
     botao_sair = pygame.Rect(largura // 2 - 150, altura // 2 + 150, 300, 70)
     botao_tentar = pygame.Rect(largura // 2 - 150, altura // 2 + 150, 300, 60)
+
+    botao_voltar_jogo = pygame.Rect(largura // 2 - 200, altura // 2 - 170, 400, 70)
+    botao_voltar_menu = pygame.Rect(largura // 2 - 200, altura // 2 - 85, 400, 70)
+    botao_escolher_caso = pygame.Rect(largura // 2 - 200, altura // 2 + 0, 400, 70)
+    botao_sair_pausa = pygame.Rect(largura // 2 - 200, altura // 2 + 85, 400, 70)
 
     seta_x = largura - 120
     seta_y = altura - 80
@@ -490,14 +550,14 @@ def render_texto_quebrado(
 # Dados dos casos
 casos =[
     {
-        "titulo": "Caso 1: O lamen do ichiraku",
-        "descricao": "Voc encontra um lamen na mesa ao lado. Ninguém está vendo. O que você faz?",
+        "titulo": "Caso 1: O macarrão do Naruto",
+        "descricao": "Você encontra um macarrão na mesa ao lado. Ninguém está vendo. O que você faz?",
         "imagem_caso": "src/backgrounds/lamen.png",
-        "imagem_virtude": "src/backgrounds/HE.png",
+        "imagem_virtude": "src/backgrounds/lamen_naruto.png",
         "opcoes": [
-            "1-Levar o lamen para casa, ninguém está olhando",
-            "2-Procurar o dono ou avisar o ichiraku",
-            "3-Esconder o lamenpara que ninguém o encontre",
+            "1-Levar o macarrão para casa, ninguém está olhando",
+            "2- Perguntar se o macarrão é do Naruto e devolver para ele",
+            "3-Esconder o macarrão para que ninguém o encontre",
         ],
         "resposta_correta": 1,
         "virtude": "Honestidade",
@@ -568,8 +628,8 @@ casos =[
     {
         "titulo": "Caso 6: O Dever de Casa",
         "descricao": "Pedro tem um trabalho importante para entregar amanha, mas seus amigos o chamaram para jogar videogame. O que ele deve fazer??",
-        "imagem_caso": "src/backgrounds/COLOCA_AQUI_IMAGEM.PNG",
-        "imagem_virtude": "src/backgrounds/empatia.jpg",
+        "imagem_caso": "src/backgrounds/sala_aula.jpg",
+        "imagem_virtude": "src/backgrounds/responsabilidade.jpg",
         "opcoes": [
             "1-Ir jogar e deixar o trabalho para depois",
             "2-Terminar o trabalho primeiro e depois jogar se sobrar tempo",
@@ -577,14 +637,41 @@ casos =[
         ],
         "resposta_correta": 1,
         "virtude": "Responsabilidade",
-        "explicacao": "Responsabilidade e cumprir com seus compromissos mesnmo quando surgem distracoes. Terminar o trabalho primeiro garante que voce honre seus deveres sem prejudicar seu aprendizado.",
-        "licao_errada": "DAR LICAO DE MORAL AQUI NICK ."
-
+        "explicacao": "Responsabilidade é fazer o que precisa antes de brincar. Cumprir o dever primeiro mostra maturidade.",
+        "licao_errada": "Deixar para depois ou pedir para outro fazer por você prejudica seu aprendizado e mostra falta de responsabilidade. Quem é responsável cumpre seus deveres antes de se divertir, mesmo quando é difícil ou tentador adiar."
+    },
+    {
+        "titulo": "Caso 7: O Lanche da Vovó",
+        "descricao": "Clara tem dois biscoitos. Ela percebe que sua avó está com fome mas não tem nada para comer. O que Clara deve fazer?",
+        "imagem_caso": "src/backgrounds/lanche_vovo.png",
+        "imagem_virtude": "src/backgrounds/generosidade.jpg",
+        "opcoes": [
+            "1-Comer os dois biscoitos rapidinho antes que alguém veja",
+            "2-Dividir os biscoitos com a avó",
+            "3-Guardar o segundo biscoito no bolso para comer depois"
+        ],
+        "resposta_correta": 1,
+        "virtude": "Generosidade",
+        "explicacao": "Generosidade é dividir o que temos com quem precisa. Pequenos gestos fazem diferença!",
+        "licao_errada": "Guardar tudo para si quando alguém ao lado está com fome é egoísmo. Pequenos gestos de generosidade fazem uma grande diferença."
+    },
+    {
+        "titulo": "Caso 8: Castelo de areia",
+        "descricao": "Um menino está construindo um castelo de areia na praia e voce percebe que ele está com dificuldades. O que você faz?",
+        "imagem_caso": "src/backgrounds/praia.png",
+        "imagem_virtude": "src/backgrounds/praia2.png",
+        "opcoes": [
+            "1- Apenas olhar e não fazer nada",
+            "2- Voce ajuda ele a construir o castelo de areia",
+            "3- Falar para ele desistir porque castelos de areia são bobagem"
+        ],
+        "resposta_correta": 1,
+        "virtude": "Cooperacao",
+        "explicacao": "Cooperação é trabalhar juntos para alcançar um objetivo em comum. Pequenos gestos fazem diferença!",
+        "licao_errada": "Trabalhar sozinho sem ajudar os outros é egoísmo. Pequenos gestos de cooperação fazem uma grande diferença."
     }
-
-    }# so puxar as imagens do backgrounds tipo src/backgrounds/nome_da_imagem.png 
 ]
-
+    
 # Estado do jogo
 caso_atual = 0
 estado = "menu"
@@ -619,6 +706,12 @@ mao_por_id: dict[int, str] = {}
 video_disponivel: str | None = None
 botao_assistir_video = pygame.Rect(0, 0, 0, 0)
 glossario_erro: str | None = None
+
+estado_anterior: str | None = None
+botao_voltar_jogo = pygame.Rect(0, 0, 0, 0)
+botao_voltar_menu = pygame.Rect(0, 0, 0, 0)
+botao_escolher_caso = pygame.Rect(0, 0, 0, 0)
+botao_sair_pausa = pygame.Rect(0, 0, 0, 0)
 
 
 def abrir_glossario_libras():
@@ -723,7 +816,7 @@ clock = pygame.time.Clock()
 try:
     while rodando:
         # Fundo específico por caso ou menu
-        if estado == "caso" or estado == "resposta_incorreta":
+        if estado in ("caso", "resposta_incorreta", "pause"):
             fundo_atual = get_imagem_caso(caso_atual)
             tela.blit(fundo_atual, (0, 0))
         elif estado == "virtude":
@@ -734,6 +827,8 @@ try:
                 tela.blit(fundo_menu, (0, 0))
             else:
                 tela.fill((20, 20, 40))
+        elif estado == "escolher_caso":
+            tela.fill((10, 10, 20))
         elif estado.startswith("glossario"):
             tela.fill((20, 20, 40))
 
@@ -789,6 +884,38 @@ try:
                 tela.blit(fundo_feedback, (20, 460))
                 tela.blit(texto_feedback, (40, 470))
                 desenhar_seta()
+
+        elif estado == "pause":
+            desenhar_menu_pausa()
+
+        elif estado == "escolher_caso":
+            desenhar_texto_centralizado("Escolha um caso", 40, fonte_titulo, BRANCO)
+            render_texto_quebrado(
+                "Clique em um caso para jogar. Esc volta ao menu de pausa.",
+                fonte_pequena,
+                BRANCO,
+                tela,
+                0,
+                100,
+                largura - 80,
+                centralizar=True,
+            )
+            grade = obter_grade_casos()
+            for idx, rect in grade:
+                pygame.draw.rect(tela, (30, 30, 50), rect, border_radius=14)
+                pygame.draw.rect(tela, BRANCO, rect, 3, border_radius=14)
+                imagem_thumb = get_imagem_caso_thumb(idx, rect.width - 20, rect.height - 80)
+                x_img = rect.x + (rect.width - imagem_thumb.get_width()) // 2
+                y_img = rect.y + 10
+                tela.blit(imagem_thumb, (x_img, y_img))
+                titulo = fonte_pequena.render(casos[idx]["titulo"], True, BRANCO)
+                tela.blit(
+                    titulo,
+                    (
+                        rect.x + (rect.width - titulo.get_width()) // 2,
+                        rect.y + rect.height - 55,
+                    ),
+                )
 
         elif estado == "virtude":
             painel_virtude = pygame.Surface((1300, 520), pygame.SRCALPHA)
@@ -1015,6 +1142,14 @@ try:
                 if evento.key == pygame.K_ESCAPE and fullscreen:
                     fullscreen = False
                     atualizar_tela()
+                elif evento.key == pygame.K_ESCAPE and estado == "pause":
+                    estado = estado_anterior or "caso"
+                    estado_anterior = None
+                elif evento.key == pygame.K_ESCAPE and estado == "escolher_caso":
+                    estado = "pause"
+                elif evento.key == pygame.K_ESCAPE and estado in ("caso", "virtude", "resposta_incorreta"):
+                    estado_anterior = estado
+                    estado = "pause"
                 elif evento.key == pygame.K_ESCAPE and estado.startswith("glossario"):
                     if estado == "glossario_palavra":
                         estado = "glossario_letra"
@@ -1051,6 +1186,25 @@ try:
 
                     if feedback and "Correto" in feedback and seta_rect.collidepoint(mouse_x, mouse_y):
                         estado = "virtude"
+                elif estado == "pause":
+                    if botao_voltar_jogo.collidepoint(mouse_x, mouse_y):
+                        estado = estado_anterior or "caso"
+                        estado_anterior = None
+                    elif botao_voltar_menu.collidepoint(mouse_x, mouse_y):
+                        estado = "menu"
+                        estado_anterior = None
+                    elif botao_escolher_caso.collidepoint(mouse_x, mouse_y):
+                        estado = "escolher_caso"
+                    elif botao_sair_pausa.collidepoint(mouse_x, mouse_y):
+                        rodando = False
+                elif estado == "escolher_caso":
+                    for idx, rect in obter_grade_casos():
+                        if rect.collidepoint(mouse_x, mouse_y):
+                            caso_atual = idx
+                            resetar_caso()
+                            estado = "caso"
+                            estado_anterior = None
+                            break
                 elif estado == "virtude":
                     if seta_rect.collidepoint(mouse_x, mouse_y):
                         caso_atual += 1
