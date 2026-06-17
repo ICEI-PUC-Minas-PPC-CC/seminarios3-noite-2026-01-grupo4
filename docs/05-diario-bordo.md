@@ -29,7 +29,7 @@
 
 ### Semana 02 — 06/03/26 a 12/03/26
 
-**O que foi feito:*Atribuiçoes de tarefas e Desenvolvimento do projeto**
+**O que foi feito:** *Atribuiçoes de tarefas e Desenvolvimento do projeto**
 
 **Quem participou:** *Todos*
 
@@ -51,10 +51,9 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 **Quem participou:** *Laura e Giovana*
 
-*Durante esta etapa do desenvolvimento, foi realizada a adaptação à interface gráfica utilizada no projeto, buscando compreender sua estrutura e fluxo de funcionamento. Também foi implementado o primeiro caso do jogo, relacionado à virtude da honestidade, incluindo os elementos visuais e interativos necessários para sua execução. Essa atividade serviu como base para a padronização dos próximos casos e para a organização inicial da interface da aplicação.
-*
+*Durante esta etapa do desenvolvimento, foi realizada a adaptação à interface gráfica utilizada no projeto, buscando compreender sua estrutura e fluxo de funcionamento. Também foi implementado o primeiro caso do jogo, relacionado à virtude da honestidade, incluindo os elementos visuais e interativos necessários para sua execução. Essa atividade serviu como base para a padronização dos próximos casos e para a organização inicial da interface da aplicação.*
 
-**Próximos passos:*Publicar a versão inicial do projeto no GitHub, configurar o repositório para colaboração entre os integrantes da equipe e dar continuidade à implementação dos demais casos previstos no escopo do jogo.*
+*Próximos passos:*Publicar a versão inicial do projeto no GitHub, configurar o repositório para colaboração entre os integrantes da equipe e dar continuidade à implementação dos demais casos previstos no escopo do jogo.*
 
 ---
 
@@ -62,11 +61,11 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 **O que foi feito:** *Iniciação do projeto*
 
-**Quem participou:*Laura*
+**Quem participou:** *Laura*
 
-**Decisões técnicas tomadas:*Durante esta etapa do desenvolvimento, foi realizado o processo de adaptação à interface gráfica utilizada no projeto, com o objetivo de compreender melhor sua estrutura e funcionamento. Também foi implementado o primeiro caso do jogo, relacionado à virtude da honestidade, incluindo os elementos necessários para sua exibição e interação na interface. Essa atividade permitiu avançar na organização dos componentes visuais e estabelecer uma base para a implementação dos próximos casos previstos no projeto.*
+*Decisões técnicas tomadas:*Durante esta etapa do desenvolvimento, foi realizado o processo de adaptação à interface gráfica utilizada no projeto, com o objetivo de compreender melhor sua estrutura e funcionamento. Também foi implementado o primeiro caso do jogo, relacionado à virtude da honestidade, incluindo os elementos necessários para sua exibição e interação na interface. Essa atividade permitiu avançar na organização dos componentes visuais e estabelecer uma base para a implementação dos próximos casos previstos no projeto.*
 
-**Próximos passos:*Subir as informações para o Github*
+*Próximos passos:*Subir as informações para o Github*
 
 ---
 ### Semana 05 — 21/03/26 a 13/04/2026
@@ -77,7 +76,7 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 *Foram realizadas alterações na documentação do projeto com o objetivo de manter os registros de desenvolvimento atualizados e alinhados com o andamento das atividades. Além disso, os integrantes da equipe passaram a utilizar o repositório compartilhado para envio de commits, estabelecendo um fluxo inicial de versionamento e acompanhamento das modificações realizadas no código-fonte. Essas ações contribuíram para melhorar a organização do projeto e facilitar a colaboração entre os membros.*
 
-**Próximos passos:*Dar continuidade ao desenvolvimento das funcionalidades previstas, atualizar a documentação conforme necessário e manter o controle de versão por meio de commits periódicos no repositório.*
+*Próximos passos:*Dar continuidade ao desenvolvimento das funcionalidades previstas, atualizar a documentação conforme necessário e manter o controle de versão por meio de commits periódicos no repositório.*
 
 ---
 
@@ -103,7 +102,7 @@ Foi iniciada a implementação do glossário da aplicação, funcionalidade comp
 *Foi concluído o desenvolvimento dos casos relacionados às virtudes da Responsabilidade e Generosidade. As atividades incluíram a elaboração das narrativas, criação e seleção de imagens para composição dos cenários, implementação dos casos na aplicação e realização de testes para validação do funcionamento. Também foram efetuadas verificações de compatibilidade com a estrutura já existente do projeto, visando garantir a integração adequada dos novos conteúdos à interface e ao fluxo de navegação do jogo.
 Foi realizada uma revisão dos textos do glossário gerados com auxílio de inteligência artificial, corrigindo inconsistências identificadas nos prompts utilizados e melhorando a qualidade das definições apresentadas. Durante a análise, verificou-se que parte do conteúdo ainda continha termos excessivamente técnicos para o público-alvo do projeto. Dessa forma, foi definida a necessidade de simplificar a linguagem utilizada, priorizando explicações mais claras, objetivas e adequadas à compreensão de crianças.*
 
-*Próximos passos:*Finalizar o projeto.*
+**Próximos passos:* *Finalizar o projeto.**
 
 ---
 
@@ -113,18 +112,18 @@ Foi realizada uma revisão dos textos do glossário gerados com auxílio de inte
 
 **Quem participou:** *Todos*
 
-*Nesta etapa, foram finalizados e integrados todos os casos educacionais previstos no escopo do projeto, abrangendo as virtudes trabalhadas pelos diferentes integrantes da equipe. Também foram realizadas melhorias voltadas à experiência do usuário, incluindo ajustes no tamanho das fontes para aumentar a legibilidade dos textos apresentados. Além disso, foram implementados os modos de exibição em tela cheia e em janela, juntamente com mecanismos de adaptação automática da interface à resolução do monitor utilizado, garantindo que os elementos visuais fossem exibidos adequadamente em diferentes tamanhos de tela.
+*Nesta etapa, foram finalizados e integrados todos os casos educacionais previstos no escopo do projeto, abrangendo as virtudes trabalhadas pelos diferentes integrantes da equipe. Também foram realizadas melhorias voltadas à experiência do usuário, incluindo ajustes no tamanho das fontes para aumentar a legibilidade dos textos apresentados. Além disso, foram implementados os modos de exibição em tela cheia e em janela, juntamente com mecanismos de adaptação automática da interface à resolução do monitor utilizado, garantindo que os elementos visuais fossem exibidos adequadamente em diferentes tamanhos de tela.*
 
-Foram executados testes de integração e validação das funcionalidades desenvolvidas, assegurando o correto funcionamento da aplicação. Em relação ao glossário, apesar das revisões realizadas anteriormente nos prompts utilizados para geração do conteúdo, não foram efetuadas novas alterações em seus textos como solicitado pelo professor. Dessa forma, a funcionalidade foi mantida em sua versão atual, ainda apresentando alguns termos e expressões de maior complexidade para o público.*
+*Foram executados testes de integração e validação das funcionalidades desenvolvidas, assegurando o correto funcionamento da aplicação. Em relação ao glossário, apesar das revisões realizadas anteriormente nos prompts utilizados para geração do conteúdo, não foram efetuadas novas alterações em seus textos como solicitado pelo professor. Dessa forma, a funcionalidade foi mantida em sua versão atual, ainda apresentando alguns termos e expressões de maior complexidade para o público.*
 
 --- 
 ## Registro da Entrega Presencial
 
 **Data:** 11/06/26  
-**Local:*PUC Minas*  
+**Local:** *PUC Minas*  
 **Horário:** 14:00h às 14:30h  
-**Participantes do grupo presentes:*Laura, Marcos Eduardo e Nicolas*  
-**Nº de participantes da comunidade:*4*
+**Participantes do grupo presentes:** *Laura, Marcos Eduardo e Nicolas*  
+**Nº de participantes da comunidade:** *4*
 
 ### Descrição da entrega
 
