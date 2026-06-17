@@ -142,6 +142,6 @@ De maneira geral, a comunidade demonstrou boa aceitação do projeto, com retorn
 
 ### Lições aprendidas
 
-Durante o desenvolvimento do projeto, identificou-se que a adoção de boas práticas de programação desde o início poderia ter contribuído para uma melhor organização do código, facilitando a manutenção e evolução do sistema. Além disso, a comunicação entre os integrantes poderia ter sido mais eficiente, assim como o maior controle e atenção aos prazos estabelecidos, uma vez que grande parte das atividades foi concluída próximo ao prazo final.
+Durante o desenvolvimento do projeto, identificou-se que a adoção de boas práticas de programação desde o início poderia ter contribuído para uma melhor organização do código, facilitando a manutenção e evolução do sistema. Além disso, a comunicação entre os integrantes poderia ter sido mais eficiente, assim como o maior controle e atenção aos prazos estabelecidos, uma vez que grande parte das atividades foi concluída no limite do prazo final.
 
 Por outro lado, alguns pontos foram positivos, como a divisão de tarefas entre os integrantes, o que possibilitou o desenvolvimento paralelo das funcionalidades. Também se destacou o avanço progressivo do projeto, com a implementação dos casos educacionais e a integração da interface gráfica, permitindo a construção consistente da aplicação ao longo do tempo.
