@@ -31,9 +31,9 @@
 
 **O que foi feito:*Atribuiçoes de tarefas e Desenvolvimento do projeto**
 
-**Quem participou:*Todos*
+**Quem participou:** *Todos*
 
-**Decisões técnicas tomadas:*Laura: Escopo do projeto, atribuição de funçôes para os demais integrantes, ánalise do código, linguagem a ser utilizada, interface gráfica e direcionamento da equipe
+**Decisões técnicas tomadas:** *Laura: Escopo do projeto, atribuição de funçôes para os demais integrantes, ánalise do código, linguagem a ser utilizada, interface gráfica e direcionamento da equipe
 
 Giovana: Parte extra da integração do glossário no menu do jogo , criação do caso Cooperação, realização da crição de imagens e história dos casos, tal como realização de testes no código
 
@@ -47,9 +47,9 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 ### Semana 03 — 15/03/26 a 17/03/26
 
-**O que foi feito:*Iniciação do projeto**
+**O que foi feito:** *Iniciação do projeto*
 
-**Quem participou:*Laura e Giovana*
+**Quem participou:** *Laura e Giovana*
 
 *Durante esta etapa do desenvolvimento, foi realizada a adaptação à interface gráfica utilizada no projeto, buscando compreender sua estrutura e fluxo de funcionamento. Também foi implementado o primeiro caso do jogo, relacionado à virtude da honestidade, incluindo os elementos visuais e interativos necessários para sua execução. Essa atividade serviu como base para a padronização dos próximos casos e para a organização inicial da interface da aplicação.
 *
@@ -60,7 +60,7 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 ### Semana 04 — 17/03/26 a 21/03/26
 
-**O que foi feito:*Iniciação do projeto*
+**O que foi feito:** *Iniciação do projeto*
 
 **Quem participou:*Laura*
 
@@ -71,11 +71,11 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 ---
 ### Semana 05 — 21/03/26 a 13/04/2026
 
-**O que foi feito:*Atualizações na documentação do projeto, organização do repositório e realização de commits pelos integrantes da equipe.*
+**O que foi feito:** *Atualizações na documentação do projeto, organização do repositório e realização de commits pelos integrantes da equipe.*
 
-**Quem participou:*Todos*
+**Quem participou:** *Todos*
 
-**Foram realizadas alterações na documentação do projeto com o objetivo de manter os registros de desenvolvimento atualizados e alinhados com o andamento das atividades. Além disso, os integrantes da equipe passaram a utilizar o repositório compartilhado para envio de commits, estabelecendo um fluxo inicial de versionamento e acompanhamento das modificações realizadas no código-fonte. Essas ações contribuíram para melhorar a organização do projeto e facilitar a colaboração entre os membros.*
+*Foram realizadas alterações na documentação do projeto com o objetivo de manter os registros de desenvolvimento atualizados e alinhados com o andamento das atividades. Além disso, os integrantes da equipe passaram a utilizar o repositório compartilhado para envio de commits, estabelecendo um fluxo inicial de versionamento e acompanhamento das modificações realizadas no código-fonte. Essas ações contribuíram para melhorar a organização do projeto e facilitar a colaboração entre os membros.*
 
 **Próximos passos:*Dar continuidade ao desenvolvimento das funcionalidades previstas, atualizar a documentação conforme necessário e manter o controle de versão por meio de commits periódicos no repositório.*
 
@@ -83,9 +83,9 @@ Marcos Eduardo: Criação dos casos da Amizade e Empatia,  realização da criç
 
 ### Semana 06 — 13/04/26 a 01/05/26
 
-*O que foi feito:*Conclusão do desenvolvimento do módulo sob responsabilidade de Laura e Marcos Eduardo, finalização de um dos casos do jogo e implementação de melhorias na interface da aplicação.*
+**O que foi feito:** *Conclusão do desenvolvimento do módulo sob responsabilidade de Laura e Marcos Eduardo, finalização de um dos casos do jogo e implementação de melhorias na interface da aplicação.*
 
-*Quem participou:*Laura,Marcos Eduardo, Giovana*
+**Quem participou:** *Laura,Marcos Eduardo, Giovana*
 
 *Durante esta etapa, foram finalizados os casos educacionais sob responsabilidade de Laura e Marcos Eduardo, ampliando o conteúdo disponível na aplicação. Também foram realizadas melhorias voltadas à experiência do usuário, incluindo ajustes no tamanho das fontes para aumentar a legibilidade dos textos apresentados. Além disso, foram implementados os modos de exibição em tela cheia e em janela, juntamente com mecanismos de adaptação automática da interface à resolução do monitor utilizado, garantindo que os elementos visuais fossem exibidos adequadamente em diferentes tamanhos de tela.
 Foi iniciada a implementação do glossário da aplicação, funcionalidade complementar destinada a fornecer informações adicionais aos usuários. Nesta etapa, foi desenvolvido o código base da funcionalidade, incluindo sua estrutura inicial e integração com a arquitetura existente do projeto. A implementação serviu como fundamento para a adição futura dos conteúdos e demais recursos previstos para o glossário.*
@@ -96,9 +96,9 @@ Foi iniciada a implementação do glossário da aplicação, funcionalidade comp
 
 ### Semana 07 — 01/05/26 a 09/06/2026
 
-*O que foi feito:*Conclusão dos casos sob responsabilidade de Nicolas e avanço na integração dos conteúdos ao projeto principal e Revisão e ajustes dos conteúdos gerados para o glossário.*
+**O que foi feito:** *Conclusão dos casos sob responsabilidade de Nicolas e avanço na integração dos conteúdos ao projeto principal e Revisão e ajustes dos conteúdos gerados para o glossário.*
 
-*Quem participou:*Nicolas e Giovana*
+**Quem participou:** *Nicolas e Giovana*
 
 *Foi concluído o desenvolvimento dos casos relacionados às virtudes da Responsabilidade e Generosidade. As atividades incluíram a elaboração das narrativas, criação e seleção de imagens para composição dos cenários, implementação dos casos na aplicação e realização de testes para validação do funcionamento. Também foram efetuadas verificações de compatibilidade com a estrutura já existente do projeto, visando garantir a integração adequada dos novos conteúdos à interface e ao fluxo de navegação do jogo.
 Foi realizada uma revisão dos textos do glossário gerados com auxílio de inteligência artificial, corrigindo inconsistências identificadas nos prompts utilizados e melhorando a qualidade das definições apresentadas. Durante a análise, verificou-se que parte do conteúdo ainda continha termos excessivamente técnicos para o público-alvo do projeto. Dessa forma, foi definida a necessidade de simplificar a linguagem utilizada, priorizando explicações mais claras, objetivas e adequadas à compreensão de crianças.*
@@ -109,9 +109,9 @@ Foi realizada uma revisão dos textos do glossário gerados com auxílio de inte
 
 ### Semana 08 — 09/05/26
 
-*O que foi feito:*Conclusão de todos os casos previstos no escopo do projeto e finalização das atividades atribuídas aos integrantes da equipe.*
+**O que foi feito:** *Conclusão de todos os casos previstos no escopo do projeto e finalização das atividades atribuídas aos integrantes da equipe.*
 
-*Quem participou:*Todos*
+**Quem participou:** *Todos*
 
 *Nesta etapa, foram finalizados e integrados todos os casos educacionais previstos no escopo do projeto, abrangendo as virtudes trabalhadas pelos diferentes integrantes da equipe. Também foram realizadas melhorias voltadas à experiência do usuário, incluindo ajustes no tamanho das fontes para aumentar a legibilidade dos textos apresentados. Além disso, foram implementados os modos de exibição em tela cheia e em janela, juntamente com mecanismos de adaptação automática da interface à resolução do monitor utilizado, garantindo que os elementos visuais fossem exibidos adequadamente em diferentes tamanhos de tela.
 
